@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.phonegap.example"
+        id          = "fr.nm3.WoN"
         versionCode = "10" 
         version     = "1.0.0" >
 
@@ -19,6 +19,8 @@
 	<preference name="orientation" value="landscape" />
     <preference name="android-windowSoftInputMode" value="stateVisible|adjustPan"/>
 	
+	<gap:platform name="android" />
+	
 	<gap:plugin name="org.apache.cordova.file" version="1.0.1" />
 	<gap:plugin name="net.tunts.webintent" version="0.2.1" />
 	<gap:plugin name="org.apache.cordova.console" version="0.2.7" />
@@ -33,4 +35,9 @@
 	<gap:plugin name="org.apache.cordova.device-orientation" version="0.3.5" />
 	<gap:plugin name="org.apache.cordova.media" version="0.2.8" />
 	<gap:plugin name="org.apache.cordova.media-capture" version="0.2.8" />
+	<gap:plugin name="com.adobe.plugins.fastcanvas" version="1.0.1" />
+	
+	<gap:config-file platform="android" parent="/manifest">
+		<application android:hardwareAccelerated="false"/>
+	</gap:config-file>
 </widget>
