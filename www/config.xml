@@ -7,9 +7,6 @@
 
     <!-- versionCode is optional and Android only -->
 
-	<gap:config-file platform="android" parent="/manifest">
-		<application android:hardwareAccelerated="false"/>
-	</gap:config-file>
 	
     <name>WoN</name>
     <description>
