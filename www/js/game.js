@@ -797,7 +797,7 @@ function didacticiel() {
         //intercomLoad.show();
         //animmeMinLoad('intercom');
         //game.onload();
-		var $shema = getLocalData('shema-perso'+globalVars['usePerso']+'.json');
+		var $shema = getLocalData('ressources/shema-perso'+globalVars['usePerso']);
 		var_dump($shema);
     });
 
