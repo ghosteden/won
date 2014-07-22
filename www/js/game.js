@@ -793,10 +793,11 @@ function didacticiel() {
     globalVars['curentMap'] = 'z1m2';
     globalVars['inGame'] = true;
     closeIntercom(function() {
-        var intercomLoad = getElement('intercomLoad');
-        intercomLoad.show();
-        animmeMinLoad('intercom');
-        game.onload();
+        //var intercomLoad = getElement('intercomLoad');
+        //intercomLoad.show();
+        //animmeMinLoad('intercom');
+        //game.onload();
+		getLocalData('shema-perso'+globalVars['usePerso']);
     });
 
 }
