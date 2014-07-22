@@ -7,6 +7,10 @@
 
     <!-- versionCode is optional and Android only -->
 
+	<gap:config-file platform="android" parent="/manifest">
+		<application android:hardwareAccelerated="false"/>
+	</gap:config-file>
+	
     <name>WoN</name>
     <description>
        World of Nemesis
@@ -35,8 +39,4 @@
 	<gap:plugin name="org.apache.cordova.device-orientation" version="0.3.5" />
 	<gap:plugin name="org.apache.cordova.media" version="0.2.8" />
 	<gap:plugin name="org.apache.cordova.media-capture" version="0.2.8" />
-	
-	<gap:config-file platform="android" parent="/manifest">
-		<application android:hardwareAccelerated="false"/>
-	</gap:config-file>
 </widget>
