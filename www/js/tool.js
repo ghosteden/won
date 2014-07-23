@@ -65,6 +65,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
                         }
                     } else {
                         globalVars[FILE] = JSON.parse(evt.target.result);
+						var_dump(JSON.parse(evt.target.result));
                         // Si le paramètre collback exist on l'appel
                         if (callback) {
                             callback();
