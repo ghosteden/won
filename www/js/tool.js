@@ -35,6 +35,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
         fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
 			fileEntry.file(function(file) {
+				var_dump(file);
                 var reader = new FileReader();
                 reader.onloadend = function(evt) {
                     if (evt.target.result == '') {
