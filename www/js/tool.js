@@ -37,7 +37,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			fileEntry.file(function(file) {
                 var reader = new FileReader();
                 reader.onloadend = function(evt) {
-					var_dump(evt.target);
+					var_dump(evt.target.result);
                     if (evt.target.result == '') {
                         /*
                          * Le fichier est vide ou innexistant
