@@ -797,8 +797,11 @@ function didacticiel() {
         //intercomLoad.show();
         //animmeMinLoad('intercom');
         //game.onload();
-		getLocalData('ressources/shema-perso'+globalVars['usePerso']);
-		var_dump(globalVars['ressources/shema-perso'+globalVars['usePerso']]);
+		getLocalData('shema-perso'+globalVars['usePerso']);
+		var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
+        //game.onload();
+		getLocalData('ressources/config');
+		var_dump(globalVars['ressources/config']);
     });
 
 }
