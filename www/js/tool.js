@@ -37,10 +37,10 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			fileEntry.file(function(file) {
 				var reader = new FileReader();
 				var testNameFile = FILE.lastIndexOf('/');
-				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile) : FILE;
+				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile+1) : FILE;
 				reader.onloadend = function(evt) {
 					alert(evt.target.result);
-					var_dump(NAMEFILE);
+					alert(NAMEFILE);
 					if (evt.target.result == '') {
 						/*
 						 * Le fichier est vide ou innexistant
