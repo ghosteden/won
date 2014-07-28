@@ -802,5 +802,4 @@ function didacticiel() {
 						alert('3');
 		var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
     });
-
 }
