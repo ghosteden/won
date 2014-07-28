@@ -36,6 +36,8 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
         fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
 			fileEntry.file(function(file) {
                 var reader = new FileReader();
+				var testNameFile = FILE.lastIndexOf('/');
+				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile) : FILE;
                 reader.onloadend = function(evt) {
 					var_dump(evt.target.result);
                     if (evt.target.result == '') {
@@ -45,29 +47,29 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
                          * Sinon on fait une requette au serveur pour récupéré le fichier équivalant
                          */
                         if (dataDefault != '') {
-                            globalVars[FILE] = dataDefault;
+                            globalVars[NAMEFILE] = dataDefault;
                             if (callbackIfNotExist) {
                                 callbackIfNotExist();
                             } else {
                                 // la fonction recordData() va se charger de l'ecriture des donées
-                                recordLocalData(FILE, globalVars[FILE]);
+                                recordLocalData(FILE, globalVars[NAMEFILE]);
                             }
                         } else {
                             //faire la requette ajax pour récup les données
                             $.get(distantFile, paramsForGet,
                                     function(data) {
-                                        globalVars[FILE] = JSON.parse(data);
+                                        globalVars[NAMEFILE] = JSON.parse(data);
                                         // la fonction recordData() va se charger de l'ecriture des donées
-                                        recordLocalData(FILE, globalVars[FILE]);
+                                        recordLocalData(FILE, globalVars[NAMEFILE]);
                                         if (callbackIfNotExist) {
                                             callbackIfNotExist();
                                         }
                                     });
                         }
                     } else {
-						var_dump(FILE);
 						var_dump(JSON.parse(evt.target.result));
-                        globalVars[FILE] = JSON.parse(evt.target.result);
+						var_dump(NAMEFILE);
+                        globalVars[NAMEFILE] = JSON.parse(evt.target.result);
                         // Si le paramètre collback exist on l'appel
                         if (callback) {
                             callback();
