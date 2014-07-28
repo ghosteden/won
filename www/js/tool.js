@@ -67,7 +67,10 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
                                     });
                         }
                     } else {
+						alert('1');
 						var_dump(JSON.parse(evt.target.result));
+						
+						alert('2');
 						var_dump(NAMEFILE);
                         globalVars[NAMEFILE] = JSON.parse(evt.target.result);
                         // Si le paramètre collback exist on l'appel
