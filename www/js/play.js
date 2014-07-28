@@ -23,6 +23,8 @@ game.PlayScreen = me.ScreenObject.extend({
 //        $('#gameControleur').mouseup(function(e) {
 //            onPointerUp(e);
 //        })
+
+		var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
    },
     /**	
      *  action to perform when leaving this screen (state change)
