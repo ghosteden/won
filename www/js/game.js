@@ -53,6 +53,7 @@ var game = {
     },
     // Run on game resources loaded.
     "loaded": function() {
+		alert('test');
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.transition("fade", "#000000", 250);
 
