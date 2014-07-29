@@ -39,8 +39,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 				var testNameFile = FILE.lastIndexOf('/');
 				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile+1) : FILE;
 				reader.onloadend = function(evt) {
-					alert(evt.target.result);
-					alert(NAMEFILE);
 					if (evt.target.result == '') {
 						/*
 						 * Le fichier est vide ou innexistant
@@ -70,7 +68,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 					} else {
 						try {
 							globalVars[NAMEFILE] = JSON.parse(evt.target.result);
-							alert(globalVars[NAMEFILE]);
 						} catch (e) {
 							var_dump(e);
 						}

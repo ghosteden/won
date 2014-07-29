@@ -14,18 +14,7 @@ game.PlayScreen = me.ScreenObject.extend({
 //        jselemGameControleur.addEventListener("mousedown", function(e){onPointerDown(e)}, false);
 //        jselemGameControleur.addEventListener("mousemove", function(e){onPointerMove(e)}, false);
 //        jselemGameControleur.addEventListener("mouseup", function(e){onPointerUp(e)}, false);
-//        $('#gameControleur').mousemove(function(e) {
-//            onPointerDown(e);
-//        })
-//        $('#gameControleur').mousedown(function(e) {
-//            onPointerMove(e);
-//        })
-//        $('#gameControleur').mouseup(function(e) {
-//            onPointerUp(e);
-//        })
-
-		var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
-   },
+    },
     /**	
      *  action to perform when leaving this screen (state change)
      */
