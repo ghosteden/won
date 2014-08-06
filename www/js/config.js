@@ -32,7 +32,7 @@ globalVars['loopAudio'] = [];
 globalVars['loopAudioTime'] = [];
 
 // Variable a MelonJs
-globalVars['fps'] = 20;
+globalVars['fps'] = 10;
 globalVars['tileSize'] = 16;
 
 // Autre variable;

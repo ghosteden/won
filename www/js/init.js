@@ -429,7 +429,6 @@ function DLFile() {
 
                         $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
                     }, function(evt) {
-                        var_dump(evt);
                         signal('erreurApp' + "Error downloading File: " + evt.code, function() {
                             exitApps()
                         });

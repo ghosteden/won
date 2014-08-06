@@ -5,17 +5,14 @@ game.PlayerEntity = game.HumanEntity.extend({
         // Reference from the global namespace
         game.Player = this;
         me.save.player = "perso"+globalVars['usePerso'];
+		
         
         //chargement des animations
-//        this.renderable.addAnimation('X0', X0move);
-//        this.renderable.addAnimation('X0S', X0startMove);
-//        this.renderable.addAnimation('X0E', X0endMove);
-//        this.renderable.addAnimation('X0W', X0wait1);
-//        
-//        this.renderable.addAnimation('X180', X180move);
-//        this.renderable.addAnimation('X180S', X180startMove);
-//        this.renderable.addAnimation('X180E', X180endMove);
-//        this.renderable.addAnimation('X180W', X180wait1);
+		var nbrWaitAnim = []
+		for( $move in globalVars['shema-perso'+globalVars['usePerso']] ){
+			this.renderable.addAnimation($move, globalVars['shema-perso'+globalVars['usePerso']][$move]);
+			//if(nbrWaitAnim[''])
+		}
         
         // set the display to follow our position on both axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);

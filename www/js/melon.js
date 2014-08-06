@@ -4043,6 +4043,32 @@ window.me = window.me || {};
 		getCurrentAnimationFrame : function() {
 			return this.current.idx;
 		},
+		
+		/**
+		 * return the current animation name.
+		 * @name getCurrentAnimationName
+		 * @memberOf me.AnimationSheet
+		 * @function
+		 * @returns {_L3470.Anonym$19.anim}
+		 */
+		getCurrentAnimationName : function() {
+			return this.current.name;
+		},
+		
+		/**
+		 * return boolean if animation name exist.
+		 * @name getExistAnimationName
+		 * @memberOf me.AnimationSheet
+		 * @function
+		 * @returns boolean
+		 */
+		existAnimationName : function(name) {
+			if(this.anim[name]){
+				return true;
+			}else{
+				return false;
+			}
+		},
 
 		/**
 		 * update the animation<br>

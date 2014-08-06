@@ -53,12 +53,9 @@ var game = {
     },
     // Run on game resources loaded.
     "loaded": function() {
-		alert('0');
         me.state.set(me.state.PLAY, new game.PlayScreen());
-		alert('1');
         me.state.transition("fade", "#000000", 250);
 
-		alert('2');
         /////////////////////
         //   POOL OBJECT   //
         /////////////////////
@@ -76,7 +73,6 @@ var game = {
         //   END POOL OBJECT   //
         /////////////////////////
 
-		alert('3');
         //GAME CONTROLEUR
         me.input.bindKey(me.input.KEY.X0, "X0");
         me.input.bindKey(me.input.KEY.XM22, "XM22");
@@ -95,11 +91,9 @@ var game = {
         me.input.bindKey(me.input.KEY.X135, "X135");
         me.input.bindKey(me.input.KEY.X157, "X157");
 
-		alert('4');
         // Start the game.
         me.state.change(me.state.PLAY);
 		
-		alert('5');
     },
     "controleur": function(vecteur, angle) {
 
