@@ -5,7 +5,8 @@ game.GateEntity = me.LevelEntity.extend({
     "goToPlayerX":null,
     "goToPlayerY":null,
     init: function(x, y, settings) {
-        
+		settings.fade='#000000';
+		settings.duration = 250;
         if (typeof(settings.goToPlayerX) != "undefined")
             this.goToPlayerX = settings.goToPlayerX;
         else this.goToPlayerX = null;

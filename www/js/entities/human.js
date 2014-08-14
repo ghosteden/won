@@ -173,14 +173,16 @@ game.HumanEntity = me.ObjectEntity.extend({
 		else {
 			this.vel.x = 0;
 			this.vel.y = 0;
+			//selectNewAnimWait(this.angleMove);
 			// Si position d'arret alors on met l'animation qui correspond au dernier angle de mouvement
-			if (this.angleMove.indexOf('W') == -1 && this.renderable.existAnimationName(this.angleMove + "W")) {
+			if (this.angleMove.indexOf('W') == -1 && this.angleMove.indexOf('E') == -1 && this.renderable.existAnimationName(this.angleMove + "E")) {
+				this.renderable.setCurrentAnimation(this.angleMove + "E", (function() {
+					this.renderable.setCurrentAnimation(this.angleMove + 'W');
+				}).bind(this));
 				this.angleMove = this.angleMove + 'W';
 			}
-			if (!this.renderable.isCurrentAnimation(this.angleMove)) {
-				this.renderable.setCurrentAnimation(this.angleMove, function() {
-					//possibilité de position d'attente aléatoire
-				});
+			if (this.renderable.getCurrentAnimationName().indexOf('W') == -1) {
+				this.selectNewAnimationWait(this);
 			}
 		}
 
@@ -188,6 +190,19 @@ game.HumanEntity = me.ObjectEntity.extend({
 		this.updateMovement();
 		this.parent();
 		return true;
+	},
+	selectNewAnimationWait: function(obj) {
+		obj.renderable.setCurrentAnimation(obj.angleMove);
+		this.renderable.setAnimationFrame(0);
+		var time = Math.random() * 10000 + 5000;
+		obj.renderable.setCurrentAnimation(obj.angleMove, (function() {
+			setTimeout(function() {
+				var animeSelected = globalVars['listWaitAnim'][obj.angleMove.substr(0,obj.angleMove.length-1)][Math.floor(Math.random() * globalVars['listWaitAnim'][obj.angleMove.substr(0,obj.angleMove.length-1)].length)];
+				obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected, (function() {
+						obj.selectNewAnimationWait(obj);
+				}));
+			}, time)
+		}));
 	}
 
 });
