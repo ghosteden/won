@@ -11,20 +11,23 @@ var game = {
 	// Run on page load.
 	"onload": function() {
 		// Initialize the video.
-		if (globalVars['screenW'] < 1024) {
-			var gamseWidth = globalVars['screenW'];
-			var gameHeight = globalVars['screenH'];
-		} else {
-			var gamseWidth = 1024;
-			if (globalVars['screenH'] > 720) {
-				var gameHeight = 720;
-			} else {
-				var gameHeight = globalVars['screenH'];
-			}
+		
+		//vérifie les taille d'écrans
+		var gameWidth = globalVars['screenW'];
+		if (globalVars['screenW'] > 1024) {
+			gameWidth = 1024;
+		}
+		var gameHeight = globalVars['screenH'];
+		if (globalVars['screenH'] > 720) {
+			gameHeight = 720;
+		}
+		//vérifie si le scale et le ration sont necessaire
+		if (globalVars['screenW'] > 1024 || globalVars['screenH'] > 720) {
 			globalVars['scale'] = 'auto';
 			globalVars['maintainAspectRatio'] = true;
 		}
-		if (!me.video.init("screen", gamseWidth, gameHeight, globalVars['double_buffering'], globalVars['scale'], globalVars['maintainAspectRatio'])) {
+		// initialise le canvas
+		if (!me.video.init("screen", gameWidth, gameHeight, globalVars['double_buffering'], globalVars['scale'], globalVars['maintainAspectRatio'])) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}
