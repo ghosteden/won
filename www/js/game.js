@@ -11,7 +11,20 @@ var game = {
 	// Run on page load.
 	"onload": function() {
 		// Initialize the video.
-		if (!me.video.init("screen", globalVars['screenW'], globalVars['screenH'], false)) {
+		if (globalVars['screenW'] < 1024) {
+			var gamseWidth = globalVars['screenW'];
+			var gameHeight = globalVars['screenH'];
+		} else {
+			var gamseWidth = 1024;
+			if (globalVars['screenH'] > 720) {
+				var gameHeight = 720;
+			} else {
+				var gameHeight = globalVars['screenH'];
+			}
+			globalVars['scale'] = 'auto';
+			globalVars['maintainAspectRatio'] = true;
+		}
+		if (!me.video.init("screen", gamseWidth, gameHeight, globalVars['double_buffering'], globalVars['scale'], globalVars['maintainAspectRatio'])) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}
@@ -72,9 +85,9 @@ var game = {
 		/* me.entityPool.add("Controller", game.ControllerEntity);
 		 me.entityPool.add("Interaction", game.InteractionEntity);
 		 me.entityPool.add("PNJ", game.PnjEntity);*/
-		 
-		 //load reposition point of player after changemaps
-		 me.entityPool.add("Gate", game.GateEntity);
+
+		//load reposition point of player after changemaps
+		me.entityPool.add("Gate", game.GateEntity);
 
 		/////////////////////////
 		//   END POOL OBJECT   //
