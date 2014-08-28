@@ -190,3 +190,6 @@ LANG_EN['badPassword'] = "";
 
 LANG_FR['badNewPassword'] = "La confirmation du mot de passe ne correspond pas a celle du nouveau mot de passe.";
 LANG_EN['badNewPassword'] = "";
+
+LANG_FR['outOfMap'] = "Cette partie du monde n'est pas accessible. Vous ne pouvez vous y rendre sans risque.";
+LANG_EN['outOfMap'] = "";

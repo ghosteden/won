@@ -80,129 +80,133 @@ game.HumanEntity = me.ObjectEntity.extend({
 	 
 	 ------ */
 	update: function() {
-		var res = me.game.collide(this);
-		this.flipX(false);
-		if (this.speedMove !== false) {
-			// Choise animate sprites
-			if (this.renderable.getCurrentAnimationName().indexOf('W') > 0 && this.renderable.existAnimationName(this.angleMove + "S")) {
-				//on change d'angle et on été sur un position d'arret
-				this.renderable.setCurrentAnimation(this.angleMove);
-				this.renderable.setAnimationFrame(0);
-				this.renderable.setCurrentAnimation(this.angleMove + "S", this.angleMove);
-				this.renderable.setAnimationFrame(0);
+		if (!globalVars['gamePause']) {
+			var res = me.game.collide(this);
+			this.flipX(false);
+			if (this.speedMove !== false) {
+				// Choise animate sprites
+				if (this.renderable.getCurrentAnimationName().indexOf('W') > 0 && this.renderable.existAnimationName(this.angleMove + "S")) {
+					//on change d'angle et on été sur un position d'arret
+					this.renderable.setCurrentAnimation(this.angleMove);
+					this.renderable.setAnimationFrame(0);
+					this.renderable.setCurrentAnimation(this.angleMove + "S", this.angleMove);
+					this.renderable.setAnimationFrame(0);
+				}
+				else if (!this.renderable.isCurrentAnimation(this.angleMove)) {
+					var newframe = this.renderable.getCurrentAnimationFrame() + 1;
+					this.renderable.setCurrentAnimation(this.angleMove);
+					this.renderable.setAnimationFrame(newframe);
+					this.oldAngleMove = this.angleMove;
+				}
+				if (this.angleMove == 'X0') {
+					// move velocity
+					this.vel.x = me.timer.tick;
+					this.vel.y = 0;
+				}
+				else if (this.angleMove == 'XM22') {
+					this.vel.x = me.timer.tick;
+					this.vel.y = me.timer.tick / -2;
+				}
+				else if (this.angleMove == 'XM45') {
+					this.vel.x = me.timer.tick / 1.5;
+					this.vel.y = me.timer.tick / -1.5;
+				}
+				else if (this.angleMove == 'XM67') {
+					this.vel.x = me.timer.tick / 2;
+					this.vel.y = me.timer.tick * -1;
+				}
+				else if (this.angleMove == 'XM90') {
+					this.vel.x = 0;
+					this.vel.y = me.timer.tick * -1;
+				}
+				else if (this.angleMove == 'XM112') {
+					this.vel.x = me.timer.tick / -2;
+					this.vel.y = me.timer.tick * -1;
+				}
+				else if (this.angleMove == 'XM135') {
+					this.vel.x = me.timer.tick / -1.5;
+					this.vel.y = me.timer.tick / -1.5;
+				}
+				else if (this.angleMove == 'XM157') {
+					this.vel.x = me.timer.tick * -1;
+					this.vel.y = me.timer.tick / -2;
+				}
+				else if (this.angleMove == 'X180') {
+					this.vel.x = me.timer.tick * -1;
+					this.vel.y = 0;
+				}
+				else if (this.angleMove == 'X22') {
+					this.vel.x = me.timer.tick;
+					this.vel.y = me.timer.tick / 2;
+				}
+				else if (this.angleMove == 'X45') {
+					this.vel.x = me.timer.tick / 1.5;
+					this.vel.y = me.timer.tick / 1.5;
+				}
+				else if (this.angleMove == 'X67') {
+					this.vel.x = me.timer.tick / 2;
+					this.vel.y = me.timer.tick;
+				}
+				else if (this.angleMove == 'X90') {
+					this.vel.x = 0;
+					this.vel.y = me.timer.tick;
+				}
+				else if (this.angleMove == 'X112') {
+					this.vel.x = me.timer.tick / -2;
+					this.vel.y = me.timer.tick;
+				}
+				else if (this.angleMove == 'X135') {
+					this.vel.x = me.timer.tick / -1.5;
+					this.vel.y = me.timer.tick / 1.5;
+				}
+				else if (this.angleMove == 'X157') {
+					this.vel.x = me.timer.tick * -1;
+					this.vel.y = me.timer.tick / 2;
+				}
+
+				// speed sprite animate
+				this.renderable.current.animationspeed = this.normal;
+				// speed move
+				this.vel.x = this.speed * this.vel.x;
+				this.vel.y = this.speed * this.vel.y;
 			}
-			else if (!this.renderable.isCurrentAnimation(this.angleMove)) {
-				var newframe = this.renderable.getCurrentAnimationFrame() + 1;
-				this.renderable.setCurrentAnimation(this.angleMove);
-				this.renderable.setAnimationFrame(newframe);
-				this.oldAngleMove = this.angleMove;
-			}
-			if (this.angleMove == 'X0') {
-				// move velocity
-				this.vel.x = me.timer.tick;
-				this.vel.y = 0;
-			}
-			else if (this.angleMove == 'XM22') {
-				this.vel.x = me.timer.tick;
-				this.vel.y = me.timer.tick / -2;
-			}
-			else if (this.angleMove == 'XM45') {
-				this.vel.x = me.timer.tick / 1.5;
-				this.vel.y = me.timer.tick / -1.5;
-			}
-			else if (this.angleMove == 'XM67') {
-				this.vel.x = me.timer.tick / 2;
-				this.vel.y = me.timer.tick * -1;
-			}
-			else if (this.angleMove == 'XM90') {
+			// No move
+			else {
 				this.vel.x = 0;
-				this.vel.y = me.timer.tick * -1;
-			}
-			else if (this.angleMove == 'XM112') {
-				this.vel.x = me.timer.tick / -2;
-				this.vel.y = me.timer.tick * -1;
-			}
-			else if (this.angleMove == 'XM135') {
-				this.vel.x = me.timer.tick / -1.5;
-				this.vel.y = me.timer.tick / -1.5;
-			}
-			else if (this.angleMove == 'XM157') {
-				this.vel.x = me.timer.tick * -1;
-				this.vel.y = me.timer.tick / -2;
-			}
-			else if (this.angleMove == 'X180') {
-				this.vel.x = me.timer.tick * -1;
 				this.vel.y = 0;
-			}
-			else if (this.angleMove == 'X22') {
-				this.vel.x = me.timer.tick;
-				this.vel.y = me.timer.tick / 2;
-			}
-			else if (this.angleMove == 'X45') {
-				this.vel.x = me.timer.tick / 1.5;
-				this.vel.y = me.timer.tick / 1.5;
-			}
-			else if (this.angleMove == 'X67') {
-				this.vel.x = me.timer.tick / 2;
-				this.vel.y = me.timer.tick;
-			}
-			else if (this.angleMove == 'X90') {
-				this.vel.x = 0;
-				this.vel.y = me.timer.tick;
-			}
-			else if (this.angleMove == 'X112') {
-				this.vel.x = me.timer.tick / -2;
-				this.vel.y = me.timer.tick;
-			}
-			else if (this.angleMove == 'X135') {
-				this.vel.x = me.timer.tick / -1.5;
-				this.vel.y = me.timer.tick / 1.5;
-			}
-			else if (this.angleMove == 'X157') {
-				this.vel.x = me.timer.tick * -1;
-				this.vel.y = me.timer.tick / 2;
+				//selectNewAnimWait(this.angleMove);
+				// Si position d'arret alors on met l'animation qui correspond au dernier angle de mouvement
+				if (this.angleMove.indexOf('W') == -1 && this.angleMove.indexOf('E') == -1 && this.renderable.existAnimationName(this.angleMove + "E")) {
+					this.renderable.setCurrentAnimation(this.angleMove + "E", (function() {
+						this.renderable.setCurrentAnimation(this.angleMove + 'W');
+					}).bind(this));
+					this.angleMove = this.angleMove + 'W';
+				}
+				if (this.renderable.getCurrentAnimationName().indexOf('W') == -1) {
+					this.selectNewAnimationWait(this);
+				}
 			}
 
-			// speed sprite animate
-			this.renderable.current.animationspeed = this.normal;
-			// speed move
-			this.vel.x = this.speed * this.vel.x;
-			this.vel.y = this.speed * this.vel.y;
+			// check & update player movement
+			this.updateMovement();
+			this.parent();
+			return true;
 		}
-		// No move
-		else {
-			this.vel.x = 0;
-			this.vel.y = 0;
-			//selectNewAnimWait(this.angleMove);
-			// Si position d'arret alors on met l'animation qui correspond au dernier angle de mouvement
-			if (this.angleMove.indexOf('W') == -1 && this.angleMove.indexOf('E') == -1 && this.renderable.existAnimationName(this.angleMove + "E")) {
-				this.renderable.setCurrentAnimation(this.angleMove + "E", (function() {
-					this.renderable.setCurrentAnimation(this.angleMove + 'W');
-				}).bind(this));
-				this.angleMove = this.angleMove + 'W';
-			}
-			if (this.renderable.getCurrentAnimationName().indexOf('W') == -1) {
-				this.selectNewAnimationWait(this);
-			}
-		}
-
-		// check & update player movement
-		this.updateMovement();
-		this.parent();
-		return true;
 	},
 	selectNewAnimationWait: function(obj) {
 		obj.renderable.setCurrentAnimation(obj.angleMove);
-		this.renderable.setAnimationFrame(0);
+		obj.renderable.setAnimationFrame(0);
 		var time = Math.random() * 10000 + 5000;
-		obj.renderable.setCurrentAnimation(obj.angleMove, (function() {
-			setTimeout(function() {
-				var animeSelected = globalVars['listWaitAnim'][obj.angleMove.substr(0,obj.angleMove.length-1)][Math.floor(Math.random() * globalVars['listWaitAnim'][obj.angleMove.substr(0,obj.angleMove.length-1)].length)];
+		setTimeout(function() {
+			obj.renderable.setCurrentAnimation(obj.angleMove, (function() {
+				var animeSelected = globalVars['listWaitAnim'][obj.angleMove.substr(0, obj.angleMove.length - 1)][Math.floor(Math.random() * globalVars['listWaitAnim'][obj.angleMove.substr(0, obj.angleMove.length - 1)].length)];
+				obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected);
+				obj.renderable.setAnimationFrame(0);
 				obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected, (function() {
-						obj.selectNewAnimationWait(obj);
+					obj.selectNewAnimationWait(obj);
 				}));
-			}, time)
-		}));
+			}));
+		}, time)
 	}
 
 });

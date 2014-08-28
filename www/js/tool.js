@@ -402,6 +402,11 @@ function getElement(ID, Class, type) {
 					 * case 'magie1':
 					 *     break;
 					 */
+					case 'textInteraction':
+						var elem = '<div id="' + ID + '"><div class="btnCloseTextInteraction" onclick="closeTextInteraction()"></div><div class="nextCloseTextInteraction" ontouchend="nextTextInteraction()"></div><div class="text"></div></div>';
+						$('body').append(elem);
+						return $('#' + ID);
+						break;
 					case 'checkUpdateApps':
 						var elem = '<div id="' + ID + '" class="' + Class + '"></div>';
 						$('.loadBar').append(elem);
@@ -1073,3 +1078,8 @@ function controleurMove(angle) {
 	}
 }
 
+function resetController(){
+	$('#controleur').remove();
+	globalVars['ctrlexist'] = false;
+	game.controleur(0, 0);
+}
