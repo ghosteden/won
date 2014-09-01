@@ -228,12 +228,12 @@ input[type=radio]{
 	width: 24px;
 	height: 24px;
 	background: rgba(23,225,57,0.6);
-        display: inline-block;
+	display: inline-block;
 	margin: 0 auto;
 	border-radius: 50px;
 	position: relative;
-        top: 10px;
-        box-shadow: 0px 0px 15px 1px rgba(23,225,57,0.6);
+	top: 10px;
+	box-shadow: 0px 0px 15px 1px rgba(23,225,57,0.6);
 }
 
 .roundedOne label {
@@ -468,8 +468,8 @@ input[type=radio]{
 }
 #backControleur, #centerControleur{
     background: url('../img/cursor-back.png') no-repeat center center;
-/*    background: url('../img/cursor-back2.png') no-repeat center center;*/
-/*        background: url('../img/minload-back.png') no-repeat center center;*/
+	/*    background: url('../img/cursor-back2.png') no-repeat center center;*/
+	/*        background: url('../img/minload-back.png') no-repeat center center;*/
     background-size: contain;
     position: absolute;
     top:80px;
@@ -479,8 +479,8 @@ input[type=radio]{
 }
 #centerControleur{
     background: url('../img/cursor-front.png') no-repeat center center;
-/*    background: url('../img/cursor-front2.png') no-repeat center center;*/
-/*    background: url('../img/minload-front.png') no-repeat center center;*/
+	/*    background: url('../img/cursor-front2.png') no-repeat center center;*/
+	/*    background: url('../img/minload-front.png') no-repeat center center;*/
     background-size: contain;
 }
 canvas{
@@ -498,26 +498,95 @@ canvas{
     width: 100%;
     z-index: 15;
 }
+
+/*textBox*/
 #textInteraction{
 	position: absolute;
-    bottom:0;
+    bottom:0px;
     left:0;
-    height: 0%;
+	width: 100%;
+	height:220px;
+	overflow: hidden;
+}
+#textInteraction .container{
+	position: absolute;
+    bottom:-200px;
+    left:0;
+    height: 179px;
     width: 100%;
     z-index: 50;
-	border-top-left-radius: 10px;
-    background: url('../img/interaction_text.png') repeat-x top center;
+    background: url('../img/textbox/font-vert.png') repeat-x center 45px;
 	padding: 25px 0px 0px 0px;
 }
 #textInteraction .text{
-	padding:5px;
-	height:100%;
+	padding:30px 20px;
+	height:110px;
+    color: #aaffdd;
+    text-shadow: 0px 0px 12px #17ff39;
+    font-family: "Myriad Pro";
 }
-.btnCloseTextInteraction{
+#textInteraction .border-top{
+	background: url('../img/textbox/border-top.png') repeat-x top right;
+	width: 100%;
+	height: 39px;
+	position: absolute;
+	right: 0px;
+	top: 20px;
+}
+#textInteraction .border-right{
+	background: url('../img/textbox/border-right.png') no-repeat top right;
+	width: 20px;
+	height: 184px;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+#textInteraction .border-left{
+	background: url('../img/textbox/border-left.png') no-repeat top right;
+	width: 20px;
+	height: 184px;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+#textInteraction .border-bottom{
+	background: url('../img/textbox/border-bottom.png') repeat-x bottom center;
+	width: 100%;
+	height: 39px;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+#textInteraction .objet-bottom{
+	background: url('../img/textbox/objet-bottom.png') no-repeat top left;
+	width: 467px;
+	height: 39px;
+	position: absolute;
+	left: 40px;
+	bottom: 0px;
+}
+#textInteraction .btn-box{
+	background: url('../img/textbox/btn-box.png') top right;
+	width: 246px;
+	height: 84px;
+	position: absolute;
+	right: -250px;
+	top: 0px;
+}
+#textInteraction .btnCloseTextInteraction, #textInteraction .btnNextTextInteraction{
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	width: 190px;
-    height: 0%;
-    background: url('../img/btn_kill_interaction_text.png') no-repeat top left;
+	width: 60px;
+    height: 60px;    
+	right: 2px;
+    top: 8px;
+    background: url('../img/textbox/btn-close.png') no-repeat center right;
+	display: none;
+}
+#textInteraction .btnNextTextInteraction{
+    background: url('../img/textbox/btn-next.png') no-repeat center right;
+	display: none;
 }

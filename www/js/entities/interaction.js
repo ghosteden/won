@@ -14,22 +14,15 @@ game.InteractionEntity = me.ObjectEntity.extend({
 			this.interactionLanched = true;
 			if (this.action == 'oom') {
 				// le personnage est sorti de la carte par un accès interdit
-				globalVars['gamePause'] = true;
 				res.obj.speedMove = false;
-				resetController();
 				res = false;
-				var blurAll = getElement('blurall');
-				blurAll.fadeIn(300);
-				var textInteraction = getElement('textInteraction');
-				textInteraction.children('div.text').html(lang('outOfMap'));
-				if (textInteraction.css('height') == '0px') {
-					textInteraction.animate({'height': '140px'}, "slow").children('div.btnCloseTextInteraction').delay('1000').animate({'top':'-25','height': '25px'}, "slow").animate({'height': '55px'}, "fast").animate({'top':'-10'}, "slow");
-				}
+				resetController();
+				openTextInteraction(lang('outOfMap'), 'Close');
 			}
 		}
-		if(this.interactionLanched){
+		if (this.interactionLanched) {
 			this.tempo++;
-			if(this.tempo >= 200){
+			if (this.tempo >= 200) {
 				this.tempo = 0;
 				this.interactionLanched = false;
 			}
@@ -37,6 +30,29 @@ game.InteractionEntity = me.ObjectEntity.extend({
 	}
 
 });
-function closeTextInteraction(){
-	getElement('textInteraction').animate({'height':'0px'},function(){this.remove();globalVars['gamePause'] = false;getElement('blurall').remove()});
+
+function openTextInteraction($text, $btn) {
+	globalVars['gamePause'] = true;
+	var blurAll = getElement('blurall');
+	blurAll.fadeIn(300);
+	var textInteraction = getElement('textInteraction');
+	$('#textInteraction div.text').html($text);
+	if (textInteraction.children('div.container').css('bottom') < '-2px') {
+		$('#textInteraction .btn' + $btn + 'TextInteraction').show();
+		textInteraction.children('div.container').animate({'bottom': '20px'}, '400', function() {
+			$(this).animate({'bottom': '-2px'},150, function() {
+				$(this).children('div.btn-box').animate({'right': '0px'}, 150);
+			});
+		});
+	}
+}
+
+function closeTextInteraction() {
+	getElement('textInteraction').children('div.container').animate({'bottom': '20px'}, 100, function() {
+		$(this).animate({'bottom': '-200px'}, 300, function() {
+			getElement('textInteraction').remove();
+			globalVars['gamePause'] = false;
+			getElement('blurall').fadeOut('slow').remove()
+		});
+	})
 }

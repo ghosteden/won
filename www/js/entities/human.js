@@ -198,14 +198,18 @@ game.HumanEntity = me.ObjectEntity.extend({
 		obj.renderable.setAnimationFrame(0);
 		var time = Math.random() * 10000 + 5000;
 		setTimeout(function() {
-			obj.renderable.setCurrentAnimation(obj.angleMove, (function() {
-				var animeSelected = globalVars['listWaitAnim'][obj.angleMove.substr(0, obj.angleMove.length - 1)][Math.floor(Math.random() * globalVars['listWaitAnim'][obj.angleMove.substr(0, obj.angleMove.length - 1)].length)];
-				obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected);
-				obj.renderable.setAnimationFrame(0);
-				obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected, (function() {
-					obj.selectNewAnimationWait(obj);
+			if (obj.angleMove.indexOf('W') > -1) {
+				obj.renderable.setCurrentAnimation(obj.angleMove, (function() {
+					if (obj.angleMove.indexOf('W') > -1) {
+						var animeSelected = globalVars['listWaitAnim'][obj.angleMove.substr(0, obj.angleMove.length - 1)][Math.floor(Math.random() * globalVars['listWaitAnim'][obj.angleMove.substr(0, obj.angleMove.length - 1)].length)];
+						obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected);
+						obj.renderable.setAnimationFrame(0);
+						obj.renderable.setCurrentAnimation(obj.angleMove + animeSelected, (function() {
+							obj.selectNewAnimationWait(obj);
+						}));
+					}
 				}));
-			}));
+			}
 		}, time)
 	}
 
