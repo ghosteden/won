@@ -24,7 +24,7 @@
 	
 	<gap:config-file platform="android" parent="/manifest">
 	<application android:hardwareAccelerated="false">
-		<activity  android:hardwareAccelerated = "false"  /> 
+		<activity  android:hardwareAccelerated = "true"  /> 
 	</application>
 	</gap:config-file>
 	
