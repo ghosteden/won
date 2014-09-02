@@ -814,7 +814,7 @@ function didacticiel() {
 	globalVars['useDeck'] = 0;
 	globalVars['curentMap'] = 'z1m2';
 	globalVars['inGame'] = true;
-//	getLocalData('ressources/shema-perso'+globalVars['usePerso']);
+	getLocalData('ressources/shema-perso'+globalVars['usePerso']);
 	closeIntercom(function() {
 		var intercomLoad = getElement('intercomLoad');
 		intercomLoad.show();
