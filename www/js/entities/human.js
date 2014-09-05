@@ -13,7 +13,8 @@ game.HumanEntity = me.ObjectEntity.extend({
 		if (typeof (settings.spritewidth) == "undefined")
 			settings.spritewidth = "120";
 
-		settings.image = "sprites-perso" + globalVars['usePerso'];
+		if (typeof (settings.image) == "undefined")
+			settings.image = "sprites-perso" + globalVars['usePerso'];
 
 		this.parent(x, y, settings);
 

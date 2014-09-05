@@ -93,7 +93,7 @@ game.PnjEntity = game.HumanEntity.extend({
             resetController();
             res = false;
             if(this.cinematic != false && $afterinteraction[this.cinematic] == undefined){
-                $interaction = this.cinematic;
+                //$interaction = this.cinematic;
             }
             if(this.combat != false){
             }
@@ -106,7 +106,7 @@ game.PnjEntity = game.HumanEntity.extend({
             }
             
         }
-        if($tempointeraction == 0){
+        //if($tempointeraction == 0){
             if(this.typeMove == "random" && ~~(Math.random() * 100) <= 2){
                 // Mouvement aléatoire
                 /* Vu que c'est en aléatoire on prend : 
@@ -174,8 +174,8 @@ game.PnjEntity = game.HumanEntity.extend({
            
             // check & update pnj movement
             return this.parent();
-        }else{
-            return false;
-        }
+//        }else{
+//            return false;
+//        }
     }
 });

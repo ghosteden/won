@@ -87,7 +87,7 @@ var game = {
 		me.entityPool.add("Player", game.PlayerEntity);
 //		me.entityPool.add("Controller", game.ControllerEntity);
 		me.entityPool.add("Interaction", game.InteractionEntity);
-//		me.entityPool.add("PNJ", game.PnjEntity);
+		me.entityPool.add("PNJ", game.PnjEntity);
 
 		//load reposition point of player after changemaps
 		me.entityPool.add("Gate", game.GateEntity);
