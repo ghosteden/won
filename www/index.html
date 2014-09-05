@@ -31,9 +31,9 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/init.js"></script>
         <script type="text/javascript">
-            //app.initialize();
+            app.initialize();
         </script>
-		<div class="perso1" style="z-index: 10;position: absolute; top: 0; left:0;width:120px;height:120px; background:url('./ressources/sprites-perso1.png')"></div>
+		<div class="perso1" style="z-index: 10;position: absolute; top: 0; left:0;width:120px;height:120px; background:url('file:///sdcard/' + globalVars['ressourcesPath']+ '/' +'sprites-perso1.png')"></div>
 		<div class="perso1" style="z-index: 10;position: absolute; top: 0; left:120px;width:120px;height:120px; background:url('./ressources/sprites-perso1.png')"></div>
 		<div class="perso1" style="z-index: 10;position: absolute; top: 120; left:0;width:120px;height:120px; background:url('./ressources/sprites-perso1.png')"></div>
 		<div class="perso1" style="z-index: 10;position: absolute; top: 120; left:120;width:120px;height:120px; background:url('./ressources/sprites-perso1.png')"></div>
@@ -53,6 +53,7 @@
 			animations: {"X0":[5,6,7,8,9,10,11,12,13,14]},
 			'loop': true});
 		$(document).ready(function(){
+			$(".perso1").css('background',"url('file:///sdcard/'" + globalVars['ressourcesPath']+ '/' +"sprites-perso1.png')");
 			$(".perso1").animateSprite('play', 'X0');
 		})
 		
