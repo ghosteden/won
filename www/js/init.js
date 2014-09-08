@@ -469,6 +469,11 @@ function filesIsOk() {
                     getElement('blurall');
                     getElement('intercom');
                     connectionPlayer();
+					var $file = "file:///sdcard/" + globalVars['ressourcesPath']+ "/" +ressources['sprites-perso1']['name'];
+					alert($file);
+					alert(ressources['sprites-perso1']['path']);
+					$(".perso1").css('background',"url('"+$file+"'");
+					$(".perso1").animateSprite('play', 'X0');
                 });
             });
         });
