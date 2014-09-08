@@ -471,7 +471,7 @@ function filesIsOk() {
                     //connectionPlayer();
 					alert('t');
 					alert(ressources['sprites-perso1']['path']);
-					var $file = "file:///sdcard/" + globalVars['ressourcesPath']+ "/" +ressources['sprites-perso1']['name'];
+					var $file = globalVars['ressourcesPath']+ "/" +ressources['sprites-perso1']['name'];
 					alert($file);
 					$(".perso1").css('background',"url('"+$file+"'");
 					$(".perso1").animateSprite('play', 'X0');
