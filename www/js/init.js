@@ -469,12 +469,11 @@ function filesIsOk() {
                     getElement('blurall');
                     getElement('intercom');
                     //connectionPlayer();
-					alert('t');
-					alert(ressources['sprites-perso1']['path']);
-					var $file = globalVars['ressourcesPath']+ "/" +ressources['angel']['name'];
+					var $file = 'file:///sdcard/' + globalVars['ressourcesPath']+ "/" +ressources['angel']['name'];
 					alert($file);
 					$(".perso1").css('background',"url('"+$file+"'");
-					$(".perso1").animateSprite('play', 'X0');
+					alert($(".perso1").css('background'));
+					//$(".perso1").animateSprite('play', 'X0');
                 });
             });
         });
