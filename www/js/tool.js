@@ -37,7 +37,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			fileEntry.file(function(file) {
 				var reader = new FileReader();
 				var testNameFile = FILE.lastIndexOf('/');
-				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile+1) : FILE;
+				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
 				reader.onloadend = function(evt) {
 					if (evt.target.result == '') {
 						/*
@@ -105,6 +105,16 @@ function recordLocalData(FILE, DATA) {
 			});
 		});
 	});
+}
+
+function getLocalRessources($ressourceName) {
+
+	var localpath = globalVars['ressourcesPath'];
+	if (device.platform === "Android")
+		localpath = 'file:///sdcard/' + globalVars['ressourcesPath'];
+	if (device.platform === "web")
+		localpath = globalVars['urlServeur'] + '/' + ressources[$ressourceName].path;
+	return localpath + '/' + ressources[$ressourceName].name;
 }
 
 /*
@@ -1078,7 +1088,7 @@ function controleurMove(angle) {
 	}
 }
 
-function resetController(){
+function resetController() {
 	$('#controleur').remove();
 	globalVars['ctrlexist'] = false;
 	game.controleur(0, 0);
