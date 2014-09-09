@@ -412,6 +412,11 @@ function getElement(ID, Class, type) {
 					 * case 'magie1':
 					 *     break;
 					 */
+					case 'mapWrap':
+						var elem = '<div id="' + ID + '"><div class="map"></div></div>';
+						$('body').append(elem);
+						return $('#' + ID);
+						break;
 					case 'textInteraction':
 						var elem = '<div id="' + ID + '"><div class="container"><div class="border-bottom"></div><div class="border-top"></div><div class="objet-bottom"></div><div class="border-right"></div><div class="border-left"></div><div class="btn-box"><div class="btnCloseTextInteraction" ontouchend="closeTextInteraction()"></div><div class="btnNextTextInteraction" ontouchend="nextTextInteraction()"></div></div><div class="text"></div></div></div>';
 						$('body').append(elem);
@@ -427,14 +432,6 @@ function getElement(ID, Class, type) {
 						 */
 					case 'signal':
 						var elem = '<div id="' + ID + '"><div class="closeSignal" ontouchend="closeSignal()"></div><div class="text"></div></div>';
-						$('body').append(elem);
-						return $('#' + ID);
-						break;
-						/*
-						 * Le controleur pour le mode pve
-						 */
-					case 'controleur':
-						var elem = '<div id="controleur"><div id="backControleur"></div><div id="centerControleur"></div></div>';
 						$('body').append(elem);
 						return $('#' + ID);
 						break;

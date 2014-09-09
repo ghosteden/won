@@ -468,11 +468,7 @@ function filesIsOk() {
                 $('#checkUpdateApps').delay('100').parent().animate({'height': '0px'}, 500, function() {
                     getElement('blurall');
                     getElement('intercom');
-                    //connectionPlayer();
-					var $file = getLocalRessources('sprites-perso1');
-					alert($file);
-					$(".perso1").css('background-image',"url('"+$file+"')");
-					$(".perso1").animateSprite('play', 'X0');
+                    connectionPlayer();
                 });
             });
         });
