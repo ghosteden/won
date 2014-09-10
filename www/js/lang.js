@@ -191,5 +191,5 @@ LANG_EN['badPassword'] = "";
 LANG_FR['badNewPassword'] = "La confirmation du mot de passe ne correspond pas a celle du nouveau mot de passe.";
 LANG_EN['badNewPassword'] = "";
 
-LANG_FR['outOfMap'] = "Cette partie du monde n'est pas accessible. Vous ne pouvez vous y rendre sans risque.";
-LANG_EN['outOfMap'] = "";
+LANG_FR['tutoFirstDialogue'] = "Bienvenue dans World of Nemesis. Ce monde a été dévasté, ici vous apprendrez les rudiments nécessaire a votre survit. Aller à la rencontre de Paul. Vous le trouverez dans la ville où vous vous situez. Ils sera votre allié durant cette épreuve. Parcourez la ville, et recherchez les différents points d'intérêt. ils sont repérables par ce symbole <img style='vertical-align:middle' width='50' src='./img/cursor-front.png'/>";
+LANG_EN['tutoFirstDialogue'] = "";
