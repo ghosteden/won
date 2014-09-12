@@ -527,7 +527,7 @@ function didacticiel() {
 	globalVars['useDeck'] = 0;
 	globalVars['curentMap'] = 'z1m1';
 	globalVars['inGame'] = true;
-	
+
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);
 		initialiseGameControle();
@@ -535,30 +535,45 @@ function didacticiel() {
 	});
 }
 
-function loadMap(name){
+function loadMap(name) {
 	var mapWrap = getElement('mapWrap');
-	if(device.platform == 'web'){
+	if (device.platform == 'web') {
 		var mapJson = {
-			'posx' : -100,
-			'posy' : -230,
-			'width':1333,
-			'height':775,
-			'ressource':'z1m1',
-			'interets':{
-				'Paul':{
-					'posx' : 0,
-					'posy' : 0,
+			'posx': -100,
+			'posy': -230,
+			'width': 1333,
+			'height': 775,
+			'ressource': 'z1m1',
+			'interets': {
+				'Paul': {
+					'posx': 100,
+					'posy': 100,
 					'ressource': 'sprites-perso1',
 					'shema': 'shema-perso1',
+					'width': 120,
+					'height': 120,
 				}
 			}
 		}
-	}else{
-		var mapJson = getLocalData(getLocalRessources(name+'json'));
+	} else {
+		var mapJson = getLocalData(getLocalRessources(name + 'json'));
 	}
-	imgMap = '<img src="'+getLocalRessources(mapJson.ressource)+'" class="imgMap"/>';
-	mapWrap.fadeOut().delay('500').children('div#map').css({'width':mapJson.width+'px','height':mapJson.height+'px','top':mapJson.posy+'px','left':mapJson.posx+'px'}).html(imgMap);
-	mapWrap.fadeIn();
-	globalVars['mapJson']=mapJson;
+	var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
+	mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
+	
+	for (interet in mapJson.interets) {
+		var obj = mapJson.interets[interet];
+		var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 		
+		mapWrap.fadeOut().children('div#map').append(objectInteret);
+		
+		$('#'+interet).animateSprite({
+			'columns': 100,
+			'fps': 12,
+			'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
+			'loop': true,
+		});
+	}
+	mapWrap.fadeIn();
+	globalVars['mapJson'] = mapJson;
 }
