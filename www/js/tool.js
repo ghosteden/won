@@ -1062,31 +1062,75 @@ function temposubmitEnd() {
 	}
 }
 
-function controleurMove(angle) {
-	if (globalVars['ctrlexist']) {
-		// Version avec le curseu qui suit l'angle de direction
-		if (angle < 0)
-			angle = angle + 360;
-		angle = angle + 90;
-		$('#controleur').stop().animate({
-			'border-spacing': angle + 'px'
-		}, {
-			step: function(now, fx) {
-				$('#centerControleur').css('-webkit-transform', 'rotate(' + now + 'deg)');
-				$('#centerControleur').css('-moz-transform', 'rotate(' + now + 'deg)');
-				$('#centerControleur').css('transform', 'rotate(' + now + 'deg)');
+function initialiseGameControle(){
+		getElement("gameControleur");
+		var jselemGameControleur = document.getElementById('gameControleur');
+	if (device.platform != 'web') {
+		jselemGameControleur.addEventListener("touchstart", function(e) {
+			onPointerDown(e)
+		}, false);
+		jselemGameControleur.addEventListener("touchmove", function(e) {
+			onPointerMove(e)
+		}, false);
+		jselemGameControleur.addEventListener("touchend", function(e) {
+			onPointerUp(e)
+		}, false);
+	} else {
+		jselemGameControleur.addEventListener("mousedown", function(e) {
+			onPointerDown(e)
+		}, false);
+		jselemGameControleur.addEventListener("mousemove", function(e) {
+			onPointerMove(e)
+		}, false);
+		jselemGameControleur.addEventListener("mouseup", function(e) {
+			onPointerUp(e)
+		}, false);
+	}
+}
 
-				$('#backControleur').css('-webkit-transform', 'rotate(' + now * -1 + 'deg)');
-				$('#backControleur').css('-moz-transform', 'rotate(' + now * -1 + 'deg)');
-				$('#backControleur').css('transform', 'rotate(' + now * -1 + 'deg)');
-			},
-			duration: 1
+function onPointerDown(e) {
+	e.preventDefault();
+	if (e.touches !== undefined) {
+		e = e.touches[0];
+	}
+	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
+		globalVars['touchmap'] = true;
+		globalVars['ctrlX'] = e.clientX;
+		globalVars['ctrlY'] = e.clientY;
+	}
+}
+
+function onPointerMove(e) {
+	e.preventDefault();
+	if (e.touches !== undefined) {
+		e = e.touches[0];
+	}
+	if (globalVars['touchmap']) {
+		var vecteurX = e.clientX - globalVars['ctrlX'];
+		var vecteurY = e.clientY - globalVars['ctrlY'];
+		var left = globalVars['mapJson'].posx+vecteurX;
+		var top = globalVars['mapJson'].posy+vecteurY;
+		if(left>=0)left=0;
+		if(top>=0)top=0;
+		if(left<=(globalVars['mapJson'].width-globalVars['screenW'])*-1)left=(globalVars['mapJson'].width-globalVars['screenW'])*-1;
+		if(top<=(globalVars['mapJson'].height-globalVars['screenH'])*-1)top=(globalVars['mapJson'].height-globalVars['screenH'])*-1;
+		$('#map').css({
+			'left': left + 'px',
+			'top': top + 'px',
 		});
 	}
 }
 
-function resetController() {
-	$('#controleur').remove();
-	globalVars['ctrlexist'] = false;
-	game.controleur(0, 0);
+function onPointerUp(e) {
+	e.preventDefault();
+	if (e.touches !== undefined) {
+		e = e.touches[0];
+	}
+	if (globalVars['touchmap']) {
+		globalVars['mapJson'].posx += e.clientX - globalVars['ctrlX'];
+		globalVars['mapJson'].posy += e.clientY - globalVars['ctrlY'];
+		globalVars['ctrlX'] = 0;
+		globalVars['ctrlY'] = 0;
+		globalVars['touchmap'] = false;
+	}
 }
