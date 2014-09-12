@@ -527,15 +527,112 @@ function didacticiel() {
 	globalVars['useDeck'] = 0;
 	globalVars['curentMap'] = 'z1m1';
 	globalVars['inGame'] = true;
-	if(device.platform !== 'web')
-		getLocalData('ressources/shema-perso'+globalVars['usePerso']);
+	
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);
-		interaction('startTuto');
+		initialiseGameControle();
+		//interaction('startTuto');
 	});
 }
 
 function loadMap(name){
 	var mapWrap = getElement('mapWrap');
-	mapWrap.fadeOut().children('div.map').css('background-image',getLocalRessources(name));
+	if(device.platform == 'web'){
+		var mapJson = {
+			'posx' : -100,
+			'posy' : -230,
+			'width':1333,
+			'height':775,
+			'ressource':'z1m1',
+			'interets':{
+				'Paul':{
+					'posx' : 0,
+					'posy' : 0,
+					'ressource': 'sprites-perso1',
+					'shema': 'shema-perso1',
+				}
+			}
+		}
+	}else{
+		var mapJson = getLocalData(getLocalRessources(name+'json'));
+	}
+	imgMap = '<img src="'+getLocalRessources(mapJson.ressource)+'" class="imgMap"/>';
+	mapWrap.fadeOut().delay('500').children('div#map').css({'width':mapJson.width+'px','height':mapJson.height+'px','top':mapJson.posy+'px','left':mapJson.posx+'px'}).html(imgMap);
+	mapWrap.fadeIn();
+	globalVars['mapJson']=mapJson;
+		
+}
+
+
+function initialiseGameControle(){
+		getElement("gameControleur");
+		var jselemGameControleur = document.getElementById('gameControleur');
+	if (device.platform != 'web') {
+		jselemGameControleur.addEventListener("touchstart", function(e) {
+			onPointerDown(e)
+		}, false);
+		jselemGameControleur.addEventListener("touchmove", function(e) {
+			onPointerMove(e)
+		}, false);
+		jselemGameControleur.addEventListener("touchend", function(e) {
+			onPointerUp(e)
+		}, false);
+	} else {
+		jselemGameControleur.addEventListener("mousedown", function(e) {
+			onPointerDown(e)
+		}, false);
+		jselemGameControleur.addEventListener("mousemove", function(e) {
+			onPointerMove(e)
+		}, false);
+		jselemGameControleur.addEventListener("mouseup", function(e) {
+			onPointerUp(e)
+		}, false);
+	}
+}
+
+function onPointerDown(e) {
+	e.preventDefault();
+	if (e.touches !== undefined) {
+		e = e.touches[0];
+	}
+	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
+		globalVars['touchmap'] = true;
+		globalVars['ctrlX'] = e.clientX;
+		globalVars['ctrlY'] = e.clientY;
+	}
+}
+
+function onPointerMove(e) {
+	e.preventDefault();
+	if (e.touches !== undefined) {
+		e = e.touches[0];
+	}
+	if (globalVars['touchmap']) {
+		var vecteurX = e.clientX - globalVars['ctrlX'];
+		var vecteurY = e.clientY - globalVars['ctrlY'];
+		var left = globalVars['mapJson'].posx+vecteurX;
+		var top = globalVars['mapJson'].posy+vecteurY;
+		if(left>=0)left=0;
+		if(top>=0)top=0;
+		if(left<=(globalVars['mapJson'].width-globalVars['screenW'])*-1)left=(globalVars['mapJson'].width-globalVars['screenW'])*-1;
+		if(top<=(globalVars['mapJson'].height-globalVars['screenH'])*-1)top=(globalVars['mapJson'].height-globalVars['screenH'])*-1;
+		$('#map').css({
+			'left': left + 'px',
+			'top': top + 'px',
+		});
+	}
+}
+
+function onPointerUp(e) {
+	e.preventDefault();
+	if (e.touches !== undefined) {
+		e = e.touches[0];
+	}
+	if (globalVars['touchmap']) {
+		globalVars['mapJson'].posx += e.clientX - globalVars['ctrlX'];
+		globalVars['mapJson'].posy += e.clientY - globalVars['ctrlY'];
+		globalVars['ctrlX'] = 0;
+		globalVars['ctrlY'] = 0;
+		globalVars['touchmap'] = false;
+	}
 }
