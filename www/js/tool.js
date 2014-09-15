@@ -507,7 +507,7 @@ function getElement(ID, Class, type) {
 							//parametre la taille de l'ecran
 							globalVars['screenIntercomH'] = $('#intercom').height();
 							globalVars['screenIntercomW'] = globalVars['screenW'] - globalVars['backgroundIntercomW'];
-							$('#intercom .screen').css({'left':globalVars['backgroundIntercomW']-5});
+							$('#intercom .screen').css({'left':globalVars['backgroundIntercomW']-globalVars['backgroundIntercomW']*0.05});
 
 							$('#intercom .screen .status').css('font-size', globalVars['screenH'] * 0.08);
 							$('#intercom .screen .connection').css('height', globalVars['screenH'] * 0.1);
