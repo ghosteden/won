@@ -30,7 +30,9 @@ var app = {
 
         // on initialise certain variable en fonction des appareils
         if (screen.availWidth > screen.availHeight) {
+		alert('t1');
             if (device.platform === "Android") {
+		alert('t2');
                 if (window.innerWidth != screen.availWidth) {
                     globalVars['hasPermanentKey'] = true;
                 }
@@ -38,14 +40,17 @@ var app = {
             window.innerWidth = globalVars['screenW'] = screen.availWidth;
             window.innerHeight = globalVars['screenH'] = screen.availHeight;
         } else {
+		alert('t3');
             if (device.platform === "Android") {
                 if (window.innerWidth != screen.availHeight) {
                     globalVars['hasPermanentKey'] = true;
                 }
             }
+		alert('t4');
             window.innerWidth = globalVars['screenW'] = screen.availHeight;
             window.innerHeight = globalVars['screenH'] = screen.availWidth;
         }
+		alert('t5');
         if (globalVars['hasPermanentKey']) {
             window.innerWidth = globalVars['screenW'] = globalVars['screenW'] - 100;
         }
@@ -62,7 +67,7 @@ var app = {
 
         // Lorsque tout est pret on attend que le document soit pret
         window.onReady(function() {
-
+alert('3');
             // on essayer de créer le dossier ressources si il n'existe pas, ou on vérifie sont existance
             var retourcreat = veirfAllPathExist(globalVars['ressourcesPath']);
             waitdelay(2000);
@@ -78,6 +83,7 @@ var app = {
             globalVars['config'].lang = '';
             globalVars['config'].fastStart = false;
             globalVars['config'].hightFx = true;
+			alert('4');
             getLocalData('config', function() {
                 if (globalVars['config'].lang != '') {
                     globalVars['lang'] = globalVars['config'].lang;
@@ -105,7 +111,7 @@ var app = {
  * puis appel la fonction checkUpdateApps
  */
 function startApps() {
-		alert('3');
+		alert('4');
     $('#startframe').hide().remove();
     if (globalVars['config'].lang == '') {
         switchLang();
