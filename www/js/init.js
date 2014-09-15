@@ -25,6 +25,7 @@ var app = {
         document.addEventListener("pause", onHomeButton, false);
         document.addEventListener("online", online, false);
         document.addEventListener("offline", offline, false);
+		window.plugins.insomnia.keepAwake();
 
         // on initialise certain variable en fonction des appareils
         if (screen.availWidth > screen.availHeight) {
