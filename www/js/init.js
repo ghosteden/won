@@ -13,12 +13,15 @@
 var app = {
     // Contsrcteur de l'application
     initialize: function() {
+		alert('2');
         document.addEventListener('deviceready', this.onDeviceReady, false);
+		alert('3');
     },
     /*
      * onDeviceReady indique que l'appareil est pret a être utilisé on lance donc l'application
      */
     onDeviceReady: function() {
+		alert('4');
         // liste des event possible
         document.addEventListener("backbutton", onBackButton, false);
         document.addEventListener("menubutton", onMenuButton, false);
