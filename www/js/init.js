@@ -51,7 +51,7 @@ var app = {
 
 		window.devicePixelRatio = 1;
 
-		$('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH']});
+		$('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH'], 'font-size':globalVars['screenH']*0.04});
 		if (device.platform === "Android") {
 			globalVars['localStoragePath'] = 'Android/data/fr.nm3.WoN/files/';
 		} else {
