@@ -121,7 +121,7 @@ body {
     top: 50%;
     z-index: 50;
 	height:auto;
-    width: 20%;
+    max-width: 20%;
     display: none;
 }
 #intercom img.background1{
