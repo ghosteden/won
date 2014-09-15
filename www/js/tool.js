@@ -491,7 +491,7 @@ function getElement(ID, Class, type) {
                                     </div>';
 						$('body').append(elem);
 						
-						//getTimeIntercom();
+						getTimeIntercom();
 						
 						$('#intercom img.background1').load(function(){
 							globalVars['backgroundIntercomH'] = $('#intercom img.background').height();
