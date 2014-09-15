@@ -556,7 +556,7 @@ function loadMap(name) {
 			}
 		}
 	} else {
-		var mapJson = getLocalData(getLocalRessources(name + 'json'));
+		var mapJson = getLocalData('ressources/'+name + 'json');
 	}
 	var_dump(mapJson);
 	var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
