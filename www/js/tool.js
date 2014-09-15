@@ -32,13 +32,17 @@ function var_dump(obj) {
 function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFile, paramsForGet) {
 	var dataDefault = dataDefault || '';
 	var distantFile = distantFile || '';
+	alert('2');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+		alert('1');
 		fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
-			fileEntry.file(function(file) {
+			alert('3');
+		fileEntry.file(function(file) {
 				var reader = new FileReader();
 				var testNameFile = FILE.lastIndexOf('/');
 				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
-				reader.onloadend = function(evt) {
+				alert('4');
+		reader.onloadend = function(evt) {
 					if (evt.target.result == '') {
 						/*
 						 * Le fichier est vide ou innexistant
@@ -46,7 +50,8 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 						 * Sinon on fait une requette au serveur pour récupéré le fichier équivalant
 						 */
 						if (dataDefault != '') {
-							globalVars[NAMEFILE] = dataDefault;
+							alert('4');
+		globalVars[NAMEFILE] = dataDefault;
 							if (callbackIfNotExist) {
 								callbackIfNotExist();
 							} else {
@@ -55,7 +60,8 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							}
 						} else {
 							//faire la requette ajax pour récup les données
-							$.get(distantFile, paramsForGet,
+							alert('5');
+		$.get(distantFile, paramsForGet,
 									function(data) {
 										globalVars[NAMEFILE] = JSON.parse(data);
 										// la fonction recordData() va se charger de l'ecriture des donées
@@ -67,7 +73,8 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 						}
 					} else {
 						try {
-							globalVars[NAMEFILE] = JSON.parse(evt.target.result);
+							alert('6');
+		globalVars[NAMEFILE] = JSON.parse(evt.target.result);
 						} catch (e) {
 							var_dump(e);
 						}
