@@ -20,19 +20,15 @@ var app = {
      */
     onDeviceReady: function() {
         // liste des event possible
-		alert('1');
         document.addEventListener("backbutton", onBackButton, false);
         document.addEventListener("menubutton", onMenuButton, false);
         document.addEventListener("pause", onHomeButton, false);
         document.addEventListener("online", online, false);
         document.addEventListener("offline", offline, false);
-		alert('2');
 
         // on initialise certain variable en fonction des appareils
         if (screen.availWidth > screen.availHeight) {
-		alert('t1');
             if (device.platform === "Android") {
-		alert('t2');
                 if (window.innerWidth != screen.availWidth) {
                     globalVars['hasPermanentKey'] = true;
                 }
@@ -40,31 +36,36 @@ var app = {
             window.innerWidth = globalVars['screenW'] = screen.availWidth;
             window.innerHeight = globalVars['screenH'] = screen.availHeight;
         } else {
-		alert('t3');
             if (device.platform === "Android") {
                 if (window.innerWidth != screen.availHeight) {
                     globalVars['hasPermanentKey'] = true;
                 }
             }
-		alert('t4');
             window.innerWidth = globalVars['screenW'] = screen.availHeight;
             window.innerHeight = globalVars['screenH'] = screen.availWidth;
         }
-		alert('t5');
+		alert('1');
         if (globalVars['hasPermanentKey']) {
             window.innerWidth = globalVars['screenW'] = globalVars['screenW'] - 100;
         }
 
+		alert('2');
         window.devicePixelRatio = 1;
 
+		alert('3');
         $('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH']});
+		alert('4');
         if (device.platform === "Android") {
+		alert('5');
             globalVars['localStoragePath'] = 'Android/data/fr.nm3.WoN/files/';
         } else {
+		alert('6');
             globalVars['localStoragePath'] = '/';
         }
+		alert('7');
         globalVars['ressourcesPath'] = globalVars['localStoragePath'] + globalVars['ressourcesPath'];
 
+		alert('8');
         // Lorsque tout est pret on attend que le document soit pret
         window.onReady(function() {
 alert('3');
