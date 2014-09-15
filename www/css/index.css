@@ -111,7 +111,7 @@ body {
     max-height: 100%;
     width: 100%;
     position: absolute;
-    left:-20%;
+    left:-10%;
     top: 2.5%;
     z-index: 50;
 }
@@ -121,7 +121,7 @@ body {
     top: 50%;
     z-index: 50;
 	height:auto;
-    max-width: 20%;
+    width: 10%;
     display: none;
 }
 #intercom img.background1{
@@ -137,7 +137,6 @@ body {
     z-index: 51;
     display: none;
     margin-top: -40px;
-	background: rgba(255,0,0,0.5);
 }
 #intercom .close{
     left:0px;
