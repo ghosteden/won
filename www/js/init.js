@@ -44,31 +44,22 @@ var app = {
             window.innerWidth = globalVars['screenW'] = screen.availHeight;
             window.innerHeight = globalVars['screenH'] = screen.availWidth;
         }
-		alert('1');
         if (globalVars['hasPermanentKey']) {
             window.innerWidth = globalVars['screenW'] = globalVars['screenW'] - 100;
         }
 
-		alert('2');
-        window.devicePixelRatio = 1; 
+        window.devicePixelRatio = 1;
 
-		alert('3');
         $('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH']});
-		alert('4');
         if (device.platform === "Android") {
-		alert('5');
             globalVars['localStoragePath'] = 'Android/data/fr.nm3.WoN/files/';
         } else {
-		alert('6');
             globalVars['localStoragePath'] = '/';
         }
-		alert('7');
         globalVars['ressourcesPath'] = globalVars['localStoragePath'] + globalVars['ressourcesPath'];
 
-		alert('8');
         // Lorsque tout est pret on attend que le document soit pret
-        window.onReady(function() {
-alert('3');
+        //window.onReady(function() {
             // on essayer de créer le dossier ressources si il n'existe pas, ou on vérifie sont existance
             var retourcreat = veirfAllPathExist(globalVars['ressourcesPath']);
             waitdelay(2000);
@@ -99,7 +90,7 @@ alert('3');
                     startApps();
                 });
             });
-        });
+        //});
     }
 };
 
