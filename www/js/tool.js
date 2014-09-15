@@ -490,18 +490,28 @@ function getElement(ID, Class, type) {
                                         </div>\n\
                                     </div>';
 						$('body').append(elem);
+						
 						//getTimeIntercom();
-						$('#' + ID).animate({'left': '0px'}, 500, function() {
-							globalVars['intercomposition'] = 1;
-							openIntercom();
+						
+						$('#intercom img.background1').load(function(){
+							globalVars['backgroundIntercomH'] = $('#intercom img.background').height();
+							globalVars['backgroundIntercomW'] = $('#intercom img.background').width();
+
+							$('#intercom .close').css({'width':globalVars['backgroundIntercomW']/1.3+'px','height':globalVars['backgroundIntercomW']/1.3+'px','margin-top':globalVars['backgroundIntercomW']/-2.6+'px'});
+							$('#intercom img.background').css({'margin-top':$('#intercom img.background').height()/-2});
+							$('#' + ID).animate({'left': '0px'}, 500, function() {
+								globalVars['intercomposition'] = 1;
+								openIntercom();
+							});
+
+							//parametre la taille de l'ecran
+							globalVars['screenIntercomH'] = $('#intercom').height();
+							globalVars['screenIntercomW'] = globalVars['screenW'] - globalVars['backgroundIntercomW'];
+							$('#intercom .screen').css({'left':globalVars['backgroundIntercomW']-5});
+
+							$('#intercom .screen .status').css('font-size', globalVars['screenH'] * 0.08);
+							$('#intercom .screen .connection').css('height', globalVars['screenH'] * 0.1);
 						});
-
-						//parametre la taille de l'ecran
-						globalVars['screenIntercomH'] = $('#intercom').height();
-						globalVars['screenIntercomW'] = globalVars['screenW'] - 110;
-
-						$('#intercom .screen .status').css('font-size', globalVars['screenH'] * 0.08);
-						$('#intercom .screen .connection').css('height', globalVars['screenH'] * 0.1);
 						return $('#' + ID);
 						break;
 					default :

@@ -24,7 +24,7 @@
         <script type="text/javascript" src="js/init.js"></script>
         <script type="text/javascript">
             //app.initialize();
-            $(window).ready(function() {
+            $(window).load(function() {
                 globalVars['screenW'] = 1920;
                 globalVars['screenH'] = 1080;
                 $('body').css({'position':'absolute', 'top':'0px', 'left':'0px', 'width': globalVars['screenW'], 'height': globalVars['screenH'], 'font-size':globalVars['screenH']*0.04});
@@ -33,8 +33,7 @@
                 globalVars['config'].hightFx = true;
 				
 				device = {'platform':'web'};
-				var fondmenup = getElement('fondmenup');
-                fondmenup.show();
+				getElement('fondmenup').show();
 				getElement('intercom');
 				sceenParams();
 				//didacticiel();
