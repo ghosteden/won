@@ -50,7 +50,7 @@ var app = {
         }
 
 		alert('2');
-        window.devicePixelRatio = 1;
+        window.devicePixelRatio = 1; 
 
 		alert('3');
         $('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH']});
