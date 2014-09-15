@@ -25,8 +25,8 @@
         <script type="text/javascript">
             //app.initialize();
             $(window).ready(function() {
-                globalVars['screenW'] = 800;
-                globalVars['screenH'] = 460;
+                globalVars['screenW'] = 1920;
+                globalVars['screenH'] = 1080;
                 $('body').css({'position':'absolute', 'top':'0px', 'left':'0px', 'width': globalVars['screenW'], 'height': globalVars['screenH']});
                 globalVars['config'] = new Object();
                 globalVars['config'].login = 'aaa';
@@ -36,6 +36,7 @@
 				var fondmenup = getElement('fondmenup');
                 fondmenup.show();
 				getElement('intercom');
+				sceenParams();
 				//didacticiel();
 				
             });

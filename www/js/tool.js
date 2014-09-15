@@ -490,7 +490,7 @@ function getElement(ID, Class, type) {
                                         </div>\n\
                                     </div>';
 						$('body').append(elem);
-						getTimeIntercom();
+						//getTimeIntercom();
 						$('#' + ID).animate({'left': '0px'}, 500, function() {
 							globalVars['intercomposition'] = 1;
 							openIntercom();
