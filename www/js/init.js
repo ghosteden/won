@@ -13,21 +13,20 @@
 var app = {
     // Contsrcteur de l'application
     initialize: function() {
-		alert('2');
         document.addEventListener('deviceready', this.onDeviceReady, false);
-		alert('3');
     },
     /*
      * onDeviceReady indique que l'appareil est pret a être utilisé on lance donc l'application
      */
     onDeviceReady: function() {
-		alert('4');
         // liste des event possible
+		alert('1');
         document.addEventListener("backbutton", onBackButton, false);
         document.addEventListener("menubutton", onMenuButton, false);
         document.addEventListener("pause", onHomeButton, false);
         document.addEventListener("online", online, false);
         document.addEventListener("offline", offline, false);
+		alert('2');
 
         // on initialise certain variable en fonction des appareils
         if (screen.availWidth > screen.availHeight) {
@@ -106,6 +105,7 @@ var app = {
  * puis appel la fonction checkUpdateApps
  */
 function startApps() {
+		alert('3');
     $('#startframe').hide().remove();
     if (globalVars['config'].lang == '') {
         switchLang();
