@@ -11,88 +11,85 @@
  * @description class d'initialisation de l'application
  */
 var app = {
-    // Contsrcteur de l'application
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    /*
-     * onDeviceReady indique que l'appareil est pret a être utilisé on lance donc l'application
-     */
-    onDeviceReady: function() {
-        // liste des event possible
-        document.addEventListener("backbutton", onBackButton, false);
-        document.addEventListener("menubutton", onMenuButton, false);
-        document.addEventListener("pause", onHomeButton, false);
-        document.addEventListener("online", online, false);
-        document.addEventListener("offline", offline, false);
+	// Contsrcteur de l'application
+	initialize: function() {
+		document.addEventListener('deviceready', this.onDeviceReady, false);
+	},
+	/*
+	 * onDeviceReady indique que l'appareil est pret a être utilisé on lance donc l'application
+	 */
+	onDeviceReady: function() {
+		// liste des event possible
+		document.addEventListener("backbutton", onBackButton, false);
+		document.addEventListener("menubutton", onMenuButton, false);
+		document.addEventListener("pause", onHomeButton, false);
+		document.addEventListener("online", online, false);
+		document.addEventListener("offline", offline, false);
 		window.plugins.insomnia.keepAwake();
 
-        // on initialise certain variable en fonction des appareils
-        if (screen.availWidth > screen.availHeight) {
-            if (device.platform === "Android") {
-                if (window.innerWidth != screen.availWidth) {
-                    globalVars['hasPermanentKey'] = true;
-                }
-            }
-            window.innerWidth = globalVars['screenW'] = screen.availWidth;
-            window.innerHeight = globalVars['screenH'] = screen.availHeight;
-        } else {
-            if (device.platform === "Android") {
-                if (window.innerWidth != screen.availHeight) {
-                    globalVars['hasPermanentKey'] = true;
-                }
-            }
-            window.innerWidth = globalVars['screenW'] = screen.availHeight;
-            window.innerHeight = globalVars['screenH'] = screen.availWidth;
-        }
-        if (globalVars['hasPermanentKey']) {
-            window.innerWidth = globalVars['screenW'] = globalVars['screenW'] - 100;
-        }
+		// on initialise certain variable en fonction des appareils
+		if (screen.availWidth > screen.availHeight) {
+			if (device.platform === "Android") {
+				if (window.innerWidth != screen.availWidth) {
+					globalVars['hasPermanentKey'] = true;
+				}
+			}
+			window.innerWidth = globalVars['screenW'] = screen.availWidth;
+			window.innerHeight = globalVars['screenH'] = screen.availHeight;
+		} else {
+			if (device.platform === "Android") {
+				if (window.innerWidth != screen.availHeight) {
+					globalVars['hasPermanentKey'] = true;
+				}
+			}
+			window.innerWidth = globalVars['screenW'] = screen.availHeight;
+			window.innerHeight = globalVars['screenH'] = screen.availWidth;
+		}
+		if (globalVars['hasPermanentKey']) {
+			window.innerWidth = globalVars['screenW'] = globalVars['screenW'] - 100;
+		}
 
-        window.devicePixelRatio = 1;
+		window.devicePixelRatio = 1;
 
-        $('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH']});
-        if (device.platform === "Android") {
-            globalVars['localStoragePath'] = 'Android/data/fr.nm3.WoN/files/';
-        } else {
-            globalVars['localStoragePath'] = '/';
-        }
-        globalVars['ressourcesPath'] = globalVars['localStoragePath'] + globalVars['ressourcesPath'];
+		$('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH']});
+		if (device.platform === "Android") {
+			globalVars['localStoragePath'] = 'Android/data/fr.nm3.WoN/files/';
+		} else {
+			globalVars['localStoragePath'] = '/';
+		}
+		globalVars['ressourcesPath'] = globalVars['localStoragePath'] + globalVars['ressourcesPath'];
 
-        // Lorsque tout est pret on attend que le document soit pret
-        //window.onReady(function() {
-            // on essayer de créer le dossier ressources si il n'existe pas, ou on vérifie sont existance
-            var retourcreat = veirfAllPathExist(globalVars['ressourcesPath']);
-            waitdelay(2000);
-            /*
-             * On créer l'objet de config qui sera mis en local s'il n'existe pas déjà
-             * On tente de récupéré le fichier de config local.
-             * S'il n'existe pas on va demander la langue et on va enregistrer le fichier
-             * Puis on lance l'application
-             */
-            globalVars['config'] = new Object();
-            globalVars['config'].id_player = 0;
-            globalVars['config'].login = '';
-            globalVars['config'].lang = '';
-            globalVars['config'].fastStart = false;
-            globalVars['config'].hightFx = true;
-			alert('4');
-            getLocalData('config', function() {
-                if (globalVars['config'].lang != '') {
-                    globalVars['lang'] = globalVars['config'].lang;
-                    startApps();
-                }
-            }, globalVars['config'], function() {
-                //Le fichier de config n'existe pas alors on demande la lang au joueur pour créer le fichier
-                var choixlang = '<div class="button" ontouchend="switchLang(\'FR\',function(){closeSignal();startApps();});">Français ?</div>\n\
+		// Lorsque tout est pret on attend que le document soit pret
+		// on essayer de créer le dossier ressources si il n'existe pas, ou on vérifie sont existance
+		var retourcreat = veirfAllPathExist(globalVars['ressourcesPath']);
+		waitdelay(2000);
+		/*
+		 * On créer l'objet de config qui sera mis en local s'il n'existe pas déjà
+		 * On tente de récupéré le fichier de config local.
+		 * S'il n'existe pas on va demander la langue et on va enregistrer le fichier
+		 * Puis on lance l'application
+		 */
+		globalVars['config'] = new Object();
+		globalVars['config'].id_player = 0;
+		globalVars['config'].login = '';
+		globalVars['config'].lang = '';
+		globalVars['config'].fastStart = false;
+		globalVars['config'].hightFx = true;
+		getLocalData('config', function() {
+			if (globalVars['config'].lang != '') {
+				globalVars['lang'] = globalVars['config'].lang;
+				startApps();
+			}
+		}, globalVars['config'], function() {
+			//Le fichier de config n'existe pas alors on demande la lang au joueur pour créer le fichier
+			var choixlang = '<div class="button" ontouchend="switchLang(\'FR\',function(){closeSignal();startApps();});">Français ?</div>\n\
                         <div class="button" ontouchend="switchLang(\'EN\',function(){closeSignal();startApps();});">English ?</div>';
-                signal(choixlang, function() {
-                    switchLang();
-                    startApps();
-                });
-            });
-        //});
-    }
+			signal(choixlang, function() {
+				switchLang();
+				startApps();
+			});
+		});
+	}
 };
 
 /*
@@ -104,29 +101,28 @@ var app = {
  * puis appel la fonction checkUpdateApps
  */
 function startApps() {
-		alert('4');
-    $('#startframe').hide().remove();
-    if (globalVars['config'].lang == '') {
-        switchLang();
-    }
-    var fondmenup = getElement('fondmenup');
-    if (globalVars['config'].fastStart) {
-        fondmenup.fadeIn(500, function() {
-            playLoopAudio('intro', 66100);
-            checkUpdateApps();
-        });
-    } else {
-        playAudio('nm3');
-        createvideo('nm3', 97);
-        $('body').css('background', '#000');
-        videoplay($('#video'), 50, 4200, function() {
-            fondmenup.show();
-            stopAudio(globalVars['audio']['nm3']);
-            $('#video').remove();
-            playLoopAudio('intro', 66100);
-            checkUpdateApps();
-        });
-    }
+	$('#startframe').hide().remove();
+	if (globalVars['config'].lang == '') {
+		switchLang();
+	}
+	var fondmenup = getElement('fondmenup');
+	if (globalVars['config'].fastStart) {
+		fondmenup.fadeIn(500, function() {
+			playLoopAudio('intro', 66100);
+			checkUpdateApps();
+		});
+	} else {
+		playAudio('nm3');
+		createvideo('nm3', 97);
+		$('body').css('background', '#000');
+		videoplay($('#video'), 50, 4200, function() {
+			fondmenup.show();
+			stopAudio(globalVars['audio']['nm3']);
+			$('#video').remove();
+			playLoopAudio('intro', 66100);
+			checkUpdateApps();
+		});
+	}
 }
 
 
@@ -142,118 +138,118 @@ function startApps() {
  * est plus anciene que la version sur le fichier serveur. Si c'est le cas alors on télécharge la dernière version et on lance l'installation.
  */
 function checkUpdateApps() {
-    var loadBar = getElement('', 'loadBar');
-    var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
-    var params = {"version": globalVars['appsVersion']};
-    var url = globalVars['urlTestVersion'];
-    var remoteFile = globalVars['urlLastApk'].replace('device', device.platform);
-    // on écris un text pour dire qu'on vérifie les mise a jour
-    loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
-        divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
-    });
+	var loadBar = getElement('', 'loadBar');
+	var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
+	var params = {"version": globalVars['appsVersion']};
+	var url = globalVars['urlTestVersion'];
+	var remoteFile = globalVars['urlLastApk'].replace('device', device.platform);
+	// on écris un text pour dire qu'on vérifie les mise a jour
+	loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
+		divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
+	});
 
-    // fonction ajax qui va vérifié le fichier de version
-    $.get(url, params, function(jData) {
-        // Si l'ajax fonction c'est que le mobile est connecté
-        globalVars['isConnected'] = true;
-        //si le resultat est 'donwload' cela signifie que la version serveur est plus récente que la version de l'application
-        var data = JSON.parse(jData);
-        for (var ressourceTab in data.ressources) {
-            ressources[ressourceTab] = data.ressources[ressourceTab];
-        }
-        if (data.donwload == 1) {
-            //on signale au joueur qu'on télécharge la nouvelle version
-            divCheckUpdateApps.fadeOut().html(lang('DLIsLoading')).fadeIn();
-            //on recupéré le fichier systeme
-            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-                //on créer un fichier qui s'appel won.apk dans le dossier download du téléphone
-                fileSystem.root.getFile('download/won.apk', {create: true, exclusive: false}, function(fileEntry) {
-                    waitdelay(1000);
-                    signal(lang('appsNeedUpdate'));
-                    navigator.notification.vibrate(150);
-                    waitdelay(250);
-                    navigator.notification.vibrate(150);
-                    fileEntry.remove(function() {
-                        waitdelay(3000);
-                        fileSystem.root.getFile('download/won.apk', {create: true, exclusive: false}, function(fileEntry) {
-                            var localPath = fileEntry.fullPath;
-                            if (localPath.indexOf("file://") === 0) {
-                                localPath = localPath.substring(7);
-                            }
-                            globalVars['localPathDLAPK'] = 'file://' + localPath;
-                            // début du transfert
-                            var ft = new FileTransfer();
-                            ft.onprogress = function(progressEvent) {
-                                if (progressEvent.lengthComputable) {
-                                    divCheckUpdateApps.html(lang('DLIsLoading') + ' : ' + parseInt(((progressEvent.loaded / 2) / progressEvent.total) * 100) + '%');
-                                }
-                            };
-                            ft.download(remoteFile, localPath, function() {
-                                window.plugins.webintent.startActivity({
-                                    action: window.plugins.webintent.ACTION_VIEW,
-                                    url: globalVars['localPathDLAPK'],
-                                    type: 'application/vnd.android.package-archive'
-                                },
-                                function() {
-                                    // on renvoie false a l'appel pour signalé qu'une mise a jour à été faite
-                                    return false;
-                                },
-                                        function() {
-                                            signal('erreurApp' + 'Error launching app update', function() {
-                                                exitApps()
-                                            });
-                                            navigator.notification.vibrate(150);
-                                            waitdelay(250);
-                                            navigator.notification.vibrate(150);
-                                        });
-                            }, function(evt) {
-                                signal('erreurApp' + "Error downloading 1 APK: " + error.code, function() {
-                                    exitApps()
-                                });
-                                navigator.notification.vibrate(150);
-                                waitdelay(250);
-                                navigator.notification.vibrate(150);
-                            });
-                        }, function(evt) {
-                            signal('erreurApp' + "Error downloading 2 apk: " + evt.target.error.code, function() {
-                                exitApps()
-                            });
-                            navigator.notification.vibrate(150);
-                            waitdelay(250);
-                            navigator.notification.vibrate(150);
-                        });
-                    });
-                }, function(evt) {
-                    signal('erreurApp' + "Error downloading 3 apk: " + evt.target.error.code, function() {
-                        exitApps()
-                    });
-                    navigator.notification.vibrate(150);
-                    waitdelay(250);
-                    navigator.notification.vibrate(150);
-                });
-            }, function(evt) {
-                signal('erreurApp' + "Error preparing to download apk: " + evt.target.error.code, function() {
-                    exitApps()
-                });
-                navigator.notification.vibrate(150);
-                waitdelay(250);
-                navigator.notification.vibrate(150);
-            });
-        } else {
-            // on maseque le message de vérif de mise a jour et on renvoi true pour signalé que l'appli été déja a jour.
-            divCheckUpdateApps.fadeOut();
-            // La version de l'appli est ok on vérifie les ressources
-            updateFileRessources();
-            return true;
-        }
-    }).fail(function() {
-        signal(lang('noCallServeur'), function() {
-            checkUpdateApps();
-        });
-        navigator.notification.vibrate(150);
-        waitdelay(250);
-        navigator.notification.vibrate(150);
-    });
+	// fonction ajax qui va vérifié le fichier de version
+	$.get(url, params, function(jData) {
+		// Si l'ajax fonction c'est que le mobile est connecté
+		globalVars['isConnected'] = true;
+		//si le resultat est 'donwload' cela signifie que la version serveur est plus récente que la version de l'application
+		var data = JSON.parse(jData);
+		for (var ressourceTab in data.ressources) {
+			ressources[ressourceTab] = data.ressources[ressourceTab];
+		}
+		if (data.donwload == 1) {
+			//on signale au joueur qu'on télécharge la nouvelle version
+			divCheckUpdateApps.fadeOut().html(lang('DLIsLoading')).fadeIn();
+			//on recupéré le fichier systeme
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+				//on créer un fichier qui s'appel won.apk dans le dossier download du téléphone
+				fileSystem.root.getFile('download/won.apk', {create: true, exclusive: false}, function(fileEntry) {
+					waitdelay(1000);
+					signal(lang('appsNeedUpdate'));
+					navigator.notification.vibrate(150);
+					waitdelay(250);
+					navigator.notification.vibrate(150);
+					fileEntry.remove(function() {
+						waitdelay(3000);
+						fileSystem.root.getFile('download/won.apk', {create: true, exclusive: false}, function(fileEntry) {
+							var localPath = fileEntry.fullPath;
+							if (localPath.indexOf("file://") === 0) {
+								localPath = localPath.substring(7);
+							}
+							globalVars['localPathDLAPK'] = 'file://' + localPath;
+							// début du transfert
+							var ft = new FileTransfer();
+							ft.onprogress = function(progressEvent) {
+								if (progressEvent.lengthComputable) {
+									divCheckUpdateApps.html(lang('DLIsLoading') + ' : ' + parseInt(((progressEvent.loaded / 2) / progressEvent.total) * 100) + '%');
+								}
+							};
+							ft.download(remoteFile, localPath, function() {
+								window.plugins.webintent.startActivity({
+									action: window.plugins.webintent.ACTION_VIEW,
+									url: globalVars['localPathDLAPK'],
+									type: 'application/vnd.android.package-archive'
+								},
+								function() {
+									// on renvoie false a l'appel pour signalé qu'une mise a jour à été faite
+									return false;
+								},
+										function() {
+											signal('erreurApp' + 'Error launching app update', function() {
+												exitApps()
+											});
+											navigator.notification.vibrate(150);
+											waitdelay(250);
+											navigator.notification.vibrate(150);
+										});
+							}, function(evt) {
+								signal('erreurApp' + "Error downloading 1 APK: " + error.code, function() {
+									exitApps()
+								});
+								navigator.notification.vibrate(150);
+								waitdelay(250);
+								navigator.notification.vibrate(150);
+							});
+						}, function(evt) {
+							signal('erreurApp' + "Error downloading 2 apk: " + evt.target.error.code, function() {
+								exitApps()
+							});
+							navigator.notification.vibrate(150);
+							waitdelay(250);
+							navigator.notification.vibrate(150);
+						});
+					});
+				}, function(evt) {
+					signal('erreurApp' + "Error downloading 3 apk: " + evt.target.error.code, function() {
+						exitApps()
+					});
+					navigator.notification.vibrate(150);
+					waitdelay(250);
+					navigator.notification.vibrate(150);
+				});
+			}, function(evt) {
+				signal('erreurApp' + "Error preparing to download apk: " + evt.target.error.code, function() {
+					exitApps()
+				});
+				navigator.notification.vibrate(150);
+				waitdelay(250);
+				navigator.notification.vibrate(150);
+			});
+		} else {
+			// on maseque le message de vérif de mise a jour et on renvoi true pour signalé que l'appli été déja a jour.
+			divCheckUpdateApps.fadeOut();
+			// La version de l'appli est ok on vérifie les ressources
+			updateFileRessources();
+			return true;
+		}
+	}).fail(function() {
+		signal(lang('noCallServeur'), function() {
+			checkUpdateApps();
+		});
+		navigator.notification.vibrate(150);
+		waitdelay(250);
+		navigator.notification.vibrate(150);
+	});
 }
 
 /*
@@ -263,63 +259,63 @@ function checkUpdateApps() {
  * on fait une vérif par rapport au fichier ressources.js si des fichier sont manquant ou de taille diférante
  */
 function updateFileRessources() {
-    // on change les textes de chargement
-    var divCheckUpdateApps = $('#checkUpdateApps');
-    divCheckUpdateApps.fadeOut(function() {
-        divCheckUpdateApps.html(lang('verifFilesRessources')).fadeIn();
-    });
-    // on récupère le super objet fileSystem
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-        fileSystem.root.getDirectory(globalVars['ressourcesPath'], {create: true, exclusive: false}, function(dirEntry) {
-            // Création de l'objet directory
-            var directoryReader = dirEntry.createReader();
-            // Récupère la liste des fichiers dans le dossier ressources
-            directoryReader.readEntries(function(entries) {
-                // on commence par supprimer toutes les ressources qui ne sont pas dans le fichier ressources du serveur
-                // On créer églament un tableau au passage pour récupéré les info interéssante pour la suite
-                globalVars['listOfEntries'] = [];
-                globalVars['finish'] = 0;
-                for (i = 0; i < entries.length; i++) {
-                    var fileExist = false;
-                    for (key in ressources) {
-                        // Le fichier reste on l'ajoute au tableau avec ses données
-                        if (ressources[key].name == entries[i].name) {
-                            entries[i].file(function(obj) {
-                                globalVars['listOfEntries'][obj.name] = {'name': obj.name, 'size': obj.size, 'path': obj.fullpath, 'lastModifiedDate': obj.lastModifiedDate};
-                                globalVars['finish']++;
+	// on change les textes de chargement
+	var divCheckUpdateApps = $('#checkUpdateApps');
+	divCheckUpdateApps.fadeOut(function() {
+		divCheckUpdateApps.html(lang('verifFilesRessources')).fadeIn();
+	});
+	// on récupère le super objet fileSystem
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+		fileSystem.root.getDirectory(globalVars['ressourcesPath'], {create: true, exclusive: false}, function(dirEntry) {
+			// Création de l'objet directory
+			var directoryReader = dirEntry.createReader();
+			// Récupère la liste des fichiers dans le dossier ressources
+			directoryReader.readEntries(function(entries) {
+				// on commence par supprimer toutes les ressources qui ne sont pas dans le fichier ressources du serveur
+				// On créer églament un tableau au passage pour récupéré les info interéssante pour la suite
+				globalVars['listOfEntries'] = [];
+				globalVars['finish'] = 0;
+				for (i = 0; i < entries.length; i++) {
+					var fileExist = false;
+					for (key in ressources) {
+						// Le fichier reste on l'ajoute au tableau avec ses données
+						if (ressources[key].name == entries[i].name) {
+							entries[i].file(function(obj) {
+								globalVars['listOfEntries'][obj.name] = {'name': obj.name, 'size': obj.size, 'path': obj.fullpath, 'lastModifiedDate': obj.lastModifiedDate};
+								globalVars['finish']++;
 
-                                if (obj.size != ressources[key].size) {
-                                    obj.remove();
-                                }
-                            });
-                            fileExist = true;
-                        }
-                    }
-                    if (!fileExist) {
-                        //suppression du fichier inutile
-                        entries[i].remove();
-                        globalVars['finish']++;
-                    }
-                }
-                waitFinishedCreateListOfEntries(entries.length);
-            }, function(error) {
-                signal('erreurApp1 ' + lang('erreurVerifFiles'), function() {
-                    exitApps()
-                });
-                navigator.notification.vibrate(150);
-                waitdelay(250);
-                navigator.notification.vibrate(150);
-            });
+								if (obj.size != ressources[key].size) {
+									obj.remove();
+								}
+							});
+							fileExist = true;
+						}
+					}
+					if (!fileExist) {
+						//suppression du fichier inutile
+						entries[i].remove();
+						globalVars['finish']++;
+					}
+				}
+				waitFinishedCreateListOfEntries(entries.length);
+			}, function(error) {
+				signal('erreurApp1 ' + lang('erreurVerifFiles'), function() {
+					exitApps()
+				});
+				navigator.notification.vibrate(150);
+				waitdelay(250);
+				navigator.notification.vibrate(150);
+			});
 
-        }, function(error) {
-            signal('erreurApp2 ' + lang('erreurVerifFiles'), function() {
-                exitApps()
-            });
-            navigator.notification.vibrate(150);
-            waitdelay(250);
-            navigator.notification.vibrate(150);
-        });
-    });
+		}, function(error) {
+			signal('erreurApp2 ' + lang('erreurVerifFiles'), function() {
+				exitApps()
+			});
+			navigator.notification.vibrate(150);
+			waitdelay(250);
+			navigator.notification.vibrate(150);
+		});
+	});
 }
 
 /*
@@ -334,12 +330,12 @@ function updateFileRessources() {
  * Lorsque la boucle s'arete on exécute la fonction downloadfileressource
  */
 function waitFinishedCreateListOfEntries(equalItem) {
-    setTimeout(function() {
-        if (globalVars['finish'] == equalItem)
-            downloadFileRessources();
-        else
-            waitFinishedCreateListOfEntries(equalItem);
-    }, 1000);
+	setTimeout(function() {
+		if (globalVars['finish'] == equalItem)
+			downloadFileRessources();
+		else
+			waitFinishedCreateListOfEntries(equalItem);
+	}, 1000);
 }
 
 /*
@@ -348,46 +344,46 @@ function waitFinishedCreateListOfEntries(equalItem) {
  * @description lit les fichier locoal et télécharge ceux necessaire
  */
 function downloadFileRessources() {
-    //On met a jour le message de verif des mises a jour
-    var divCheckUpdateApps = $('#checkUpdateApps');
-    divCheckUpdateApps.fadeOut(function() { // on masque
-        divCheckUpdateApps.html(lang('deleteIsOK')).fadeIn(function() { //on change le text et on réaffiche
-            divCheckUpdateApps.delay(100).fadeOut(function() { // après 1 seconde on remasque
-                globalVars['listLoadFile'] = [];
-                globalVars['numberDL'] = 0;
-                for (key in ressources) {
-                    var fileExist = false;
-                    for (i in globalVars['listOfEntries']) {
-                        if (ressources[key].name == globalVars['listOfEntries'][i].name && ressources[key].size == globalVars['listOfEntries'][i].size) {
-                            fileExist = true;
-                        } else if (ressources[key].name == globalVars['listOfEntries'][i].name && ressources[key].size != globalVars['listOfEntries'][i].size && globalVars['listOfEntries'][i].lastModifiedDate > globalVars['appsVersionDate']) {
-                            /* la date de modif de l'image local est plus récente que celle de l'apk alors que sa taille est diférente
-                             * On va laisser le fileExiste a false pour que l'image soit retélécharger
-                             * L'apk envoie une requette ajax pour que le serveur puisse récupéré l'ip du client et envoyer un mail d'alert
-                             */
-                            $.post(globalVars['urlServeur'] + 'mailforalert.php', {'type': 'modificationressources'});
-                            fileExist = false;
-                        }
-                    }
-                    if (!fileExist) {
-                        //Le fichier manque ou n'est pas bon on le DL
-                        globalVars['listLoadFile'][key] = {'encour': 0, 'total': 0};
-                        globalVars['numberDL']++;
-                    }
-                }
-                if (globalVars['numberDL'] == 0) {
-                    // Aucun dl a faire on peut lancer le reste du jeu
-                    $('#checkUpdateApps').fadeOut(function() { // on masque
-                        $('#checkUpdateApps').html(lang('connectAcount')).fadeIn(function() {
-                            filesIsOk();
-                        });
-                    });
-                } else {
-                    DLFile();
-                }
-            });
-        });
-    });
+	//On met a jour le message de verif des mises a jour
+	var divCheckUpdateApps = $('#checkUpdateApps');
+	divCheckUpdateApps.fadeOut(function() { // on masque
+		divCheckUpdateApps.html(lang('deleteIsOK')).fadeIn(function() { //on change le text et on réaffiche
+			divCheckUpdateApps.delay(100).fadeOut(function() { // après 1 seconde on remasque
+				globalVars['listLoadFile'] = [];
+				globalVars['numberDL'] = 0;
+				for (key in ressources) {
+					var fileExist = false;
+					for (i in globalVars['listOfEntries']) {
+						if (ressources[key].name == globalVars['listOfEntries'][i].name && ressources[key].size == globalVars['listOfEntries'][i].size) {
+							fileExist = true;
+						} else if (ressources[key].name == globalVars['listOfEntries'][i].name && ressources[key].size != globalVars['listOfEntries'][i].size && globalVars['listOfEntries'][i].lastModifiedDate > globalVars['appsVersionDate']) {
+							/* la date de modif de l'image local est plus récente que celle de l'apk alors que sa taille est diférente
+							 * On va laisser le fileExiste a false pour que l'image soit retélécharger
+							 * L'apk envoie une requette ajax pour que le serveur puisse récupéré l'ip du client et envoyer un mail d'alert
+							 */
+							$.post(globalVars['urlServeur'] + 'mailforalert.php', {'type': 'modificationressources'});
+							fileExist = false;
+						}
+					}
+					if (!fileExist) {
+						//Le fichier manque ou n'est pas bon on le DL
+						globalVars['listLoadFile'][key] = {'encour': 0, 'total': 0};
+						globalVars['numberDL']++;
+					}
+				}
+				if (globalVars['numberDL'] == 0) {
+					// Aucun dl a faire on peut lancer le reste du jeu
+					$('#checkUpdateApps').fadeOut(function() { // on masque
+						$('#checkUpdateApps').html(lang('connectAcount')).fadeIn(function() {
+							filesIsOk();
+						});
+					});
+				} else {
+					DLFile();
+				}
+			});
+		});
+	});
 }
 
 /*
@@ -396,66 +392,66 @@ function downloadFileRessources() {
  * @description permet de télécharger tout les fichiers ressources
  */
 function DLFile() {
-    $('#checkUpdateApps').html(lang('downloadNewFile')).fadeIn(2000, function() {//on rechange le text et on réaffiche
-        globalVars['numberfileDL'] = 0;
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-            $('#checkUpdateApps').html(lang('downloadNewFile') + ' : en cours');
-            for (fileName in globalVars['listLoadFile']) {
-                $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + fileName);
-                var localPathOfFile = globalVars['ressourcesPath'] + '/' + ressources[fileName].name;
-                fileSystem.root.getFile(localPathOfFile, {create: true, exclusive: false}, function(fileEntry) {
-                    var text = globalVars['numberDL'] - globalVars['numberfileDL'];
-                    if (text > 1)
-                        text += ' ' + lang('fichiers-restants');
-                    else
-                        text += ' ' + lang('fichier-restant');
-                    $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
-                    var nameFile = fileEntry.name.substr(0, fileEntry.name.lastIndexOf("."));
-                    var distantPathOfFile = globalVars['urlServeur'] + '/' + ressources[nameFile].path + '/' + ressources[nameFile].name;
+	$('#checkUpdateApps').html(lang('downloadNewFile')).fadeIn(2000, function() {//on rechange le text et on réaffiche
+		globalVars['numberfileDL'] = 0;
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+			$('#checkUpdateApps').html(lang('downloadNewFile') + ' : en cours');
+			for (fileName in globalVars['listLoadFile']) {
+				$('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + fileName);
+				var localPathOfFile = globalVars['ressourcesPath'] + '/' + ressources[fileName].name;
+				fileSystem.root.getFile(localPathOfFile, {create: true, exclusive: false}, function(fileEntry) {
+					var text = globalVars['numberDL'] - globalVars['numberfileDL'];
+					if (text > 1)
+						text += ' ' + lang('fichiers-restants');
+					else
+						text += ' ' + lang('fichier-restant');
+					$('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
+					var nameFile = fileEntry.name.substr(0, fileEntry.name.lastIndexOf("."));
+					var distantPathOfFile = globalVars['urlServeur'] + '/' + ressources[nameFile].path + '/' + ressources[nameFile].name;
 //                    var localPath = fileEntry.fullPath;
 //                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
 //                        localPath = localPath.substring(7);
 //                    }
-                    localPath = fileSystem.root.toURL()+localPathOfFile+ ressources[nameFile].name;
-                    // début du transfert
-                    var ft = new FileTransfer();
-                    ft.download(distantPathOfFile, localPath, function() {
-                        globalVars['numberfileDL']++;
-                        text = globalVars['numberDL'] - globalVars['numberfileDL'];
-                        if (text > 1)
-                            text += ' ' + lang('fichiers-restants');
-                        else {
-                            text += ' ' + lang('fichier-restant');
-                            filesIsOk();
-                        }
+					localPath = fileSystem.root.toURL() + localPathOfFile + ressources[nameFile].name;
+					// début du transfert
+					var ft = new FileTransfer();
+					ft.download(distantPathOfFile, localPath, function() {
+						globalVars['numberfileDL']++;
+						text = globalVars['numberDL'] - globalVars['numberfileDL'];
+						if (text > 1)
+							text += ' ' + lang('fichiers-restants');
+						else {
+							text += ' ' + lang('fichier-restant');
+							filesIsOk();
+						}
 
-                        $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
-                    }, function(evt) {
-                        signal('erreurApp' + "Error downloading File: " + evt.code, function() {
-                            exitApps()
-                        });
-                        navigator.notification.vibrate(150);
-                        waitdelay(250);
-                        navigator.notification.vibrate(150);
-                    });
-                }, function(evt) {
-                    signal('erreurApp' + "Error downloading file: " + evt.target.error.code, function() {
-                        exitApps()
-                    });
-                    navigator.notification.vibrate(150);
-                    waitdelay(250);
-                    navigator.notification.vibrate(150);
-                });
-            }
-        }, function(evt) {
-            signal('erreurApp' + "Error preparing to download file: " + evt.target.error.code, function() {
-                exitApps()
-            });
-            navigator.notification.vibrate(150);
-            waitdelay(250);
-            navigator.notification.vibrate(150);
-        });
-    });
+						$('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
+					}, function(evt) {
+						signal('erreurApp' + "Error downloading File: " + evt.code, function() {
+							exitApps()
+						});
+						navigator.notification.vibrate(150);
+						waitdelay(250);
+						navigator.notification.vibrate(150);
+					});
+				}, function(evt) {
+					signal('erreurApp' + "Error downloading file: " + evt.target.error.code, function() {
+						exitApps()
+					});
+					navigator.notification.vibrate(150);
+					waitdelay(250);
+					navigator.notification.vibrate(150);
+				});
+			}
+		}, function(evt) {
+			signal('erreurApp' + "Error preparing to download file: " + evt.target.error.code, function() {
+				exitApps()
+			});
+			navigator.notification.vibrate(150);
+			waitdelay(250);
+			navigator.notification.vibrate(150);
+		});
+	});
 }
 
 /*
@@ -464,17 +460,17 @@ function DLFile() {
  * @description Les fichiers sont ok donc on lance le jeu, on écris la phrase pour le signalé au joueur.
  */
 function filesIsOk() {
-    $('#checkUpdateApps').fadeOut(function() { // on masque
-        $('#checkUpdateApps').html(lang('filesIsOk')).fadeIn(function() {
-            $('#checkUpdateApps').delay('100').fadeOut(function() {
-                $('#checkUpdateApps').delay('100').parent().animate({'height': '0px'}, 500, function() {
-                    getElement('blurall');
-                    getElement('intercom');
-                    connectionPlayer();
-                });
-            });
-        });
-    });
+	$('#checkUpdateApps').fadeOut(function() { // on masque
+		$('#checkUpdateApps').html(lang('filesIsOk')).fadeIn(function() {
+			$('#checkUpdateApps').delay('100').fadeOut(function() {
+				$('#checkUpdateApps').delay('100').parent().animate({'height': '0px'}, 500, function() {
+					getElement('blurall');
+					getElement('intercom');
+					connectionPlayer();
+				});
+			});
+		});
+	});
 }
 
 
