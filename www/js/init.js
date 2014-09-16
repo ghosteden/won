@@ -138,8 +138,6 @@ function startApps() {
  * est plus anciene que la version sur le fichier serveur. Si c'est le cas alors on télécharge la dernière version et on lance l'installation.
  */
 function checkUpdateApps() {
-	filesIsOk();
-	return true;
 	var loadBar = getElement('', 'loadBar');
 	var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
 	var params = {"version": globalVars['appsVersion']};
@@ -150,6 +148,8 @@ function checkUpdateApps() {
 		divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
 	});
 
+	filesIsOk();
+	return true;
 	// fonction ajax qui va vérifié le fichier de version
 	$.get(url, params, function(jData) {
 		// Si l'ajax fonction c'est que le mobile est connecté
