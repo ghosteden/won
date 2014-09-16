@@ -555,26 +555,46 @@ function loadMap(name) {
 				}
 			}
 		}
+		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
+		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
+
+		for (interet in mapJson.interets) {
+			var obj = mapJson.interets[interet];
+			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
+
+			mapWrap.fadeOut().children('div#map').append(objectInteret);
+
+			$('#' + interet).animateSprite({
+				'columns': 100,
+				'fps': 12,
+				'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
+				'loop': true,
+			});
+		}
+		mapWrap.fadeIn();
+		globalVars['mapJson'] = mapJson;
 	} else {
-		var mapJson = getLocalData('ressources/'+name + 'json');
-	}
-	var_dump(mapJson);
-	var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
-	mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
-	
-	for (interet in mapJson.interets) {
-		var obj = mapJson.interets[interet];
-		var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
-		
-		mapWrap.fadeOut().children('div#map').append(objectInteret);
-		
-		$('#'+interet).animateSprite({
-			'columns': 100,
-			'fps': 12,
-			'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
-			'loop': true,
+		getLocalData('ressources/' + name + 'json', function(mapJson) {
+			var_dump(mapJson);
+			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
+			mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
+
+			for (interet in mapJson.interets) {
+				var obj = mapJson.interets[interet];
+				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
+
+				mapWrap.fadeOut().children('div#map').append(objectInteret);
+
+				$('#' + interet).animateSprite({
+					'columns': 100,
+					'fps': 12,
+					'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
+					'loop': true,
+				});
+			}
+			mapWrap.fadeIn();
+			globalVars['mapJson'] = mapJson;
 		});
 	}
-	mapWrap.fadeIn();
-	globalVars['mapJson'] = mapJson;
+
 }
