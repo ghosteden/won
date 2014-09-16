@@ -25,8 +25,8 @@
         <script type="text/javascript">
             //app.initialize();
             $(window).load(function() {
-                globalVars['screenW'] = 1920;
-                globalVars['screenH'] = 1080;
+                globalVars['screenW'] = 800;
+                globalVars['screenH'] = 400;
                 $('body').css({'position':'absolute', 'top':'0px', 'left':'0px', 'width': globalVars['screenW'], 'height': globalVars['screenH'], 'font-size':globalVars['screenH']*0.04});
                 globalVars['config'] = new Object();
                 globalVars['config'].login = 'aaa';
@@ -34,9 +34,9 @@
 				
 				device = {'platform':'web'};
 				getElement('fondmenup').show();
-				getElement('intercom');
-				sceenParams();
-				//didacticiel();
+				//getElement('intercom');
+				//sceenParams();
+				didacticiel();
 				
             });
         </script>
