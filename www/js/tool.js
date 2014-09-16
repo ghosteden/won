@@ -68,8 +68,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 					} else {
 						try {
 							globalVars[NAMEFILE] = JSON.parse(evt.target.result);
-							alert(NAMEFILE);
-							var_dump(globalVars[NAMEFILE]);
 						} catch (e) {
 							var_dump(e);
 						}

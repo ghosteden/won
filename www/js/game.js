@@ -575,7 +575,8 @@ function loadMap(name) {
 		globalVars['mapJson'] = mapJson;
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
-			var_dump(mapJson);
+			var mapjson = globalVars[name + 'json'];
+			var_dump(mapjson);
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 			mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
