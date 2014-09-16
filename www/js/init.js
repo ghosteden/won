@@ -281,7 +281,6 @@ function updateFileRessources() {
 						// Le fichier reste on l'ajoute au tableau avec ses données
 						if (ressources[key].name == entries[i].name) {
 							entries[i].file(function(obj) {
-								var_dump(obj.name);
 								globalVars['listOfEntries'][obj.name] = {'name': obj.name, 'size': obj.size, 'path': obj.fullpath, 'lastModifiedDate': obj.lastModifiedDate};
 								globalVars['finish']++;
 
@@ -354,7 +353,6 @@ function downloadFileRessources() {
 				globalVars['numberDL'] = 0;
 				for (key in ressources) {
 					var fileExist = false;
-					var_dump('1'+ressources[key].name);
 					for (i in globalVars['listOfEntries']) {
 						if (ressources[key].name == globalVars['listOfEntries'][i].name && ressources[key].size == globalVars['listOfEntries'][i].size) {
 							fileExist = true;
@@ -401,8 +399,9 @@ function DLFile() {
 			for (fileName in globalVars['listLoadFile']) {
 				$('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + fileName);
 				var localPathOfFile = globalVars['ressourcesPath'] + '/' + ressources[fileName].name;
-				alert(ressources[fileName].name);
+				alert('1'+localPathOfFile);
 				fileSystem.root.getFile(localPathOfFile, {create: true, exclusive: false}, function(fileEntry) {
+				alert('2'+localPathOfFile);
 					var text = globalVars['numberDL'] - globalVars['numberfileDL'];
 					if (text > 1)
 						text += ' ' + lang('fichiers-restants');
@@ -415,12 +414,12 @@ function DLFile() {
 //                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
 //                        localPath = localPath.substring(7);
 //                    }
+alert('3'+localPathOfFile);
 					localPath = fileSystem.root.toURL() + localPathOfFile + ressources[nameFile].name;
-					alert(localPath);
+					alert('4'+localPath);
 					// début du transfert
 					var ft = new FileTransfer();
-					ft.download(distantPathOfFile, localPath, function(entry) {
-						var_dump(entry);
+					ft.download(distantPathOfFile, localPath, function() {
 						globalVars['numberfileDL']++;
 						text = globalVars['numberDL'] - globalVars['numberfileDL'];
 						if (text > 1)
