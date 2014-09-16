@@ -536,6 +536,9 @@ function didacticiel() {
 }
 
 function loadMap(name) {
+	mapWrap = getElement('mapWrap');
+	getElement('fondmenup').fadeOut();
+	mapWrap.fadeOut();
 	if (device.platform == 'web') {
 		var mapJson = {
 			'posx': -100,
@@ -554,7 +557,7 @@ function loadMap(name) {
 				}
 			}
 		}
-		var mapWrap = getElement('mapWrap');
+		mapWrap = getElement('mapWrap');
 		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
@@ -575,24 +578,28 @@ function loadMap(name) {
 		globalVars['mapJson'] = mapJson;
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
-			var mapWrap = getElement('mapWrap');
-			var_dump(mapWrap);
+			mapWrap = getElement('mapWrap');
 			var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
-			mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
+			mapWrap.children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 			alert('1');
 			for (interet in mapJson.interets) {
+				alert('2');
 				var obj = mapJson.interets[interet];
+				alert('3');
+				var_dump(obj);
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
-
-				mapWrap.fadeOut().children('div#map').append(objectInteret);
-
+alert('4');
+var_dump(objectInteret);
+				mapWrap.children('div#map').append(objectInteret);
+alert('5');
 				$('#' + interet).animateSprite({
 					'columns': 100,
 					'fps': 12,
 					'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
 					'loop': true,
 				});
+				alert('6');
 			}
 			alert('2');
 			var_dump(mapWrap);
