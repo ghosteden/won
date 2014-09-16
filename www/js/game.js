@@ -593,6 +593,7 @@ function loadMap(name) {
 					'loop': true,
 				});
 			}
+			$('body').append(imgMap);
 			alert('1');
 			mapWrap.fadeIn();
 			alert('2');
