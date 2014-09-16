@@ -37,12 +37,12 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 		alert('1');
 		fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
 			alert('3');
-		fileEntry.file(function(file) {
+			fileEntry.file(function(file) {
 				var reader = new FileReader();
 				var testNameFile = FILE.lastIndexOf('/');
 				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
 				alert('4');
-		reader.onloadend = function(evt) {
+				reader.onloadend = function(evt) {
 					if (evt.target.result == '') {
 						/*
 						 * Le fichier est vide ou innexistant
@@ -51,7 +51,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 						 */
 						if (dataDefault != '') {
 							alert('4');
-		globalVars[NAMEFILE] = dataDefault;
+							globalVars[NAMEFILE] = dataDefault;
 							if (callbackIfNotExist) {
 								callbackIfNotExist();
 							} else {
@@ -61,7 +61,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 						} else {
 							//faire la requette ajax pour récup les données
 							alert('5');
-		$.get(distantFile, paramsForGet,
+							$.get(distantFile, paramsForGet,
 									function(data) {
 										globalVars[NAMEFILE] = JSON.parse(data);
 										// la fonction recordData() va se charger de l'ecriture des donées
@@ -72,9 +72,10 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 									});
 						}
 					} else {
+						var_dump(evt.target.result);
 						try {
 							alert('6');
-		globalVars[NAMEFILE] = JSON.parse(evt.target.result);
+							globalVars[NAMEFILE] = JSON.parse(evt.target.result);
 						} catch (e) {
 							var_dump(e);
 						}
@@ -420,7 +421,7 @@ function getElement(ID, Class, type) {
 					 *     break;
 					 */
 					case 'mapWrap':
-						var elem = '<div id="' + ID + '" style="width:'+globalVars['screenW']+';height:'+globalVars['screenH']+';"><div id="map"></div></div>';
+						var elem = '<div id="' + ID + '" style="width:' + globalVars['screenW'] + ';height:' + globalVars['screenH'] + ';"><div id="map"></div></div>';
 						$('body').append(elem);
 						return $('#' + ID);
 						break;
@@ -440,6 +441,10 @@ function getElement(ID, Class, type) {
 					case 'signal':
 						var elem = '<div id="' + ID + '"><div class="closeSignal" ontouchend="closeSignal()"></div><div class="text"></div></div>';
 						$('body').append(elem);
+//						if (globalVars['typeScreen'] = 'l') {
+//
+//							$('#' + ID)
+//						}
 						return $('#' + ID);
 						break;
 						/*
@@ -497,15 +502,15 @@ function getElement(ID, Class, type) {
                                         </div>\n\
                                     </div>';
 						$('body').append(elem);
-						
+
 						getTimeIntercom();
-						
-						$('#intercom img.background1').load(function(){
+
+						$('#intercom img.background1').load(function() {
 							globalVars['backgroundIntercomH'] = $('#intercom img.background').height();
 							globalVars['backgroundIntercomW'] = $('#intercom img.background').width();
 
-							$('#intercom .close').css({'width':globalVars['backgroundIntercomW']/1.3+'px','height':globalVars['backgroundIntercomW']/1.3+'px','margin-top':globalVars['backgroundIntercomW']/-2.6+'px'});
-							$('#intercom img.background').css({'margin-top':$('#intercom img.background').height()/-2});
+							$('#intercom .close').css({'width': globalVars['backgroundIntercomW'] / 1.3 + 'px', 'height': globalVars['backgroundIntercomW'] / 1.3 + 'px', 'margin-top': globalVars['backgroundIntercomW'] / -2.6 + 'px'});
+							$('#intercom img.background').css({'margin-top': $('#intercom img.background').height() / -2});
 							$('#' + ID).animate({'left': '0px'}, 500, function() {
 								globalVars['intercomposition'] = 1;
 								openIntercom();
@@ -514,7 +519,7 @@ function getElement(ID, Class, type) {
 							//parametre la taille de l'ecran
 							globalVars['screenIntercomH'] = $('#intercom').height();
 							globalVars['screenIntercomW'] = globalVars['screenW'] - globalVars['backgroundIntercomW'];
-							$('#intercom .screen').css({'left':globalVars['backgroundIntercomW']-globalVars['backgroundIntercomW']*0.05});
+							$('#intercom .screen').css({'left': globalVars['backgroundIntercomW'] - globalVars['backgroundIntercomW'] * 0.05});
 
 							$('#intercom .screen .status').css('font-size', globalVars['screenH'] * 0.08);
 							$('#intercom .screen .connection').css('height', globalVars['screenH'] * 0.1);
@@ -1079,9 +1084,9 @@ function temposubmitEnd() {
 	}
 }
 
-function initialiseGameControle(){
-		getElement("gameControleur");
-		var jselemGameControleur = document.getElementById('gameControleur');
+function initialiseGameControle() {
+	getElement("gameControleur");
+	var jselemGameControleur = document.getElementById('gameControleur');
 	if (device.platform != 'web') {
 		jselemGameControleur.addEventListener("touchstart", function(e) {
 			onPointerDown(e)
@@ -1125,12 +1130,16 @@ function onPointerMove(e) {
 	if (globalVars['touchmap']) {
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
-		var left = globalVars['mapJson'].posx+vecteurX;
-		var top = globalVars['mapJson'].posy+vecteurY;
-		if(left>=0)left=0;
-		if(top>=0)top=0;
-		if(left<=(globalVars['mapJson'].width-globalVars['screenW'])*-1)left=(globalVars['mapJson'].width-globalVars['screenW'])*-1;
-		if(top<=(globalVars['mapJson'].height-globalVars['screenH'])*-1)top=(globalVars['mapJson'].height-globalVars['screenH'])*-1;
+		var left = globalVars['mapJson'].posx + vecteurX;
+		var top = globalVars['mapJson'].posy + vecteurY;
+		if (left >= 0)
+			left = 0;
+		if (top >= 0)
+			top = 0;
+		if (left <= (globalVars['mapJson'].width - globalVars['screenW']) * -1)
+			left = (globalVars['mapJson'].width - globalVars['screenW']) * -1;
+		if (top <= (globalVars['mapJson'].height - globalVars['screenH']) * -1)
+			top = (globalVars['mapJson'].height - globalVars['screenH']) * -1;
 		$('#map').css({
 			'left': left + 'px',
 			'top': top + 'px',
