@@ -582,30 +582,20 @@ function loadMap(name) {
 			var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 			mapWrap.children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
-			alert('1');
 			for (interet in mapJson.interets) {
-				alert('2');
 				var obj = mapJson.interets[interet];
-				alert('3');
-				var_dump(obj);
-				var_dump(getLocalRessources(obj.ressource));
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
-alert('4');
-var_dump(objectInteret);
 				mapWrap.children('div#map').append(objectInteret);
-alert('5');
 				$('#' + interet).animateSprite({
 					'columns': 100,
 					'fps': 12,
 					'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
 					'loop': true,
 				});
-				alert('6');
 			}
-			alert('2');
-			var_dump(mapWrap);
-			var_dump(mapWrap.html());
+			alert('1');
 			mapWrap.fadeIn();
+			alert('2');
 		});
 	}
 
