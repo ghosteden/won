@@ -32,16 +32,12 @@ function var_dump(obj) {
 function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFile, paramsForGet) {
 	var dataDefault = dataDefault || '';
 	var distantFile = distantFile || '';
-	alert('2');
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-		alert('1');
 		fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
-			alert('3');
 			fileEntry.file(function(file) {
 				var reader = new FileReader();
 				var testNameFile = FILE.lastIndexOf('/');
 				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
-				alert('4');
 				reader.onloadend = function(evt) {
 					if (evt.target.result == '') {
 						/*
@@ -50,7 +46,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 						 * Sinon on fait une requette au serveur pour récupéré le fichier équivalant
 						 */
 						if (dataDefault != '') {
-							alert('4');
 							globalVars[NAMEFILE] = dataDefault;
 							if (callbackIfNotExist) {
 								callbackIfNotExist();
@@ -60,7 +55,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							}
 						} else {
 							//faire la requette ajax pour récup les données
-							alert('5');
 							$.get(distantFile, paramsForGet,
 									function(data) {
 										globalVars[NAMEFILE] = JSON.parse(data);
@@ -71,11 +65,10 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 										}
 									});
 						}
-					} else {
-						var_dump(evt.target.result);
 						try {
-							alert('6');
 							globalVars[NAMEFILE] = JSON.parse(evt.target.result);
+							alert(NAMEFILE);
+							var_dump(globalVars[NAMEFILE]);
 						} catch (e) {
 							var_dump(e);
 						}
