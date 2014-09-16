@@ -412,9 +412,7 @@ function DLFile() {
 //                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
 //                        localPath = localPath.substring(7);
 //                    }
-alert(fileEntry.fullPath);
 					localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
-					alert('4'+localPath);
 					// début du transfert
 					var ft = new FileTransfer();
 					ft.download(distantPathOfFile, localPath, function() {
