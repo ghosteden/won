@@ -576,9 +576,11 @@ function loadMap(name) {
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
 			var mapWrap = getElement('mapWrap');
+			var_dump(mapWrap);
 			var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 			mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
+			alert('1');
 			for (interet in mapJson.interets) {
 				var obj = mapJson.interets[interet];
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
@@ -592,6 +594,9 @@ function loadMap(name) {
 					'loop': true,
 				});
 			}
+			alert('2');
+			var_dump(mapWrap);
+			var_dump(mapWrap.html());
 			mapWrap.fadeIn();
 		});
 	}
