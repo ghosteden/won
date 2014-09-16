@@ -538,7 +538,7 @@ function didacticiel() {
 function loadMap(name) {
 	mapWrap = getElement('mapWrap');
 	getElement('fondmenup').fadeOut();
-	mapWrap.fadeOut();
+	//mapWrap.fadeOut();
 	if (device.platform == 'web') {
 		var mapJson = {
 			'posx': -100,
@@ -593,11 +593,7 @@ function loadMap(name) {
 					'loop': true,
 				});
 			}
-			alert(imgMap);
-			$('body').append(imgMap);
-			alert('1');
 			mapWrap.fadeIn();
-			alert('2');
 		});
 	}
 
