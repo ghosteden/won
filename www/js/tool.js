@@ -1122,16 +1122,16 @@ function onPointerMove(e) {
 	if (globalVars['touchmap']) {
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
-		var left = globalVars['mapJson'].posx + vecteurX;
-		var top = globalVars['mapJson'].posy + vecteurY;
+		var left = globalVars['mapjson'].posx + vecteurX;
+		var top = globalVars['mapjson'].posy + vecteurY;
 		if (left >= 0)
 			left = 0;
 		if (top >= 0)
 			top = 0;
-		if (left <= (globalVars['mapJson'].width - globalVars['screenW']) * -1)
-			left = (globalVars['mapJson'].width - globalVars['screenW']) * -1;
-		if (top <= (globalVars['mapJson'].height - globalVars['screenH']) * -1)
-			top = (globalVars['mapJson'].height - globalVars['screenH']) * -1;
+		if (left <= (globalVars['mapjson'].width - globalVars['screenW']) * -1)
+			left = (globalVars['mapjson'].width - globalVars['screenW']) * -1;
+		if (top <= (globalVars['mapjson'].height - globalVars['screenH']) * -1)
+			top = (globalVars['mapjson'].height - globalVars['screenH']) * -1;
 		$('#map').css({
 			'left': left + 'px',
 			'top': top + 'px',
@@ -1145,8 +1145,8 @@ function onPointerUp(e) {
 		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
-		globalVars['mapJson'].posx += e.clientX - globalVars['ctrlX'];
-		globalVars['mapJson'].posy += e.clientY - globalVars['ctrlY'];
+		globalVars['mapjson'].posx += e.clientX - globalVars['ctrlX'];
+		globalVars['mapjson'].posy += e.clientY - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;

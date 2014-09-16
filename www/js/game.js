@@ -558,7 +558,7 @@ function loadMap(name) {
 			}
 		}
 		mapWrap = getElement('mapWrap');
-		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
+		/*var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
 		for (interet in mapJson.interets) {
@@ -575,11 +575,11 @@ function loadMap(name) {
 			});
 		}
 		mapWrap.fadeIn();
-		globalVars['mapJson'] = mapJson;
+		globalVars['mapjson'] = mapJson;*/
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
 			mapWrap = getElement('mapWrap');
-			var mapJson = globalVars[name + 'json'];
+			/*var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 			mapWrap.children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 			for (interet in mapJson.interets) {
@@ -593,7 +593,7 @@ function loadMap(name) {
 					'loop': true,
 				});
 			}
-			mapWrap.fadeIn();
+			mapWrap.fadeIn();*/
 		});
 	}
 
