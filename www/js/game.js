@@ -588,6 +588,7 @@ function loadMap(name) {
 				var obj = mapJson.interets[interet];
 				alert('3');
 				var_dump(obj);
+				var_dump(getLocalRessources(obj.ressource));
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 alert('4');
 var_dump(objectInteret);
