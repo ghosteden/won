@@ -399,9 +399,7 @@ function DLFile() {
 			for (fileName in globalVars['listLoadFile']) {
 				$('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + fileName);
 				var localPathOfFile = globalVars['ressourcesPath'] + '/' + ressources[fileName].name;
-				alert('1'+localPathOfFile);
 				fileSystem.root.getFile(localPathOfFile, {create: true, exclusive: false}, function(fileEntry) {
-				alert('2'+localPathOfFile);
 					var text = globalVars['numberDL'] - globalVars['numberfileDL'];
 					if (text > 1)
 						text += ' ' + lang('fichiers-restants');
@@ -414,8 +412,8 @@ function DLFile() {
 //                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
 //                        localPath = localPath.substring(7);
 //                    }
-alert('3'+localPathOfFile);
-					localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + ressources[nameFile].name;
+alert(fileEntry.fullPath);
+					localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
 					alert('4'+localPath);
 					// début du transfert
 					var ft = new FileTransfer();
