@@ -117,6 +117,9 @@ alert('3');
 	if (device.platform === "web")
 		localpath = globalVars['urlServeur'] + '/' + ressources[$ressourceName].path;
 alert('4');
+alert($ressourceName);
+var_dump(ressources);
+var_dump(ressources[$ressourceName]);
 alert(ressources[$ressourceName].name);
 	return localpath + '/' + ressources[$ressourceName].name;
 }
