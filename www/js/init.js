@@ -138,6 +138,8 @@ function startApps() {
  * est plus anciene que la version sur le fichier serveur. Si c'est le cas alors on télécharge la dernière version et on lance l'installation.
  */
 function checkUpdateApps() {
+	filesIsOk();
+	return true;
 	var loadBar = getElement('', 'loadBar');
 	var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
 	var params = {"version": globalVars['appsVersion']};
