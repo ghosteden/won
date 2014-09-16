@@ -536,7 +536,6 @@ function didacticiel() {
 }
 
 function loadMap(name) {
-	var mapWrap = getElement('mapWrap');
 	if (device.platform == 'web') {
 		var mapJson = {
 			'posx': -100,
@@ -555,6 +554,7 @@ function loadMap(name) {
 				}
 			}
 		}
+		var mapWrap = getElement('mapWrap');
 		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
@@ -575,14 +575,11 @@ function loadMap(name) {
 		globalVars['mapJson'] = mapJson;
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
+			var mapWrap = getElement('mapWrap');
 			var mapJson = globalVars[name + 'json'];
-			alert(mapJson.ressource);
-			alert(getLocalRessources(mapJson.ressource));
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
-			alert(imgMap);
 			mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
-			alert('1');
-			/*for (interet in mapJson.interets) {
+			for (interet in mapJson.interets) {
 				var obj = mapJson.interets[interet];
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 
@@ -594,7 +591,7 @@ function loadMap(name) {
 					'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
 					'loop': true,
 				});
-			}*/
+			}
 			mapWrap.fadeIn();
 		});
 	}
