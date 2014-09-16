@@ -157,7 +157,6 @@ function checkUpdateApps() {
 		for (var ressourceTab in data.ressources) {
 			ressources[ressourceTab] = data.ressources[ressourceTab];
 		}
-		var_dump(ressources);
 		if (data.donwload == 1) {
 			//on signale au joueur qu'on télécharge la nouvelle version
 			divCheckUpdateApps.fadeOut().html(lang('DLIsLoading')).fadeIn();
@@ -282,6 +281,7 @@ function updateFileRessources() {
 						// Le fichier reste on l'ajoute au tableau avec ses données
 						if (ressources[key].name == entries[i].name) {
 							entries[i].file(function(obj) {
+								var_dump(obj.name);
 								globalVars['listOfEntries'][obj.name] = {'name': obj.name, 'size': obj.size, 'path': obj.fullpath, 'lastModifiedDate': obj.lastModifiedDate};
 								globalVars['finish']++;
 
@@ -354,6 +354,7 @@ function downloadFileRessources() {
 				globalVars['numberDL'] = 0;
 				for (key in ressources) {
 					var fileExist = false;
+					var_dump('1'+ressources[key].name);
 					for (i in globalVars['listOfEntries']) {
 						if (ressources[key].name == globalVars['listOfEntries'][i].name && ressources[key].size == globalVars['listOfEntries'][i].size) {
 							fileExist = true;
@@ -415,9 +416,11 @@ function DLFile() {
 //                        localPath = localPath.substring(7);
 //                    }
 					localPath = fileSystem.root.toURL() + localPathOfFile + ressources[nameFile].name;
+					alert(localPath);
 					// début du transfert
 					var ft = new FileTransfer();
-					ft.download(distantPathOfFile, localPath, function() {
+					ft.download(distantPathOfFile, localPath, function(entry) {
+						var_dump(entry);
 						globalVars['numberfileDL']++;
 						text = globalVars['numberDL'] - globalVars['numberfileDL'];
 						if (text > 1)
