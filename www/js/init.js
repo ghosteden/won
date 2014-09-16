@@ -415,7 +415,7 @@ function DLFile() {
 //                        localPath = localPath.substring(7);
 //                    }
 alert('3'+localPathOfFile);
-					localPath = fileSystem.root.toURL() + localPathOfFile + ressources[nameFile].name;
+					localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + ressources[nameFile].name;
 					alert('4'+localPath);
 					// début du transfert
 					var ft = new FileTransfer();
