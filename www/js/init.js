@@ -157,6 +157,7 @@ function checkUpdateApps() {
 		for (var ressourceTab in data.ressources) {
 			ressources[ressourceTab] = data.ressources[ressourceTab];
 		}
+		var_dump(ressources);
 		if (data.donwload == 1) {
 			//on signale au joueur qu'on télécharge la nouvelle version
 			divCheckUpdateApps.fadeOut().html(lang('DLIsLoading')).fadeIn();
@@ -399,6 +400,7 @@ function DLFile() {
 			for (fileName in globalVars['listLoadFile']) {
 				$('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + fileName);
 				var localPathOfFile = globalVars['ressourcesPath'] + '/' + ressources[fileName].name;
+				alert(ressources[fileName].name);
 				fileSystem.root.getFile(localPathOfFile, {create: true, exclusive: false}, function(fileEntry) {
 					var text = globalVars['numberDL'] - globalVars['numberfileDL'];
 					if (text > 1)
