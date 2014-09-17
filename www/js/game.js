@@ -538,11 +538,9 @@ function didacticiel() {
 function loadMap(name) {
 	getElement('fondmenup').fadeOut();
 	mapWrap = getElement('mapWrap');
-	
-	alert(mapWrap.css('height'));
-	//mapWrap.fadeOut();
+	mapWrap.fadeOut();
 	if (device.platform == 'web') {
-		/*var mapJson = {
+		var mapJson = {
 			'posx': -100,
 			'posy': -230,
 			'width': 1333,
@@ -561,8 +559,8 @@ function loadMap(name) {
 		}
 		mapWrap = getElement('mapWrap');
 			var_dump(mapWrap.css('left'));
-			alert(mapWrap.html());*/
-		/*var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
+			alert(mapWrap.html());
+		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
 		for (interet in mapJson.interets) {
@@ -579,9 +577,9 @@ function loadMap(name) {
 			});
 		}
 		mapWrap.fadeIn();
-		globalVars['mapjson'] = mapJson;*/
+		globalVars['mapjson'] = mapJson;
 	} else {
-		/*getLocalData('ressources/' + name + 'json', function(mapJson) {
+		getLocalData('ressources/' + name + 'json', function(mapJson) {
 			mapWrap = getElement('mapWrap');
 			var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
@@ -598,7 +596,7 @@ function loadMap(name) {
 				});
 			}
 			mapWrap.fadeIn();
-		});*/
+		});
 	}
 
 }
