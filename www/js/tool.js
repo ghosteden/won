@@ -1082,8 +1082,8 @@ function initialiseGameControle() {
 			.attr('onmousemove','onPointerMove(event)')
 			.attr('onmouseup','onPointerUp(event)')
 			.attr('ontouchstart','alert("y");onPointerDown(event)')
-			.attr('ontouchmove','onPointerMove(event)')
-			.attr('ontouchend','onPointerUp(event)')
+			.attr('ontouchmove','alert("f");onPointerMove(event)')
+			.attr('ontouchend','alert("g");onPointerUp(event)')
 	;
 }
 
