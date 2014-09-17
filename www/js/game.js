@@ -558,6 +558,7 @@ function loadMap(name) {
 			}
 		}
 		mapWrap = getElement('mapWrap');
+			var_dump(mapWrap.css('left'));
 		/*var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
@@ -579,7 +580,9 @@ function loadMap(name) {
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
 			mapWrap = getElement('mapWrap');
-			var_dump(mapWrap);
+			alert(mapWrap.css('top'));
+			alert(mapWrap.css('left'));
+			alert(mapWrap.html());
 			/*var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 			mapWrap.children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
