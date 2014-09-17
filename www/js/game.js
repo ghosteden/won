@@ -530,7 +530,7 @@ function didacticiel() {
 
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);
-		//initialiseGameControle();
+		initialiseGameControle();
 		//interaction('startTuto');
 	});
 }
@@ -558,8 +558,6 @@ function loadMap(name) {
 			}
 		}
 		mapWrap = getElement('mapWrap');
-			var_dump(mapWrap.css('left'));
-			alert(mapWrap.html());
 		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
 
