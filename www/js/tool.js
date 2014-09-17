@@ -1081,25 +1081,25 @@ function initialiseGameControle() {
 	var jselemGameControleur = document.getElementById('gameControleur');
 	if (device.platform != 'web') {
 		jselemGameControleur.addEventListener("touchstart", function(e) {
-	alert('t');
 			onPointerDown(e)
 		}, false);
 		jselemGameControleur.addEventListener("touchmove", function(e) {
-	alert('s');
 			onPointerMove(e)
 		}, false);
 		jselemGameControleur.addEventListener("touchend", function(e) {
-	alert('v');
 			onPointerUp(e)
 		}, false);
 	} else {
 		jselemGameControleur.addEventListener("mousedown", function(e) {
+	alert('t');
 			onPointerDown(e)
 		}, false);
 		jselemGameControleur.addEventListener("mousemove", function(e) {
+	alert('s');
 			onPointerMove(e)
 		}, false);
 		jselemGameControleur.addEventListener("mouseup", function(e) {
+	alert('v');
 			onPointerUp(e)
 		}, false);
 	}
