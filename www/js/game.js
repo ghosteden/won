@@ -579,6 +579,7 @@ function loadMap(name) {
 	} else {
 		getLocalData('ressources/' + name + 'json', function(mapJson) {
 			mapWrap = getElement('mapWrap');
+			var_dump(mapWrap);
 			/*var mapJson = globalVars[name + 'json'];
 			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
 			mapWrap.children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
