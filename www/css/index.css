@@ -596,7 +596,6 @@ canvas{
 	left:0;
 	overflow: hidden;
 	z-index: 10;
-	background: #d00;
 }
 #mapWrap #map{
 	position: absolute;

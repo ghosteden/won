@@ -1103,6 +1103,7 @@ function initialiseGameControle() {
 }
 
 function onPointerDown(e) {
+	alert('t');
 	e.preventDefault();
 	if (e.touches !== undefined) {
 		e = e.touches[0];
