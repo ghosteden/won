@@ -595,10 +595,10 @@ canvas{
 	top:0;
 	left:0;
 	overflow: hidden;
-	z-index: 10;
+	z-index: 1000000;
 	background: #d00;
 }
 #mapWrap #map{
 	position: absolute;
-	z-index: 20;
+	z-index: 20000000;
 }

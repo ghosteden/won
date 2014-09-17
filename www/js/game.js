@@ -536,8 +536,10 @@ function didacticiel() {
 }
 
 function loadMap(name) {
-	mapWrap = getElement('mapWrap');
 	getElement('fondmenup').fadeOut();
+	mapWrap = getElement('mapWrap');
+	
+	alert(mapWrap.parent().html());
 	//mapWrap.fadeOut();
 	if (device.platform == 'web') {
 		/*var mapJson = {
