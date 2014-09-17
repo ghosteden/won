@@ -539,7 +539,7 @@ function loadMap(name) {
 	getElement('fondmenup').fadeOut();
 	mapWrap = getElement('mapWrap');
 	
-	alert(mapWrap.parent().html());
+	alert(mapWrap.css('height'));
 	//mapWrap.fadeOut();
 	if (device.platform == 'web') {
 		/*var mapJson = {

@@ -413,7 +413,7 @@ function getElement(ID, Class, type) {
 					 *     break;
 					 */
 					case 'mapWrap':
-						var elem = '<div id="' + ID + '" style="width:' + globalVars['screenW'] + ';height:' + globalVars['screenH'] + ';"><div id="map"></div></div>';
+						var elem = '<div id="' + ID + '" style="width:' + globalVars['screenW'] + 'px;height:' + globalVars['screenH'] + 'px;"><div id="map"></div></div>';
 						$('body').append(elem);
 						return $('#' + ID);
 						break;
