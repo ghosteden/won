@@ -1077,33 +1077,18 @@ function temposubmitEnd() {
 }
 
 function initialiseGameControle() {
-	getElement("gameControleur");
-	var jselemGameControleur = document.getElementById('gameControleur');
-		/* Touch event */
-		jselemGameControleur.addEventListener("touchstart", function(e) {
-			onPointerDown(e)
-		}, false);
-		jselemGameControleur.addEventListener("touchmove", function(e) {
-			onPointerMove(e)
-		}, false);
-		jselemGameControleur.addEventListener("touchend", function(e) {
-			onPointerUp(e)
-		}, false);
-		/* Mouse event */
-		jselemGameControleur.addEventListener("mousedown", function(e) {
-			onPointerDown(e)
-		}, false);
-		jselemGameControleur.addEventListener("mousemove", function(e) {
-			onPointerMove(e)
-		}, false);
-		jselemGameControleur.addEventListener("mouseup", function(e) {
-			onPointerUp(e)
-		}, false);
+	getElement("gameControleur")
+			.attr('onmousedown','onPointerDown(event)')
+			.attr('onmousemove','onPointerMove(event)')
+			.attr('onmouseup','onPointerUp(event)')
+			.attr('ontouchstart','onPointerDown(event)')
+			.attr('ontouchmove','onPointerMove(event)')
+			.attr('ontouchend','onPointerUp(event)')
+	;
 }
 
 function onPointerDown(e) {
 	e.preventDefault();
-	alert('t');
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
@@ -1119,7 +1104,6 @@ function onPointerMove(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	alert('v');
 	if (globalVars['touchmap']) {
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
@@ -1145,7 +1129,6 @@ function onPointerUp(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	alert('b');
 	if (globalVars['touchmap']) {
 		globalVars['mapjson'].posx += e.clientX - globalVars['ctrlX'];
 		globalVars['mapjson'].posy += e.clientY - globalVars['ctrlY'];
