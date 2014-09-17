@@ -1079,7 +1079,7 @@ function temposubmitEnd() {
 function initialiseGameControle() {
 	getElement("gameControleur");
 	var jselemGameControleur = document.getElementById('gameControleur');
-	if (device.platform != 'web') {
+		/* Touch event */
 		jselemGameControleur.addEventListener("touchstart", function(e) {
 			onPointerDown(e)
 		}, false);
@@ -1089,20 +1089,16 @@ function initialiseGameControle() {
 		jselemGameControleur.addEventListener("touchend", function(e) {
 			onPointerUp(e)
 		}, false);
-	} else {
+		/* Mouse event */
 		jselemGameControleur.addEventListener("mousedown", function(e) {
-	alert('t');
 			onPointerDown(e)
 		}, false);
 		jselemGameControleur.addEventListener("mousemove", function(e) {
-	alert('s');
 			onPointerMove(e)
 		}, false);
 		jselemGameControleur.addEventListener("mouseup", function(e) {
-	alert('v');
 			onPointerUp(e)
 		}, false);
-	}
 }
 
 function onPointerDown(e) {

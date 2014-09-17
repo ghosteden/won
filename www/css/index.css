@@ -497,6 +497,7 @@ canvas{
     width: 100%;
     z-index: 40;
 	background: #d00;
+	opacity: 0.2;
 }
 
 /*textBox*/
