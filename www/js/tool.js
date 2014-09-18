@@ -1093,11 +1093,13 @@ function initialiseGameControle() {
 }
 
 function onPointerDown(e) {
+	var_dump(e);
 	e.preventDefault();
+	var_dump(e);
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	dump(e);
+	var_dump(e);
 	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
