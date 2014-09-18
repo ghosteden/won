@@ -1097,7 +1097,6 @@ function onPointerDown(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	alert('t');
 	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
@@ -1110,7 +1109,6 @@ function onPointerMove(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	alert('v');
 	if (globalVars['touchmap']) {
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
@@ -1136,7 +1134,6 @@ function onPointerUp(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	alert('d');
 	if (globalVars['touchmap']) {
 		globalVars['mapjson'].posx += e.clientX - globalVars['ctrlX'];
 		globalVars['mapjson'].posy += e.clientY - globalVars['ctrlY'];
