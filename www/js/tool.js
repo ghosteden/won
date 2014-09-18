@@ -463,20 +463,15 @@ function getElement(ID, Class, type) {
 						$('body').append(elem);
 						return $('#' + ID);
 						break;
-					/* Le game controlleur pour bouger la map */
-					case 'gameControleur':
-						var elem = '<div id="gameControleur" ontouchend="openIntercom()"></div>';
-						$('body').append(elem);
-						return $('#' + ID);
-						break;
 						/*
 						 * L'intercom
 						 * A la création on le fait apparaitre a gauche
 						 */
 					case 'intercom':
-						var elem = '<div id="intercom">\n\
-                                        <div class="open" ontouchend="openIntercom()"></div>\n\
-                                        <div class="close" ontouchend="closeIntercom()"></div>\n\
+						var elem = '<div id="intercomWrap">\n\
+						<div id="intercom">\n\
+                                        <div class="open" ontouchend="openIntercom()" onmouseup="openIntercom()"></div>\n\
+                                        <div class="close" ontouchend="closeIntercom()" onmouseup="closeIntercom()"></div>\n\
                                         <img src="img/intercom/intercom_1.png" class="background background1"/>\n\
                                         <img src="img/intercom/intercom_2.png" class="background background2"/>\n\
                                         <img src="img/intercom/intercom_3.png" class="background background3"/>\n\
@@ -498,11 +493,13 @@ function getElement(ID, Class, type) {
                                                 </div>\n\
                                             </div>\n\
                                         </div>\n\
+                                        </div>\n\
                                     </div>';
 						$('body').append(elem);
 
-						getTimeIntercom();
-
+						//getTimeIntercom();
+						
+						$('#intercom').css({'width':globalVars['screenW']});
 						$('#intercom img.background1').load(function() {
 							globalVars['backgroundIntercomH'] = $('#intercom img.background').height();
 							globalVars['backgroundIntercomW'] = $('#intercom img.background').width();
@@ -650,6 +647,7 @@ function openIntercom() {
 	if (globalVars['closingIntercom'] !== true && !globalVars['closingIntercom']) {
 		globalVars['openingIntercom'] = true;
 		$('#intercom .open').hide();
+		$('#intercomWrap').css('width','100%');
 		playAudio('openIntercom');
 	}
 	if (globalVars['intercomposition'] < 9 && !globalVars['closingIntercom']) {
@@ -728,6 +726,7 @@ function closeIntercom(callback) {
 			setTimeout("closeIntercom(" + callback + ")", 40);
 		}
 	} else {
+		$('#intercomWrap').css('width',globalVars['backgroundIntercomW']*0.7);
 		globalVars['closingIntercom'] = false;
 		$('#intercom .open').show();
 		globalVars['intercomIsOpen'] = false;
@@ -1083,14 +1082,14 @@ function temposubmitEnd() {
 }
 
 function initialiseGameControle() {
-	getElement("gameControleur");
-//			.attr('onmousedown','alert("a");')
-//			.attr('onmousemove','alert("z");')
-//			.attr('onmouseup','alert("e");')
-//			.attr('ontouchstart','alert("r");')
-//			.attr('ontouchmove','alert("t");')
-//			.attr('ontouchend','alert("y");')
-//	;
+	getElement("gameControleur")
+			.attr('onmousedown','alert("a");')
+			.attr('onmousemove','alert("z");')
+			.attr('onmouseup','alert("e");')
+			.attr('ontouchstart','alert("r");')
+			.attr('ontouchmove','alert("t");')
+			.attr('ontouchend','alert("y");')
+	;
 }
 
 function onPointerDown(e) {
