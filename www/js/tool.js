@@ -1097,10 +1097,8 @@ function onPointerDown(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
-	dump('1');
+	dump(e);
 	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
-		
-	dump('la');
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
 		globalVars['ctrlY'] = e.clientY;
