@@ -1099,6 +1099,8 @@ function onPointerDown(e) {
 	}
 	dump('1');
 	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
+		
+	dump('la');
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
 		globalVars['ctrlY'] = e.clientY;
