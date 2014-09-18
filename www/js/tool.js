@@ -1083,12 +1083,12 @@ function temposubmitEnd() {
 
 function initialiseGameControle() {
 	getElement("gameControleur")
-			.attr('onmousedown','alert("a");')
-			.attr('onmousemove','alert("z");')
-			.attr('onmouseup','alert("e");')
-			.attr('ontouchstart','alert("r");')
-			.attr('ontouchmove','alert("t");')
-			.attr('ontouchend','alert("y");')
+			.attr('onmousedown','onPointerDown(event)')
+			.attr('onmousemove','onPointerMove(event)')
+			.attr('onmouseup','onPointerUp(event)')
+			.attr('ontouchstart','onPointerDown(event)')
+			.attr('ontouchmove','onPointerMove(event)')
+			.attr('ontouchend','onPointerUp(event)')
 	;
 }
 
