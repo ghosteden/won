@@ -557,12 +557,23 @@ function loadMap(name) {
 				}
 			}
 		}
+		globalVars[globalVars['curentMap'] + 'json'] = mapjson;
 		mapWrap = getElement('mapWrap');
-		var imgMap = '<img src="' + getLocalRessources(mapjson.ressource) + '" class="imgMap"/>';
-		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapjson.width + 'px', 'height': mapjson.height + 'px', 'top': mapjson.posy + 'px', 'left': mapjson.posx + 'px'}).html(imgMap);
+		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap"/>';
+		mapWrap
+				.fadeOut()
+				.delay('500')
+				.children('div#map')
+				.css({
+					'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
+					'height': globalVars[globalVars['curentMap'] + 'json'].height + 'px',
+					'top': globalVars[globalVars['curentMap'] + 'json'].posy + 'px',
+					'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
+				})
+				.html(imgMap);
 
-		for (interet in mapjson.interets) {
-			var obj = mapjson.interets[interet];
+		for (interet in globalVars[globalVars['curentMap']+'json'].interets) {
+			var obj = globalVars[globalVars['curentMap']+'json'].interets[interet];
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 
 			mapWrap.fadeOut().children('div#map').append(objectInteret);
@@ -575,15 +586,21 @@ function loadMap(name) {
 			});
 		}
 		mapWrap.fadeIn();
-		globalVars['mapjson'] = mapjson;
 	} else {
-		getLocalData('ressources/' + name + 'json', function(mapjson) {
+		getLocalData('ressources/' + name + 'json', function() {
 			mapWrap = getElement('mapWrap');
-			var mapjson = globalVars['mapjson'] = globalVars[name + 'json'];
-			var imgMap = '<img src="' + getLocalRessources(mapjson.ressource) + '" class="imgMap"/>';
-			mapWrap.children('div#map').css({'width': mapjson.width + 'px', 'height': mapjson.height + 'px', 'top': mapjson.posy + 'px', 'left': mapjson.posx + 'px'}).html(imgMap);
-			for (interet in mapjson.interets) {
-				var obj = mapjson.interets[interet];
+			var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap']+'json'].ressource) + '" class="imgMap"/>';
+			mapWrap
+					.children('div#map')
+					.css({
+						'width': globalVars[globalVars['curentMap']+'json'].width + 'px',
+						'height': globalVars[globalVars['curentMap']+'json'].height + 'px',
+						'top': globalVars[globalVars['curentMap']+'json'].posy + 'px',
+						'left': globalVars[globalVars['curentMap']+'json'].posx + 'px'
+					})
+					.html(imgMap);
+			for (interet in globalVars[globalVars['curentMap']+'json'].interets) {
+				var obj = globalVars[globalVars['curentMap']+'json'].interets[interet];
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 				mapWrap.children('div#map').append(objectInteret);
 				$('#' + interet).animateSprite({

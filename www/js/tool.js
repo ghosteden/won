@@ -1101,7 +1101,6 @@ function onPointerDown(e) {
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
 		globalVars['ctrlY'] = e.clientY;
-		dump(globalVars['ctrlX']+'x'+globalVars['ctrlY']);
 	}
 }
 
@@ -1113,18 +1112,17 @@ function onPointerMove(e) {
 	if (globalVars['touchmap']) {
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
-		var left = globalVars['mapjson'].posx + vecteurX;
-		var top = globalVars['mapjson'].posy + vecteurY;
+		var left = globalVars[globalVars['curentMap']+'json'].posx + vecteurX;
+		var top = globalVars[globalVars['curentMap']+'json'].posy + vecteurY;
 		if (left >= 0)
 			left = 0;
 		if (top >= 0)
 			top = 0;
-		if (left <= (globalVars['mapjson'].width - globalVars['screenW']) * -1)
-			left = (globalVars['mapjson'].width - globalVars['screenW']) * -1;
-		if (top <= (globalVars['mapjson'].height - globalVars['screenH']) * -1)
-			top = (globalVars['mapjson'].height - globalVars['screenH']) * -1;
+		if (left <= (globalVars[globalVars['curentMap']+'json'].width - globalVars['screenW']) * -1)
+			left = (globalVars[globalVars['curentMap']+'json'].width - globalVars['screenW']) * -1;
+		if (top <= (globalVars[globalVars['curentMap']+'json'].height - globalVars['screenH']) * -1)
+			top = (globalVars[globalVars['curentMap']+'json'].height - globalVars['screenH']) * -1;
 		
-		dump(left+'x'+top);
 		$('#map').css({
 			'left': left + 'px',
 			'top': top + 'px',
@@ -1138,8 +1136,8 @@ function onPointerUp(e) {
 		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
-		globalVars['mapjson'].posx += e.clientX - globalVars['ctrlX'];
-		globalVars['mapjson'].posy += e.clientY - globalVars['ctrlY'];
+		globalVars[globalVars['curentMap']+'json'].posx += e.clientX - globalVars['ctrlX'];
+		globalVars[globalVars['curentMap']+'json'].posy += e.clientY - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;
