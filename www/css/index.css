@@ -84,7 +84,7 @@ body {
 #signal .text{
     position: absolute;
     overflow: auto;
-	font-size:1.5em;
+	font-size:1.2em;
 }
 .closeSignal{
     position: absolute;
