@@ -540,7 +540,7 @@ function loadMap(name) {
 	mapWrap = getElement('mapWrap');
 	mapWrap.fadeOut();
 	if (device.platform == 'web') {
-		var mapJson = {
+		var mapjson = {
 			'posx': -100,
 			'posy': -230,
 			'width': 1333,
@@ -558,11 +558,11 @@ function loadMap(name) {
 			}
 		}
 		mapWrap = getElement('mapWrap');
-		var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
-		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
+		var imgMap = '<img src="' + getLocalRessources(mapjson.ressource) + '" class="imgMap"/>';
+		mapWrap.fadeOut().delay('500').children('div#map').css({'width': mapjson.width + 'px', 'height': mapjson.height + 'px', 'top': mapjson.posy + 'px', 'left': mapjson.posx + 'px'}).html(imgMap);
 
-		for (interet in mapJson.interets) {
-			var obj = mapJson.interets[interet];
+		for (interet in mapjson.interets) {
+			var obj = mapjson.interets[interet];
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 
 			mapWrap.fadeOut().children('div#map').append(objectInteret);
@@ -575,15 +575,15 @@ function loadMap(name) {
 			});
 		}
 		mapWrap.fadeIn();
-		globalVars['mapjson'] = mapJson;
+		globalVars['mapjson'] = mapjson;
 	} else {
-		getLocalData('ressources/' + name + 'json', function(mapJson) {
+		getLocalData('ressources/' + name + 'json', function(mapjson) {
 			mapWrap = getElement('mapWrap');
-			var mapJson = globalVars[name + 'json'];
-			var imgMap = '<img src="' + getLocalRessources(mapJson.ressource) + '" class="imgMap"/>';
-			mapWrap.children('div#map').css({'width': mapJson.width + 'px', 'height': mapJson.height + 'px', 'top': mapJson.posy + 'px', 'left': mapJson.posx + 'px'}).html(imgMap);
-			for (interet in mapJson.interets) {
-				var obj = mapJson.interets[interet];
+			var mapjson = globalVars[name + 'json'];
+			var imgMap = '<img src="' + getLocalRessources(mapjson.ressource) + '" class="imgMap"/>';
+			mapWrap.children('div#map').css({'width': mapjson.width + 'px', 'height': mapjson.height + 'px', 'top': mapjson.posy + 'px', 'left': mapjson.posx + 'px'}).html(imgMap);
+			for (interet in mapjson.interets) {
+				var obj = mapjson.interets[interet];
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 				mapWrap.children('div#map').append(objectInteret);
 				$('#' + interet).animateSprite({
