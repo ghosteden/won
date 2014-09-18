@@ -495,7 +495,7 @@ canvas{
     left:0;
     height: 100%;
     width: 100%;
-    z-index: 40;
+    z-index: 100040;
 	background: #d00;
 	opacity: 0.2;
 }
