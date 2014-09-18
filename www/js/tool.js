@@ -466,6 +466,8 @@ function getElement(ID, Class, type) {
 					/* Le game controlleur pour bouger la map */
 					case 'gameControleur':
 						var elem = '<div id="gameControleur" ontouchend="openIntercom()"></div>';
+						$('body').append(elem);
+						return $('#' + ID);
 						break;
 						/*
 						 * L'intercom
