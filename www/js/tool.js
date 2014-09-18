@@ -431,12 +431,30 @@ function getElement(ID, Class, type) {
 						 * Il permet le callback sur la fermeture de celle-ci
 						 */
 					case 'signal':
-						var elem = '<div id="' + ID + '"><div class="closeSignal" ontouchend="closeSignal()"></div><div class="text"></div></div>';
+						var elem = '<div id="' + ID + '"><img class="background" src="img/boite_dialogue.png"/><div class="closeSignal" ontouchend="closeSignal()"></div><div class="text"></div></div>';
 						$('body').append(elem);
-//						if (globalVars['typeScreen'] = 'l') {
-//
-//							$('#' + ID)
-//						}
+						$('#signal .background').load(function(){
+							$('#signal .background').css({
+								'width':globalVars['screenW']/2,
+								'height':'auto',
+								'position':'absolute',
+								'top':'25%',
+								'left':'50%',
+								'margin-left':globalVars['screenW']/-4,
+							});
+							$('#signal .text').css({
+								'top':($('#signal .background').offset().top+(globalVars['screenW']/2)*0.18)+'px',
+								'left':($('#signal .background').offset().left+(globalVars['screenW']/2)*0.05)+'px',
+								'width':globalVars['screenW']/2*0.83+'px',
+								'height':$('#signal .background').height()*0.5+'px',
+							});
+							$('#signal .closeSignal').css({
+								'top':$('#signal .background').offset().top+'px',
+								'left':($('#signal .background').offset().left+$('#signal .background').width()-$('#signal .background').width()*0.2)+'px',
+								'width':$('#signal .background').width()*0.2+'px',
+								'height':$('#signal .background').width()*0.2+'px',
+							});
+						});
 						return $('#' + ID);
 						break;
 						/*

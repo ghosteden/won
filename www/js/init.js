@@ -49,7 +49,11 @@ var app = {
 			window.innerWidth = globalVars['screenW'] = globalVars['screenW'] - 100;
 		}
 
-		window.devicePixelRatio = 2;
+		window.devicePixelRatio = 1;
+			globalVars['typeScreen'] = 's';
+		if(globalVars['screenW']>1200){
+			globalVars['typeScreen'] = 'l';
+		}
 
 		$('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH'], 'font-size':globalVars['screenH']*0.04});
 		if (device.platform === "Android") {
