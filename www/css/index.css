@@ -107,6 +107,7 @@ body {
     display: none;
 }
 #intercomWrap{
+	 background: #0d0;
     height: 100%;
     left: 0;
     overflow: hidden;
@@ -122,6 +123,7 @@ body {
     left:-10%;
     top: 2.5%;
     z-index: 50;
+	background:#00d;
 }
 #intercom img.background{
     position: absolute;
@@ -504,6 +506,8 @@ canvas{
     height: 100%;
     width: 100%;
     z-index: 30;
+	background: #d00;
+	opacity: 0.2;
 }
 
 /*textBox*/
