@@ -463,6 +463,10 @@ function getElement(ID, Class, type) {
 						$('body').append(elem);
 						return $('#' + ID);
 						break;
+					/* Le game controlleur pour bouger la map */
+					case 'gameControleur':
+						var elem = '<div id="gameControleur" ontouchend="openIntercom()"></div>';
+						break;
 						/*
 						 * L'intercom
 						 * A la création on le fait apparaitre a gauche
@@ -1077,14 +1081,14 @@ function temposubmitEnd() {
 }
 
 function initialiseGameControle() {
-	getElement("gameControleur")
-			.attr('onmousedown','alert("a");')
-			.attr('onmousemove','alert("z");')
-			.attr('onmouseup','alert("e");')
-			.attr('ontouchstart','alert("r");')
-			.attr('ontouchmove','alert("t");')
-			.attr('ontouchend','alert("y");')
-	;
+	getElement("gameControleur");
+//			.attr('onmousedown','alert("a");')
+//			.attr('onmousemove','alert("z");')
+//			.attr('onmouseup','alert("e");')
+//			.attr('ontouchstart','alert("r");')
+//			.attr('ontouchmove','alert("t");')
+//			.attr('ontouchend','alert("y");')
+//	;
 }
 
 function onPointerDown(e) {
