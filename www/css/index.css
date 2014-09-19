@@ -130,7 +130,6 @@ body {
 }
 #intercom .open, #intercom .close{
     position: absolute;
-    left: -20px;
     top: 50%;
     width: 80px;
     height: 80px;
@@ -138,9 +137,6 @@ body {
     z-index: 51;
     display: none;
     margin-top: -40px;
-}
-#intercom .close{
-    left:0px;
 }
 #intercom .screen{
     position: absolute;

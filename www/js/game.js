@@ -554,6 +554,11 @@ function loadMap(name) {
 					'shema': 'shema-paul',
 					'width': 120,
 					'height': 120,
+					'action': {
+						'posx': 155,
+						'posy': 130,
+						'action': 'alert("t")',
+					}
 				}
 			}
 		}
@@ -589,21 +594,36 @@ function loadMap(name) {
 					obj.height = obj.height * globalVars['multipleScreen'];
 					obj.posy = obj.posy * globalVars['multipleScreen'];
 					obj.posx = obj.posx * globalVars['multipleScreen'];
-
+					if (obj.action != undefined) {
+						obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
+						obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
+					}
 				}
 			}
 
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
-
+			if (obj.action != undefined) {
+				objectInteret += '<div class="curseur" style="background:url(./img/sprites-curseur'
+				if (globalVars['typeScreen'] == 'l') {
+					objectInteret += '-l';
+				}
+				objectInteret += '.png);position:absolute;top:' + obj.action.posx + 'px;left:' + obj.action.posy + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div>';
+			}
 			mapWrap.fadeOut().children('div#map').append(objectInteret);
 
 			$('#' + interet).animateSprite({
-				'columns': 100,
-				'fps': 12,
+				'columns': 20,
+				'fps': 10,
 				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
 				'loop': true,
 			});
 		}
+		$('.curseur').animateSprite({
+			'columns': 18,
+			'fps': 8,
+			'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
+			'loop': true,
+		});
 		mapWrap.fadeIn();
 	} else {
 		getLocalData('ressources/' + name + 'json', function() {
@@ -633,10 +653,20 @@ function loadMap(name) {
 						obj.height = obj.height * globalVars['multipleScreen'];
 						obj.posy = obj.posy * globalVars['multipleScreen'];
 						obj.posx = obj.posx * globalVars['multipleScreen'];
-
+						if (obj.action != undefined) {
+							obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
+							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
+						}
 					}
 				}
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
+				if (obj.action != undefined) {
+					objectInteret += '<div class="curseur" style="background:url(./img/sprites-curseur'
+					if (globalVars['typeScreen'] == 'l') {
+						objectInteret += '-l';
+					}
+					objectInteret += '.png);position:absolute;top:' + obj.action.posx + 'px;left:' + obj.action.posy + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div>';
+				}
 				mapWrap.children('div#map').append(objectInteret);
 				$('#' + interet).animateSprite({
 					'columns': 100,
@@ -645,6 +675,12 @@ function loadMap(name) {
 					'loop': true,
 				});
 			}
+			$('.curseur').animateSprite({
+				'columns': 18,
+				'fps': 8,
+				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
+				'loop': true,
+			});
 			mapWrap.fadeIn();
 		});
 	}
