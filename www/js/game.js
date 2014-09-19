@@ -551,7 +551,7 @@ function loadMap(name) {
 					'posx': 100,
 					'posy': 100,
 					'ressource': 'sprites-paul',
-					'shema': 'shema-perso1',
+					'shema': 'shema-paul',
 					'width': 120,
 					'height': 120,
 				}
