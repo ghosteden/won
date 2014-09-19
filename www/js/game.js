@@ -550,7 +550,7 @@ function loadMap(name) {
 				'Paul': {
 					'posx': 100,
 					'posy': 100,
-					'ressource': 'sprites-perso1',
+					'ressource': 'sprites-paul',
 					'shema': 'shema-perso1',
 					'width': 120,
 					'height': 120,
@@ -558,8 +558,14 @@ function loadMap(name) {
 			}
 		}
 		globalVars[globalVars['curentMap'] + 'json'] = mapjson;
+		if (globalVars['typeScreen'] == 'l') {
+			globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
+			globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
+			globalVars[globalVars['curentMap'] + 'json'].posy = globalVars[globalVars['curentMap'] + 'json'].posy * globalVars['multipleScreen'];
+			globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
+		}
 		mapWrap = getElement('mapWrap');
-		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap"/>';
+		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
 		mapWrap
 				.fadeOut()
 				.delay('500')
@@ -572,8 +578,21 @@ function loadMap(name) {
 				})
 				.html(imgMap);
 
-		for (interet in globalVars[globalVars['curentMap']+'json'].interets) {
-			var obj = globalVars[globalVars['curentMap']+'json'].interets[interet];
+		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
+			var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
+
+			/* calcul de la taill pour utilisé un sprite large si besoin */
+			if (obj.ressource.indexOf('sprites') >= 0) {
+				if (globalVars['typeScreen'] == 'l') {
+					obj.ressource = obj.ressource + '-l';
+					obj.width = obj.width * globalVars['multipleScreen'];
+					obj.height = obj.height * globalVars['multipleScreen'];
+					obj.posy = obj.posy * globalVars['multipleScreen'];
+					obj.posx = obj.posx * globalVars['multipleScreen'];
+
+				}
+			}
+
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 
 			mapWrap.fadeOut().children('div#map').append(objectInteret);
@@ -581,32 +600,48 @@ function loadMap(name) {
 			$('#' + interet).animateSprite({
 				'columns': 100,
 				'fps': 12,
-				'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
+				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
 				'loop': true,
 			});
 		}
 		mapWrap.fadeIn();
 	} else {
 		getLocalData('ressources/' + name + 'json', function() {
+			if (globalVars['typeScreen'] == 'l') {
+				globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].posy = globalVars[globalVars['curentMap'] + 'json'].posy * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
+			}
 			mapWrap = getElement('mapWrap');
-			var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap']+'json'].ressource) + '" class="imgMap"/>';
+			var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap"/>';
 			mapWrap
 					.children('div#map')
 					.css({
-						'width': globalVars[globalVars['curentMap']+'json'].width + 'px',
-						'height': globalVars[globalVars['curentMap']+'json'].height + 'px',
-						'top': globalVars[globalVars['curentMap']+'json'].posy + 'px',
-						'left': globalVars[globalVars['curentMap']+'json'].posx + 'px'
+						'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
+						'height': globalVars[globalVars['curentMap'] + 'json'].height + 'px',
+						'top': globalVars[globalVars['curentMap'] + 'json'].posy + 'px',
+						'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
 					})
 					.html(imgMap);
-			for (interet in globalVars[globalVars['curentMap']+'json'].interets) {
-				var obj = globalVars[globalVars['curentMap']+'json'].interets[interet];
+			for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
+				var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
+				if (obj.ressource.indexOf('sprites') >= 0) {
+					if (globalVars['typeScreen'] == 'l') {
+						obj.ressource = obj.ressource + '-l';
+						obj.width = obj.width * globalVars['multipleScreen'];
+						obj.height = obj.height * globalVars['multipleScreen'];
+						obj.posy = obj.posy * globalVars['multipleScreen'];
+						obj.posx = obj.posx * globalVars['multipleScreen'];
+
+					}
+				}
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
 				mapWrap.children('div#map').append(objectInteret);
 				$('#' + interet).animateSprite({
 					'columns': 100,
 					'fps': 12,
-					'animations': {'X0': [5, 6, 7, 8, 9, 10, 11, 12, 13, 14]},
+					'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
 					'loop': true,
 				});
 			}

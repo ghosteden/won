@@ -50,11 +50,12 @@ var app = {
 		}
 
 		window.devicePixelRatio = 1;
-			globalVars['typeScreen'] = 's';
+		globalVars['typeScreen'] = 's';
+		globalVars['multipleScreen'] = 1;
 		if(globalVars['screenW']>1200){
 			globalVars['typeScreen'] = 'l';
+			globalVars['multipleScreen'] = 2;
 		}
-
 		$('body').css({'width': globalVars['screenW'], 'height': globalVars['screenH'], 'font-size':globalVars['screenH']*0.04});
 		if (device.platform === "Android") {
 			globalVars['localStoragePath'] = 'Android/data/fr.nm3.WoN/files/';

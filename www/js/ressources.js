@@ -17,6 +17,9 @@ ressources['z1m3'] = {'name':'z1m3.json','type':'tmx','size':'13953','path':'res
 //sprite perso 1
 ressources['sprites-perso1'] = {'name':'sprites-perso1.png','type':'image','size':'3785060','path':'ressources/perso/sprite'};
 ressources['shema-perso1'] = {'name':'shema-perso1.json','size':'3785060','path':'ressources/perso/shema'};
+ressources['sprites-paul'] = {'name':'sprites-paul.png','type':'image','size':'3785060','path':'ressources/pnj/sprite'};
+ressources['sprites-paul-l'] = {'name':'sprites-paul-l.png','type':'image','size':'3785060','path':'ressources/pnj/sprite'};
+ressources['shema-paul'] = {'name':'shema-paul.json','size':'3785060','path':'ressources/perso/shema'};
 
 
 

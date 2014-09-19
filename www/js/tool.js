@@ -433,26 +433,26 @@ function getElement(ID, Class, type) {
 					case 'signal':
 						var elem = '<div id="' + ID + '"><img class="background" src="img/boite_dialogue.png"/><div class="closeSignal" ontouchend="closeSignal()"></div><div class="text"></div></div>';
 						$('body').append(elem);
-						$('#signal .background').load(function(){
+						$('#signal .background').load(function() {
 							$('#signal .background').css({
-								'width':globalVars['screenW']/3,
-								'height':'auto',
-								'position':'absolute',
-								'top':'25%',
-								'left':'50%',
-								'margin-left':globalVars['screenW']/-6,
+								'width': globalVars['screenW'] / 3,
+								'height': 'auto',
+								'position': 'absolute',
+								'top': '25%',
+								'left': '50%',
+								'margin-left': globalVars['screenW'] / -6,
 							});
 							$('#signal .text').css({
-								'top':($('#signal .background').offset().top+(globalVars['screenW']/3)*0.18)+'px',
-								'left':($('#signal .background').offset().left+(globalVars['screenW']/3)*0.05)+'px',
-								'width':globalVars['screenW']/3*0.83+'px',
-								'height':$('#signal .background').height()*0.5+'px',
+								'top': ($('#signal .background').offset().top + (globalVars['screenW'] / 3) * 0.18) + 'px',
+								'left': ($('#signal .background').offset().left + (globalVars['screenW'] / 3) * 0.05) + 'px',
+								'width': globalVars['screenW'] / 3 * 0.83 + 'px',
+								'height': $('#signal .background').height() * 0.5 + 'px',
 							});
 							$('#signal .closeSignal').css({
-								'top':$('#signal .background').offset().top+'px',
-								'left':($('#signal .background').offset().left+$('#signal .background').width()-$('#signal .background').width()*0.2)+'px',
-								'width':$('#signal .background').width()*0.2+'px',
-								'height':$('#signal .background').width()*0.2+'px',
+								'top': $('#signal .background').offset().top + 'px',
+								'left': ($('#signal .background').offset().left + $('#signal .background').width() - $('#signal .background').width() * 0.2) + 'px',
+								'width': $('#signal .background').width() * 0.2 + 'px',
+								'height': $('#signal .background').width() * 0.2 + 'px',
 							});
 						});
 						return $('#' + ID);
@@ -515,9 +515,9 @@ function getElement(ID, Class, type) {
                                     </div>';
 						$('body').append(elem);
 
-						//getTimeIntercom();
-						
-						$('#intercom').css({'width':globalVars['screenW']});
+						getTimeIntercom();
+
+						$('#intercom').css({'width': globalVars['screenW']});
 						$('#intercom img.background1').load(function() {
 							globalVars['backgroundIntercomH'] = $('#intercom img.background').height();
 							globalVars['backgroundIntercomW'] = $('#intercom img.background').width();
@@ -665,7 +665,7 @@ function openIntercom() {
 	if (globalVars['closingIntercom'] !== true && !globalVars['closingIntercom']) {
 		globalVars['openingIntercom'] = true;
 		$('#intercom .open').hide();
-		$('#intercomWrap').css('width','100%');
+		$('#intercomWrap').css('width', '100%');
 		playAudio('openIntercom');
 	}
 	if (globalVars['intercomposition'] < 9 && !globalVars['closingIntercom']) {
@@ -744,7 +744,7 @@ function closeIntercom(callback) {
 			setTimeout("closeIntercom(" + callback + ")", 40);
 		}
 	} else {
-		$('#intercomWrap').css('width',globalVars['backgroundIntercomW']*0.7);
+		$('#intercomWrap').css('width', globalVars['backgroundIntercomW'] * 0.7);
 		globalVars['closingIntercom'] = false;
 		$('#intercom .open').show();
 		globalVars['intercomIsOpen'] = false;
@@ -761,21 +761,23 @@ function closeIntercom(callback) {
  * @description affiche l'heur sur l'intercom et l'actualise 
  */
 function getTimeIntercom() {
-	var $date = new Date();
-	var h = $date.getHours();
-	if (h < 10) {
-		h = "0" + h
-	}
-	var m = $date.getMinutes();
-	if (m < 10) {
-		m = "0" + m
-	}
-	$('#intercom .status .time').html(h + ":" + m);
+	if (device.platform != 'web') {
+		var $date = new Date();
+		var h = $date.getHours();
+		if (h < 10) {
+			h = "0" + h
+		}
+		var m = $date.getMinutes();
+		if (m < 10) {
+			m = "0" + m
+		}
+		$('#intercom .status .time').html(h + ":" + m);
 
-	globalVars['connectionType'] = checkConnection();
-	$('#intercom .status .connection img').attr('src', 'img/' + globalVars['connectionType'] + '.png');
+		globalVars['connectionType'] = checkConnection();
+		$('#intercom .status .connection img').attr('src', 'img/' + globalVars['connectionType'] + '.png');
 
-	setTimeout("getTimeIntercom()", 30000);
+		setTimeout("getTimeIntercom()", 30000);
+	}
 }
 
 /*
@@ -1101,13 +1103,13 @@ function temposubmitEnd() {
 
 function initialiseGameControle() {
 	getElement("gameControleur")
-			.attr('onmousedown','onPointerDown(event)')
-			.attr('onmousemove','onPointerMove(event)')
-			.attr('onmouseup','onPointerUp(event)')
-			.attr('ontouchstart','onPointerDown(event)')
-			.attr('ontouchmove','onPointerMove(event)')
-			.attr('ontouchend','onPointerUp(event)')
-	;
+			.attr('onmousedown', 'onPointerDown(event)')
+			.attr('onmousemove', 'onPointerMove(event)')
+			.attr('onmouseup', 'onPointerUp(event)')
+			.attr('ontouchstart', 'onPointerDown(event)')
+			.attr('ontouchmove', 'onPointerMove(event)')
+			.attr('ontouchend', 'onPointerUp(event)')
+			;
 }
 
 function onPointerDown(e) {
@@ -1130,17 +1132,17 @@ function onPointerMove(e) {
 	if (globalVars['touchmap']) {
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
-		var left = globalVars[globalVars['curentMap']+'json'].posx + vecteurX;
-		var top = globalVars[globalVars['curentMap']+'json'].posy + vecteurY;
+		var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
+		var top = globalVars[globalVars['curentMap'] + 'json'].posy + vecteurY;
 		if (left >= 0)
 			left = 0;
 		if (top >= 0)
 			top = 0;
-		if (left <= (globalVars[globalVars['curentMap']+'json'].width - globalVars['screenW']) * -1)
-			left = (globalVars[globalVars['curentMap']+'json'].width - globalVars['screenW']) * -1;
-		if (top <= (globalVars[globalVars['curentMap']+'json'].height - globalVars['screenH']) * -1)
-			top = (globalVars[globalVars['curentMap']+'json'].height - globalVars['screenH']) * -1;
-		
+		if (left <= (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1)
+			left = (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1;
+		if (top <= (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
+			top = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
+
 		$('#map').css({
 			'left': left + 'px',
 			'top': top + 'px',
@@ -1154,8 +1156,8 @@ function onPointerUp(e) {
 		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
-		globalVars[globalVars['curentMap']+'json'].posx += e.clientX - globalVars['ctrlX'];
-		globalVars[globalVars['curentMap']+'json'].posy += e.clientY - globalVars['ctrlY'];
+		globalVars[globalVars['curentMap'] + 'json'].posx += e.clientX - globalVars['ctrlX'];
+		globalVars[globalVars['curentMap'] + 'json'].posy += e.clientY - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;
