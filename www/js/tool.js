@@ -1105,10 +1105,10 @@ function initialiseGameControle(controlleur) {
 	getElement(controlleur)
 			.attr('onmousedown', 'onPointerDown(event)')
 			.attr('onmousemove', 'onPointerMove(event)')
-			.attr('onmouseup', 'onPointerUp(event)')
+			.attr('onmouseup', 'onPointerUp()')
 			.attr('ontouchstart', 'onPointerDown(event)')
 			.attr('ontouchmove', 'onPointerMove(event)')
-			.attr('ontouchend', 'onPointerUp(event)')
+			.attr('ontouchend', 'onPointerUp()')
 			;
 }
 
@@ -1154,17 +1154,9 @@ function onPointerMove(e) {
 	}
 }
 
-function onPointerUp(e) {
-	e.preventDefault();
-	if (e.touches !== undefined) {
-		e = e.touches[0];
-	}
+function onPointerUp() {
 	if (globalVars['touchmap']) {
-		alert(globalVars['ctrlX']);
-		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
-		alert(globalVars['laseCtrlX']);
 		globalVars[globalVars['curentMap'] + 'json'].posx += globalVars['laseCtrlX'] - globalVars['ctrlX'];
-		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
 		globalVars[globalVars['curentMap'] + 'json'].posy += globalVars['laseCtrlY'] - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
