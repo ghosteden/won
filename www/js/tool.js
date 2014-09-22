@@ -1102,7 +1102,7 @@ function temposubmitEnd() {
 }
 
 function initialiseGameControle() {
-	getElement("gameControleur")
+	getElement("mapWrap")
 			.attr('onmousedown', 'onPointerDown(event)')
 			.attr('onmousemove', 'onPointerMove(event)')
 			.attr('onmouseup', 'onPointerUp(event)')

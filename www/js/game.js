@@ -541,23 +541,23 @@ function loadMap(name) {
 	mapWrap.fadeOut();
 	if (device.platform == 'web') {
 		var mapjson = {
-			'posx': -100,
-			'posy': -230,
-			'width': 1333,
-			'height': 775,
+			'posx': -1000,
+			'posy': -830,
+			'width': 3840,
+			'height': 2160,
 			'ressource': 'z1m1',
 			'interets': {
 				'Paul': {
-					'posx': 100,
-					'posy': 100,
+					'posx': 900,
+					'posy': 1000,
 					'ressource': 'sprites-paul',
 					'shema': 'shema-paul',
 					'width': 120,
 					'height': 120,
 					'action': {
-						'posx': 155,
-						'posy': 130,
-						'action': 'alert("t")',
+						'posx': 930,
+						'posy': 1060,
+						'fct': "alert('t')",
 					}
 				}
 			}
@@ -601,14 +601,15 @@ function loadMap(name) {
 				}
 			}
 
-			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
+			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
 			if (obj.action != undefined) {
-				objectInteret += '<div class="curseur" style="background:url(./img/sprites-curseur'
+				objectInteret += ' onclick="'+obj.action.fct+'" ontouchend="'+obj.action.fct+'"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 				if (globalVars['typeScreen'] == 'l') {
 					objectInteret += '-l';
 				}
-				objectInteret += '.png);position:absolute;top:' + obj.action.posx + 'px;left:' + obj.action.posy + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div>';
+				objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"';
 			}
+			objectInteret += '></div>';
 			mapWrap.fadeOut().children('div#map').append(objectInteret);
 
 			$('#' + interet).animateSprite({
