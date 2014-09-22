@@ -1131,6 +1131,8 @@ function onPointerMove(e) {
 		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
+		globalVars['laseCtrlX'] = e.clientX;
+		globalVars['laseCtrlY'] = e.clientY;
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
 		var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
@@ -1160,10 +1162,10 @@ function onPointerUp(e) {
 	if (globalVars['touchmap']) {
 		alert(globalVars['ctrlX']);
 		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
-		alert(e.clientX);
-		globalVars[globalVars['curentMap'] + 'json'].posx += e.clientX - globalVars['ctrlX'];
+		alert(globalVars['laseCtrlX']);
+		globalVars[globalVars['curentMap'] + 'json'].posx += globalVars['laseCtrlX'] - globalVars['ctrlX'];
 		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
-		globalVars[globalVars['curentMap'] + 'json'].posy += e.clientY - globalVars['ctrlY'];
+		globalVars[globalVars['curentMap'] + 'json'].posy += globalVars['laseCtrlY'] - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;
