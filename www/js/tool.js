@@ -1158,9 +1158,10 @@ function onPointerUp(e) {
 		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
-		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
+		alert(globalVars['ctrlX']);
+		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
 		globalVars[globalVars['curentMap'] + 'json'].posx += e.clientX - globalVars['ctrlX'];
-		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
+		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
 		globalVars[globalVars['curentMap'] + 'json'].posy += e.clientY - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
