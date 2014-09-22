@@ -1101,8 +1101,8 @@ function temposubmitEnd() {
 	}
 }
 
-function initialiseGameControle() {
-	getElement("mapWrap")
+function initialiseGameControle(controlleur) {
+	getElement(controlleur)
 			.attr('onmousedown', 'onPointerDown(event)')
 			.attr('onmousemove', 'onPointerMove(event)')
 			.attr('onmouseup', 'onPointerUp(event)')
@@ -1121,6 +1121,7 @@ function onPointerDown(e) {
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
 		globalVars['ctrlY'] = e.clientY;
+		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
 	}
 }
 
@@ -1143,6 +1144,7 @@ function onPointerMove(e) {
 		if (top <= (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
 			top = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
 
+		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
 		$('#map').css({
 			'left': left + 'px',
 			'top': top + 'px',
@@ -1156,7 +1158,9 @@ function onPointerUp(e) {
 		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
+		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
 		globalVars[globalVars['curentMap'] + 'json'].posx += e.clientX - globalVars['ctrlX'];
+		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
 		globalVars[globalVars['curentMap'] + 'json'].posy += e.clientY - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;

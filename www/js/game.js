@@ -530,7 +530,7 @@ function didacticiel() {
 
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);
-		initialiseGameControle();
+		initialiseGameControle("mapWrap");
 		//interaction('startTuto');
 	});
 }
