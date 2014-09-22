@@ -1160,6 +1160,7 @@ function onPointerUp(e) {
 	if (globalVars['touchmap']) {
 		alert(globalVars['ctrlX']);
 		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
+		alert(e.clientX);
 		globalVars[globalVars['curentMap'] + 'json'].posx += e.clientX - globalVars['ctrlX'];
 		alert(globalVars[globalVars['curentMap'] + 'json'].posx);
 		globalVars[globalVars['curentMap'] + 'json'].posy += e.clientY - globalVars['ctrlY'];
