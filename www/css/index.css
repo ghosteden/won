@@ -585,6 +585,7 @@ canvas{
 }
 #textInteraction .btnNextTextInteraction{
     background: url('../img/textbox/btn-next.png') no-repeat center right;
+	background-size:cover;
 	display: none;
 }
 /* Gestion des map du jeu */

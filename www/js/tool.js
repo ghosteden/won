@@ -420,6 +420,16 @@ function getElement(ID, Class, type) {
 					case 'textInteraction':
 						var elem = '<div id="' + ID + '"><div class="container"><div class="border-bottom"></div><div class="border-top"></div><div class="objet-bottom"></div><div class="border-right"></div><div class="border-left"></div><div class="btn-box"><div class="btnCloseTextInteraction" ontouchend="closeTextInteraction()" onclick="closeTextInteraction()"></div><div class="btnNextTextInteraction" ontouchend="nextTextInteraction()"></div></div><div class="text"></div></div></div>';
 						$('body').append(elem);
+						if(globalVars['typeScreen'] == 'l'){
+							$('#textInteraction').css('height','440px');
+							$('#textInteraction .container').css('height','358px');
+							$('#textInteraction .border-bottom, #textInteraction .border-top').css('height','78px');
+							$('#textInteraction .border-right, #textInteraction .border-left').css('height','368px');
+							$('#textInteraction .objet-bottom').css({'height':'368px','width':'934px'});
+							$('#textInteraction .btn-box').css({'height':'168px','width':'492px'});
+							$('#textInteraction .btnCloseTextInteraction, #textInteraction .btnNextTextInteraction').css({'height':'120px','width':'120px'});
+							$('#textInteraction .text').css({'height':'220px'});
+						}
 						return $('#' + ID);
 						break;
 					case 'checkUpdateApps':
