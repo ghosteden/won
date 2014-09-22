@@ -98,6 +98,7 @@ body {
     height: 100%;
     z-index: 45;
     display: none;
+	background: rgba(0,0,0,0.6)
 }
 #intercomWrap{
     height: 100%;

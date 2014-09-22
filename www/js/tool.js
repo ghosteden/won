@@ -285,7 +285,7 @@ function dump(obj) {
 	for (var i in obj) {
 		out += i + ": " + obj[i] + "\n";
 	}
-	getElement('log').html(obj);
+	getElement('log').html(obj+out);
 }
 
 /*
@@ -1121,7 +1121,6 @@ function onPointerDown(e) {
 		globalVars['touchmap'] = true;
 		globalVars['ctrlX'] = e.clientX;
 		globalVars['ctrlY'] = e.clientY;
-		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
 	}
 }
 
@@ -1130,9 +1129,10 @@ function onPointerMove(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
+		dump(globalVars['touchmap']);
 	if (globalVars['touchmap']) {
-		globalVars['laseCtrlX'] = e.clientX;
-		globalVars['laseCtrlY'] = e.clientY;
+		globalVars['lastCtrlX'] = e.clientX;
+		globalVars['lastCtrlY'] = e.clientY;
 		var vecteurX = e.clientX - globalVars['ctrlX'];
 		var vecteurY = e.clientY - globalVars['ctrlY'];
 		var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
@@ -1146,7 +1146,6 @@ function onPointerMove(e) {
 		if (top <= (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
 			top = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
 
-		dump(globalVars[globalVars['curentMap'] + 'json'].posx);
 		$('#map').css({
 			'left': left + 'px',
 			'top': top + 'px',
@@ -1155,9 +1154,9 @@ function onPointerMove(e) {
 }
 
 function onPointerUp() {
-	if (globalVars['touchmap']) {
-		globalVars[globalVars['curentMap'] + 'json'].posx += globalVars['laseCtrlX'] - globalVars['ctrlX'];
-		globalVars[globalVars['curentMap'] + 'json'].posy += globalVars['laseCtrlY'] - globalVars['ctrlY'];
+	if (globalVars['touchmap'] && globalVars['lastCtrlX'] != undefined) {
+		globalVars[globalVars['curentMap'] + 'json'].posx += globalVars['lastCtrlX'] - globalVars['ctrlX'];
+		globalVars[globalVars['curentMap'] + 'json'].posy += globalVars['lastCtrlY'] - globalVars['ctrlY'];
 		globalVars['ctrlX'] = 0;
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;

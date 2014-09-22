@@ -527,7 +527,8 @@ function didacticiel() {
 	globalVars['useDeck'] = 0;
 	globalVars['curentMap'] = 'z1m1';
 	globalVars['inGame'] = true;
-
+	globalVars['save']['interaction']['tuto']=[];
+	
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);
 		initialiseGameControle("mapWrap");
@@ -557,7 +558,20 @@ function loadMap(name) {
 					'action': {
 						'posx': 930,
 						'posy': 1060,
-						'fct': "alert('t')",
+						'fct': "interaction('paul')",
+					}
+				},
+				"Jean-Paul": {
+					"posx": 1500,
+					"posy": 1200,
+					"ressource": "sprites-paul",
+					"shema": "shema-paul",
+					"width": 120,
+					"height": 120,
+					"action": {
+						"posx": 1530,
+						"posy": 1260,
+						"fct": "interaction('paul')"
 					}
 				}
 			}
@@ -603,7 +617,7 @@ function loadMap(name) {
 
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
 			if (obj.action != undefined) {
-				objectInteret += ' onclick="' + obj.action.fct + '" ontouchend="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+				objectInteret += ' onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 				if (globalVars['typeScreen'] == 'l') {
 					objectInteret += '-l';
 				}
@@ -662,7 +676,7 @@ function loadMap(name) {
 				}
 				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
 				if (obj.action != undefined) {
-					objectInteret += ' onclick="' + obj.action.fct + '" ontouchend="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+					objectInteret += ' onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 					if (globalVars['typeScreen'] == 'l') {
 						objectInteret += '-l';
 					}
