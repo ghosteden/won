@@ -603,7 +603,7 @@ function loadMap(name) {
 
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
 			if (obj.action != undefined) {
-				objectInteret += ' onclick="'+obj.action.fct+'" ontouchend="'+obj.action.fct+'"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+				objectInteret += ' onclick="' + obj.action.fct + '" ontouchend="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 				if (globalVars['typeScreen'] == 'l') {
 					objectInteret += '-l';
 				}
@@ -660,14 +660,15 @@ function loadMap(name) {
 						}
 					}
 				}
-				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posx + 'px;left:' + obj.posy + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>'
+				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
 				if (obj.action != undefined) {
-					objectInteret += '<div class="curseur" style="background:url(./img/sprites-curseur'
+					objectInteret += ' onclick="' + obj.action.fct + '" ontouchend="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 					if (globalVars['typeScreen'] == 'l') {
 						objectInteret += '-l';
 					}
-					objectInteret += '.png);position:absolute;top:' + obj.action.posx + 'px;left:' + obj.action.posy + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div>';
+					objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"';
 				}
+				objectInteret += '></div>';
 				mapWrap.children('div#map').append(objectInteret);
 				$('#' + interet).animateSprite({
 					'columns': 100,
