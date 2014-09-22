@@ -9,7 +9,6 @@ function interaction(name) {
 			openTextInteraction(lang('tutoFirstDialogue'), 'Close');
 			break;
 		case 'paul':
-			alert(globalVars['save']['interaction']['tuto']['paul']);
 			if (globalVars['save']['interaction']['tuto']['paul'] == undefined) {
 				globalVars['save']['interaction']['tuto']['paul'] = 1;
 			}
