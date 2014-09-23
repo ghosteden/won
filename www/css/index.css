@@ -614,3 +614,27 @@ canvas{
 	position: absolute;
 	z-index: 20;
 }
+#portraitG{
+	bottom: 0;
+    width: 35%;
+    height: 100%;
+    left: -40%;
+    position: absolute;
+    z-index: 45;
+}
+.flip{
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+#portraitD{
+	bottom: 0;
+    width: 35%;
+    height: 100%;
+    right: -40%;
+    position: absolute;
+    z-index: 45;
+}

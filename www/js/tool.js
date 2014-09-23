@@ -108,7 +108,6 @@ function recordLocalData(FILE, DATA) {
 }
 
 function getLocalRessources($ressourceName) {
-
 	var localpath = globalVars['ressourcesPath'];
 	if (device.platform === "Android")
 		localpath = 'file:///sdcard/' + globalVars['ressourcesPath'];

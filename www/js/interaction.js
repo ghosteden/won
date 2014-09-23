@@ -15,6 +15,13 @@ function interaction(name) {
 			switch (globalVars['save']['interaction']['tuto']['paul']) {
 				case 1:
 					openTextInteraction(lang('paulfirst'), 'Close');
+					dump(ressources["portrait-perso"+globalVars['usePerso']+"-1"]);
+					getElement('portraitG').css({
+						'background':'url('+getLocalRessources("portrait-perso"+globalVars['usePerso']+"-1")+') no-repeat bottom left',
+						'background-size':'contain'
+					}).addClass('flip').animate({
+						'left':'0'
+					});
 					globalVars['save']['interaction']['tuto']['paul'] = 2;
 					break;
 				case 2:

@@ -10,6 +10,9 @@ ressources['z1m1'] = {'name':'z1m1.jpg','type':'image','size':'44697','path':'re
 //sprite perso 1
 ressources['sprites-perso1'] = {'name':'sprites-perso1.png','type':'image','size':'3785060','path':'ressources/perso/sprite'};
 ressources['shema-perso1'] = {'name':'shema-perso1.json','size':'3785060','path':'ressources/perso/shema'};
+ressources['portrait-perso1-1'] = {'name':'portrait-perso1-1.png','size':'1276482','path':'ressources/perso/portrait'};
+
+
 ressources['sprites-paul'] = {'name':'sprites-paul.png','type':'image','size':'3785060','path':'ressources/pnj/sprite'};
 ressources['sprites-paul-l'] = {'name':'sprites-paul-l.png','type':'image','size':'3785060','path':'ressources/pnj/sprite'};
 ressources['shema-paul'] = {'name':'shema-paul.json','size':'3785060','path':'ressources/perso/shema'};
