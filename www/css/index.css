@@ -512,15 +512,18 @@ canvas{
     height: 179px;
     width: 100%;
     z-index: 50;
-    background: url('../img/textbox/font-vert.png') repeat-x center 45px;
 	padding: 25px 0px 0px 0px;
 }
 #textInteraction .text{
-	padding:30px 20px;
+	padding:20px 40px 20px 20px;
 	height:110px;
     color: #aaffdd;
     text-shadow: 0px 0px 12px #17ff39;
     font-family: "Myriad Pro";
+	position: absolute;
+	left:10px;
+	top:30px;
+	overflow:auto;
 }
 #textInteraction .border-top{
 	background: url('../img/textbox/border-top.png') repeat-x top right;
@@ -532,6 +535,7 @@ canvas{
 }
 #textInteraction .border-right{
 	background: url('../img/textbox/border-right.png') no-repeat top right;
+	background-size:cover;
 	width: 20px;
 	height: 184px;
 	position: absolute;
@@ -540,6 +544,7 @@ canvas{
 }
 #textInteraction .border-left{
 	background: url('../img/textbox/border-left.png') no-repeat top right;
+	background-size:cover;
 	width: 20px;
 	height: 184px;
 	position: absolute;
@@ -558,6 +563,7 @@ canvas{
 }
 #textInteraction .objet-bottom{
 	background: url('../img/textbox/objet-bottom.png') no-repeat top left;
+	background-size:cover;
 	width: 467px;
 	height: 39px;
 	position: absolute;
@@ -566,11 +572,13 @@ canvas{
 }
 #textInteraction .btn-box{
 	background: url('../img/textbox/btn-box.png') top right;
+	background-size:cover;
 	width: 246px;
 	height: 84px;
 	position: absolute;
 	right: -250px;
 	top: 0px;
+	z-index: 2;
 }
 #textInteraction .btnCloseTextInteraction, #textInteraction .btnNextTextInteraction{
 	position: absolute;
@@ -581,12 +589,18 @@ canvas{
 	right: 2px;
     top: 8px;
     background: url('../img/textbox/btn-close.png') no-repeat center right;
+	background-size:cover;
 	display: none;
 }
 #textInteraction .btnNextTextInteraction{
     background: url('../img/textbox/btn-next.png') no-repeat center right;
 	background-size:cover;
 	display: none;
+}
+#textInteraction .background-text{
+	height:204px;    
+	position: absolute;
+    bottom: 0px;
 }
 /* Gestion des map du jeu */
 #mapWrap{
