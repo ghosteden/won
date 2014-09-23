@@ -14,18 +14,34 @@ function interaction(name) {
 			}
 			switch (globalVars['save']['interaction']['tuto']['paul']) {
 				case 1:
-					openTextInteraction(lang('paulfirst'), 'Close');
-					dump(ressources["portrait-perso"+globalVars['usePerso']+"-1"]);
-					getElement('portraitG').css({
-						'background':'url('+getLocalRessources("portrait-perso"+globalVars['usePerso']+"-1")+') no-repeat bottom left',
-						'background-size':'contain'
-					}).addClass('flip').animate({
-						'left':'0'
+					var blurAll = getElement('blurall');
+					blurAll.fadeIn(300, function() {
+						//affichage ici de l'image de fond
+						getElement('portraitD').css({
+							'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1") + ')',
+						}).animate({
+							'right': '0'
+						});
+						getElement('portraitG').css({
+							'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1") + ')',
+						}).addClass('flip').animate({
+							'left': '0'
+						}).animate({
+							'left': '0'
+						}, 500, function() {
+							getElement('portraitD').css({
+								'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-2") + ')',
+							})
+							openTextInteraction(lang('paulfirst'), 'Close');
+						});
+
+						globalVars['save']['interaction']['tuto']['paul'] = 2;
 					});
-					globalVars['save']['interaction']['tuto']['paul'] = 2;
 					break;
 				case 2:
-					setTimeout(function(){globalVars['gamePause'] = false;},500);
+					setTimeout(function() {
+						globalVars['gamePause'] = false;
+					}, 500);
 					break;
 			}
 			break;
