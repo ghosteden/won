@@ -525,6 +525,10 @@ canvas{
 	top:30px;
 	overflow:auto;
 }
+#textInteraction .text .perso{
+    color: #ffaadd;
+    text-shadow: 0px 0px 12px #ff1739;
+}
 #textInteraction .border-top{
 	background: url('../img/textbox/border-top.png') repeat-x top right;
 	width: 100%;
