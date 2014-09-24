@@ -74,8 +74,11 @@ function interaction(name) {
 			});
 			break;
 		case 'paulAttend2':
-			$('#textInteraction .btnNextTextInteraction').hide();
-			$('#textInteraction .btnCloseTextInteraction').show();
+			$('#textInteraction div.btn-box').animate({'right': '-10%'}, 200,function(){
+				$('#textInteraction .btnNextTextInteraction').hide();
+				$('#textInteraction .btnCloseTextInteraction').show();
+				$('#textInteraction div.btn-box').animate({'right': '0px'}, 200);
+			});
 			var $callback = "getElement('portraitD').animate({'right':'-40%'},function(){$(this).remove()});getElement('portraitG').css('background-image', 'url(' + getLocalRessources('portrait-perso' + globalVars['usePerso'] + '-3') + ')').delay('200').animate({'left':'-40%'},function(){$(this).remove();closeTextInteraction();});";
 			$('#textInteraction .btnCloseTextInteraction').attr('onclick', $callback);
 			$('#textInteraction .btnCloseTextInteraction').attr('ontouchend', $callback);
