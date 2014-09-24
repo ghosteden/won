@@ -427,7 +427,7 @@ function getElement(ID, Class, type) {
 							$('#textInteraction .objet-bottom').css({'height':'78px','width':'934px'});
 							$('#textInteraction .btn-box').css({'height':'168px','width':'492px','top':'-30px','right':'-500px'});
 							$('#textInteraction .btnCloseTextInteraction, #textInteraction .btnNextTextInteraction').css({'height':'120px','width':'120px','right': '4px','top': '16px'});
-							$('#textInteraction .text').css({'height':'220px','top':'60px','left':'20px','padding':'40px 80px 40px 40px'});
+							$('#textInteraction .text').css({'height':'180px','top':'60px','left':'20px','padding':'40px 80px 40px 40px'});
 							$('#textInteraction .background-text').css({'height':'408px'});
 						}
 						return $('#' + ID);
