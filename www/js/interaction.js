@@ -18,21 +18,22 @@ function interaction(name) {
 					blurAll.fadeIn(300, function() {
 						//affichage ici de l'image de fond
 						getElement('portraitD').css({
-							'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1") + ')',
+							//image de paul
+							'background-image': 'url(' + getLocalRessources("portrait-perso1-1") + ')',
 						}).animate({
 							'right': '0'
 						});
 						getElement('portraitG').css({
 							'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1") + ')',
-						}).addClass('flip').animate({
+						}).addClass('flip').delay('200').animate({
 							'left': '0'
-						}).animate({
-							'left': '0'
-						}, 500, function() {
+						}, function() {
+							openTextInteraction(lang('paulfirst'), 'Close',"getElement('portraitG').animate({'left':'-40%'},function(){$(this).remove()});getElement('portraitD').css('background-image', 'url(' + getLocalRessources('portrait-perso1-1') + ')').delay('200').animate({'right':'-40%'},function(){$(this).remove();closeTextInteraction();});");
+						}).animate({'left': '0'},1000,function(){
 							getElement('portraitD').css({
-								'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-2") + ')',
+								//image de paul
+								'background-image': 'url(' + getLocalRessources("portrait-perso1-2") + ')',
 							})
-							openTextInteraction(lang('paulfirst'), 'Close');
 						});
 
 						globalVars['save']['interaction']['tuto']['paul'] = 2;
@@ -48,7 +49,7 @@ function interaction(name) {
 	}
 }
 
-function openTextInteraction($text, $btn) {
+function openTextInteraction($text, $btn, $callback) {
 	globalVars['gamePause'] = true;
 	var blurAll = getElement('blurall');
 	blurAll.fadeIn(300);
@@ -56,6 +57,13 @@ function openTextInteraction($text, $btn) {
 	$('#textInteraction div.text').html($text);
 	if (textInteraction.children('div.container').css('bottom') < '-2px') {
 		$('#textInteraction .btn' + $btn + 'TextInteraction').show();
+		if($callback){
+			if($callback.indexOf('closeTextInteraction()') < 0){
+				$callback += 'closeTextInteraction();';
+			}
+			$('#textInteraction .btn' + $btn + 'TextInteraction').attr('onclick',$callback);
+			$('#textInteraction .btn' + $btn + 'TextInteraction').attr('ontouchend',$callback);
+		}
 		textInteraction.children('div.container').animate({'bottom': '20px'}, '400', function() {
 			$(this).animate({'bottom': '-2px'}, 150, function() {
 				$(this).children('div.btn-box').animate({'right': '0px'}, 150);
@@ -68,7 +76,7 @@ function closeTextInteraction() {
 	getElement('textInteraction').children('div.container').animate({'bottom': '20px'}, 100, function() {
 		$(this).animate({'bottom': '-200px'}, 300, function() {
 			getElement('textInteraction').remove();
-			getElement('blurall').fadeOut('slow').remove();
+			getElement('blurall').delay('100').fadeOut('slow',function(){getElement('blurall').remove()});
 			globalVars['gamePause'] = false;
 		});
 	})
