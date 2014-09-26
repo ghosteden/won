@@ -541,7 +541,7 @@ function didacticiel() {
 function loadMap(name) {
 	getElement('fondmenup').fadeOut();
 	mapWrap = getElement('mapWrap');
-	mapWrap.fadeOut();
+	mapWrap.fadeOut().css('display','none');
 	if (device.platform == 'web') {
 		var mapjson = {
 			'posx': -1000,
