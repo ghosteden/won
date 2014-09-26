@@ -31,13 +31,8 @@ globalVars['audio'] = [];
 globalVars['loopAudio'] = [];
 globalVars['loopAudioTime'] = [];
 
-// Variable a MelonJs
-globalVars['fps'] = 20;
-globalVars['tileSize'] = 8;
-globalVars['double_buffering'] = false;
-globalVars['scale'] = '';
-globalVars['maintainAspectRatio'] = '';
-globalVars['save']=[];
+// Variable pour l'app
+var save = [];
 
 // Autre variable;
 var ressources = [];

@@ -30,7 +30,7 @@ function getSaveGame() {
 			connectionPlayer();
 		}
 		if (objJson.savegame) {
-			globalVars['savegame'] = objJson.savegame;
+			save = objJson.savegame;
 			// une fois la sauvegarde récupéré on lance le menu principale
 			temposubmitEnd();
 			menuGame();
@@ -528,8 +528,8 @@ function didacticiel() {
 	globalVars['useDeck'] = 0;
 	globalVars['curentMap'] = 'z1m1';
 	globalVars['inGame'] = true;
-	globalVars['save'][globalVars['gameEmplacement']] = [];
-	globalVars['save'][globalVars['gameEmplacement']]['interaction']=[];
+	save[globalVars['gameEmplacement']] = [];
+	save[globalVars['gameEmplacement']]['interaction']=[];
 	
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);

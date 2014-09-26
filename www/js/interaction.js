@@ -10,10 +10,10 @@ function interaction(name) {
 			openTextInteraction(lang('tutoFirstDialogue'), 'Close');
 			break;
 		case 'paul':
-			if (globalVars['save'][globalVars['gameEmplacement']]['interaction']['paul'] == undefined) {
-				globalVars['save'][globalVars['gameEmplacement']]['interaction']['paul'] = 1;
+			if (save[globalVars['gameEmplacement']]['interaction']['paul'] == undefined) {
+				save[globalVars['gameEmplacement']]['interaction']['paul'] = 1;
 			}
-			switch (globalVars['save'][globalVars['gameEmplacement']]['interaction']['paul']) {
+			switch (save[globalVars['gameEmplacement']]['interaction']['paul']) {
 				case 1:
 					var blurAll = getElement('blurall');
 					blurAll.fadeIn(300, function() {
@@ -38,7 +38,7 @@ function interaction(name) {
 								'background-image': 'url(' + getLocalRessources("portrait-perso1-2") + ')',
 							})
 						});
-						globalVars['save'][globalVars['gameEmplacement']]['interaction']['paul'] = 2;
+						save[globalVars['gameEmplacement']]['interaction']['paul'] = 2;
 					});
 					break;
 				case 2:
