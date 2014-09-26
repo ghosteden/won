@@ -38,7 +38,6 @@ globalVars['double_buffering'] = false;
 globalVars['scale'] = '';
 globalVars['maintainAspectRatio'] = '';
 globalVars['save']=[];
-globalVars['save']['interaction']=[];
 
 // Autre variable;
 var ressources = [];

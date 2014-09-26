@@ -523,11 +523,13 @@ function submitScreenConfig() {
  */
 function didacticiel() {
 	// on charge les paramètre de base tel que la version du personnage, la map etc
+	globalVars['gameEmplacement'] = 'tuto';
 	globalVars['usePerso'] = 1;
 	globalVars['useDeck'] = 0;
 	globalVars['curentMap'] = 'z1m1';
 	globalVars['inGame'] = true;
-	globalVars['save']['interaction']['tuto']=[];
+	globalVars['save'][globalVars['gameEmplacement']] = [];
+	globalVars['save'][globalVars['gameEmplacement']]['interaction']=[];
 	
 	closeIntercom(function() {
 		loadMap(globalVars['curentMap']);

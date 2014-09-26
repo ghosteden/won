@@ -526,8 +526,8 @@ canvas{
 	overflow:auto;
 }
 #textInteraction .text .perso{
-    color: #aaddff;
-    text-shadow: 0px 0px 12px #1739ff;
+    color: #FFC7C7;
+    text-shadow: 0px 0px 12px #FF1717;
 }
 #textInteraction .border-top{
 	background: url('../img/textbox/border-top.png') repeat-x top right;
@@ -628,6 +628,7 @@ canvas{
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: bottom left;
+	opacity:0;
 }
 .flip{
 	-moz-transform: scaleX(-1);
@@ -647,4 +648,5 @@ canvas{
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: bottom left;
+	opacity:0;
 }
