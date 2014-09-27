@@ -420,7 +420,8 @@ function DLFile() {
 //                        localPath = localPath.substring(7);
 //                    }
                     localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
-                    if(localPath.indexOf("cdvfile://localhost/persistent/")){
+                    alert(globalVars['ressourcesPath'] + '/' + ressources[nameFile].name);
+                    if(localPath.indexOf("cdvfile://localhost/persistent/")){alert('y');
                         localPath = localPath.replace("cdvfile://localhost/persistent/","");
                     }
                     // début du transfert
