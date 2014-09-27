@@ -273,23 +273,16 @@ function updateFileRessources() {
         divCheckUpdateApps.html(lang('verifFilesRessources')).fadeIn();
     });
     // on récupère le super objet fileSystem
-    alert('1');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-    alert('2');
         fileSystem.root.getDirectory(globalVars['ressourcesPath'], {create: true, exclusive: false}, function(dirEntry) {
-    alert('3');
             // Création de l'objet directory
             var directoryReader = dirEntry.createReader();
-    alert('4');
             // Récupère la liste des fichiers dans le dossier ressources
             directoryReader.readEntries(function(entries) {
-    alert('5');
                 // on commence par supprimer toutes les ressources qui ne sont pas dans le fichier ressources du serveur
                 // On créer églament un tableau au passage pour récupéré les info interéssante pour la suite
                 globalVars['listOfEntries'] = [];
-    alert('6');
                 globalVars['finish'] = 0;
-    alert('7');
                 for (i = 0; i < entries.length; i++) {
                     var fileExist = false;
                     for (key in ressources) {
@@ -309,10 +302,9 @@ function updateFileRessources() {
                     if (!fileExist) {
                         //suppression du fichier inutile
                         entries[i].remove();
-                        globalVars['finish']++;
+                        //globalVars['finish']++;
                     }
                 }
-    alert('8');
                 waitFinishedCreateListOfEntries(entries.length);
             }, function(error) {
                 signal('erreurApp1 ' + lang('erreurVerifFiles'), function() {
