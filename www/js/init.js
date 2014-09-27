@@ -422,6 +422,8 @@ function DLFile() {
                     localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
                     // début du transfert
                     var ft = new FileTransfer();
+                    alert(localPath);
+                    alert(distantPathOfFile);
                     ft.download(distantPathOfFile, localPath, function() {
                         globalVars['numberfileDL']++;
                         text = globalVars['numberDL'] - globalVars['numberfileDL'];
