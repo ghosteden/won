@@ -152,9 +152,7 @@ function checkUpdateApps() {
 	loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
 		divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
 	});
-
-	filesIsOk();
-	return true;
+        
 	// fonction ajax qui va vérifié le fichier de version
 	$.get(url, params, function(jData) {
 		// Si l'ajax fonction c'est que le mobile est connecté
