@@ -302,7 +302,7 @@ function updateFileRessources() {
                     if (!fileExist) {
                         //suppression du fichier inutile
                         entries[i].remove();
-                        //globalVars['finish']++;
+                        globalVars['finish']++;
                     }
                 }
                 waitFinishedCreateListOfEntries(entries.length);
@@ -338,10 +338,8 @@ function updateFileRessources() {
  * Lorsque la boucle s'arete on exécute la fonction downloadfileressource
  */
 function waitFinishedCreateListOfEntries(equalItem) {
-    alert(globalVars['finish']);
-    alert(equalItem);
     setTimeout(function() {
-        if (globalVars['finish'] == equalItem)
+        if (globalVars['finish']-1 == equalItem)
             downloadFileRessources();
         else
             waitFinishedCreateListOfEntries(equalItem);
