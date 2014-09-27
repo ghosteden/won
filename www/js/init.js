@@ -65,11 +65,10 @@ var app = {
         globalVars['ressourcesPath'] = globalVars['localStoragePath'] + globalVars['ressourcesPath'];
 
         // Lorsque tout est pret on attend que le document soit pret
-        $(document).ready(function() {
+        $(window).load(function() {
             // on essayer de créer le dossier ressources si il n'existe pas, ou on vérifie sont existance
             var retourcreat = veirfAllPathExist(globalVars['ressourcesPath']);
             waitdelay(2000);
-
             /*
              * On créer l'objet de config qui sera mis en local s'il n'existe pas déjà
              * On tente de récupéré le fichier de config local.
@@ -155,7 +154,7 @@ function checkUpdateApps() {
     loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
         divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
     });
-    
+
     // fonction ajax qui va vérifié le fichier de version
     $.get(url, params, function(jData) {
         // Si l'ajax fonction c'est que le mobile est connecté
@@ -339,7 +338,7 @@ function updateFileRessources() {
  */
 function waitFinishedCreateListOfEntries(equalItem) {
     setTimeout(function() {
-        if (globalVars['finish']-1 == equalItem)
+        if (globalVars['finish'] >= equalItem)
             downloadFileRessources();
         else
             waitFinishedCreateListOfEntries(equalItem);
