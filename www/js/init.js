@@ -155,20 +155,16 @@ function checkUpdateApps() {
     loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
         divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
     });
-    alert('1');
+    
     // fonction ajax qui va vérifié le fichier de version
     $.get(url, params, function(jData) {
-    alert('2');
         // Si l'ajax fonction c'est que le mobile est connecté
         globalVars['isConnected'] = true;
-    alert('3');
         //si le resultat est 'donwload' cela signifie que la version serveur est plus récente que la version de l'application
         var data = JSON.parse(jData);
-    alert('4');
         for (var ressourceTab in data.ressources) {
             ressources[ressourceTab] = data.ressources[ressourceTab];
         }
-    alert('5');
         if (data.donwload == 1) {
             //on signale au joueur qu'on télécharge la nouvelle version
             divCheckUpdateApps.fadeOut().html(lang('DLIsLoading')).fadeIn();
@@ -277,16 +273,23 @@ function updateFileRessources() {
         divCheckUpdateApps.html(lang('verifFilesRessources')).fadeIn();
     });
     // on récupère le super objet fileSystem
+    alert('1');
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+    alert('2');
         fileSystem.root.getDirectory(globalVars['ressourcesPath'], {create: true, exclusive: false}, function(dirEntry) {
+    alert('3');
             // Création de l'objet directory
             var directoryReader = dirEntry.createReader();
+    alert('4');
             // Récupère la liste des fichiers dans le dossier ressources
             directoryReader.readEntries(function(entries) {
+    alert('5');
                 // on commence par supprimer toutes les ressources qui ne sont pas dans le fichier ressources du serveur
                 // On créer églament un tableau au passage pour récupéré les info interéssante pour la suite
                 globalVars['listOfEntries'] = [];
+    alert('6');
                 globalVars['finish'] = 0;
+    alert('7');
                 for (i = 0; i < entries.length; i++) {
                     var fileExist = false;
                     for (key in ressources) {
@@ -309,6 +312,7 @@ function updateFileRessources() {
                         globalVars['finish']++;
                     }
                 }
+    alert('8');
                 waitFinishedCreateListOfEntries(entries.length);
             }, function(error) {
                 signal('erreurApp1 ' + lang('erreurVerifFiles'), function() {
@@ -342,6 +346,7 @@ function updateFileRessources() {
  * Lorsque la boucle s'arete on exécute la fonction downloadfileressource
  */
 function waitFinishedCreateListOfEntries(equalItem) {
+    alert('9');
     setTimeout(function() {
         if (globalVars['finish'] == equalItem)
             downloadFileRessources();
