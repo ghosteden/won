@@ -65,7 +65,7 @@ var app = {
         globalVars['ressourcesPath'] = globalVars['localStoragePath'] + globalVars['ressourcesPath'];
 
         // Lorsque tout est pret on attend que le document soit pret
-        window.load(function() {
+        $(document).ready(function() {
             // on essayer de créer le dossier ressources si il n'existe pas, ou on vérifie sont existance
             var retourcreat = veirfAllPathExist(globalVars['ressourcesPath']);
             waitdelay(2000);
