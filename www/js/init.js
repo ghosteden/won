@@ -419,6 +419,9 @@ function DLFile() {
 //                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
 //                        localPath = localPath.substring(7);
 //                    }
+                    if(localPath.indexOf("cdvfile://localhost/persistent/")){
+                        localPath = localPath.replace("cdvfile://localhost/persistent/","");
+                    }
                     localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
                     // début du transfert
                     var ft = new FileTransfer();
@@ -436,7 +439,7 @@ function DLFile() {
 
                         $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
                     }, function(evt) {
-                        signal('erreurApp' + "Error downloading File: " + evt.code, function() {
+                        signal('erreurApp' + "Error downloading File: 1" + evt.code, function() {
                             exitApps()
                         });
                         navigator.notification.vibrate(150);
@@ -444,7 +447,7 @@ function DLFile() {
                         navigator.notification.vibrate(150);
                     });
                 }, function(evt) {
-                    signal('erreurApp' + "Error downloading file: " + evt.target.error.code, function() {
+                    signal('erreurApp' + "Error downloading file: 2" + evt.target.error.code, function() {
                         exitApps()
                     });
                     navigator.notification.vibrate(150);
@@ -453,7 +456,7 @@ function DLFile() {
                 });
             }
         }, function(evt) {
-            signal('erreurApp' + "Error preparing to download file: " + evt.target.error.code, function() {
+            signal('erreurApp' + "Error preparing to download file: 3" + evt.target.error.code, function() {
                 exitApps()
             });
             navigator.notification.vibrate(150);
