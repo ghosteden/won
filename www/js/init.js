@@ -155,15 +155,20 @@ function checkUpdateApps() {
     loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
         divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
     });
+    alert('1');
     // fonction ajax qui va vérifié le fichier de version
     $.get(url, params, function(jData) {
+    alert('2');
         // Si l'ajax fonction c'est que le mobile est connecté
         globalVars['isConnected'] = true;
+    alert('3');
         //si le resultat est 'donwload' cela signifie que la version serveur est plus récente que la version de l'application
         var data = JSON.parse(jData);
+    alert('4');
         for (var ressourceTab in data.ressources) {
             ressources[ressourceTab] = data.ressources[ressourceTab];
         }
+    alert('5');
         if (data.donwload == 1) {
             //on signale au joueur qu'on télécharge la nouvelle version
             divCheckUpdateApps.fadeOut().html(lang('DLIsLoading')).fadeIn();
