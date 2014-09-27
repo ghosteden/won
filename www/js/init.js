@@ -346,7 +346,8 @@ function updateFileRessources() {
  * Lorsque la boucle s'arete on exécute la fonction downloadfileressource
  */
 function waitFinishedCreateListOfEntries(equalItem) {
-    alert('9');
+    alert(globalVars['finish']);
+    alert(equalItem);
     setTimeout(function() {
         if (globalVars['finish'] == equalItem)
             downloadFileRessources();
