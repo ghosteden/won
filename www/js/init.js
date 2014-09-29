@@ -430,7 +430,7 @@ function DLFile() {
 //            }
                     // début du transfert
                     var ft = new FileTransfer();
-					localPath = fileEntry.fullPath;
+					localPath = fileEntry.toURL();
                     alert(localPath);
                     ft.download(distantPathOfFile, localPath, function() {
 						alert('1');
