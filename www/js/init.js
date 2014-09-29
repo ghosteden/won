@@ -432,6 +432,7 @@ function DLFile() {
                     var ft = new FileTransfer();
 					localPath = fileEntry.toURL();
                     alert(localPath);
+                    alert(distantPathOfFile);
                     ft.download(distantPathOfFile, localPath, function() {
 						alert('1');
                         globalVars['numberfileDL']++;
