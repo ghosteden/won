@@ -413,6 +413,7 @@ function DLFile() {
                     var nameFile = fileEntry.name.substr(0, fileEntry.name.lastIndexOf("."));
                     var distantPathOfFile = globalVars['urlServeur'] + '/' + ressources[nameFile].path + '/' + ressources[nameFile].name;
                     // début du transfert
+					alert(ressources[nameFile].name);
                     var ft = new FileTransfer();
                     ft.download(distantPathOfFile, fileEntry.toURL(), function() {
                         globalVars['numberfileDL']++;
