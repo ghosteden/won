@@ -424,7 +424,7 @@ function DLFile() {
 //                    if(localPath.indexOf("cdvfile://localhost/persistent/")){alert('y');
 //                        localPath = localPath.replace("cdvfile://localhost/persistent/","");
 //                    }
-
+alert(fileEntry.fullPath);
                     if (device.platform === "Android"){
 		localPath = '/sdcard/' + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
             }
