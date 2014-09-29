@@ -5,7 +5,7 @@
 // tableau de variables global, permet d'utilisé des variable global sans avoir a les initialiser
 var globalVars = [];
 // version de l'application et date de mise a jour
-globalVars['appsVersion'] = 0.002;
+globalVars['appsVersion'] = 0.003;
 globalVars['appsVersionDate'] = 1390979570000;
 
 // url du serveur, sert pour les ressources par exemple
