@@ -424,19 +424,16 @@ function DLFile() {
 //                    if(localPath.indexOf("cdvfile://localhost/persistent/")){alert('y');
 //                        localPath = localPath.replace("cdvfile://localhost/persistent/","");
 //                    }
-alert('1');
+
                     if (device.platform === "Android"){
-                        alert('2');
-		localPath = 'file:///sdcard/' + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
-                        alert('3');
+		localPath = '/sdcard/' + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
             }
-                        alert('4');
                     // début du transfert
                     var ft = new FileTransfer();
-                        alert('5');
                     alert(localPath);
                     alert(distantPathOfFile);
                     ft.download(distantPathOfFile, localPath, function() {
+						alert('1');
                         globalVars['numberfileDL']++;
                         text = globalVars['numberDL'] - globalVars['numberfileDL'];
                         if (text > 1)
