@@ -370,7 +370,7 @@ function getElement(ID, Class, type) {
 	}
 	if (ID != '' && $('#' + ID).length) {
 		return $('#' + ID);
-	} else if (Class != '' && $('.' + Class).length) {
+	} else if (Class != '' && $('.' + Class).length && ($('#' + ID) == '' && $('#' + ID).length <= 0)) {
 		return $('.' + Class);
 	} else {
 //l'élément n'existe pas on le créer
@@ -550,8 +550,8 @@ function getElement(ID, Class, type) {
 						return $('#' + ID);
 						break;
 					default :
-						// si on trouve toujours rien on créer une div standard
-						var elem = '<div id="' + ID + '" class="' + Class + '"></div>';
+						// si on trouve toujours rien on créer un élément standard
+						var elem = '<'+type+' id="' + ID + '" class="' + Class + '"></'+type+'>';
 						$('body').append(elem);
 						return $('#' + ID);
 						break;

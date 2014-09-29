@@ -18,24 +18,27 @@ function interaction(name) {
 					var blurAll = getElement('blurall');
 					blurAll.fadeIn(300, function() {
 						//affichage ici de l'image de fond
-						getElement('portraitD').css({
+						getElement('portraitD1','portraitD','img').attr({
 							//image de paul
-							'background-image': 'url(' + getLocalRessources("portrait-perso1-1") + ')',
+							'src': getLocalRessources("portrait-perso1-1"),
 						}).animate({
 							'right': '0',
 							'opacity': 1,
 						});
-						getElement('portraitG').css({
-							'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1") + ')',
+						getElement('portraitG1','portraitG','img').attr({
+							'src': getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1"),
 						}).addClass('flip').animate({
 							'left': '0',
 							'opacity': 1,
 						}, function() {
-							openTextInteraction(lang('paulfirst'), 'Close', "getElement('portraitG').animate({'left':'-40%', 'opacity':0},function(){$(this).remove()});getElement('portraitD').css('background-image', 'url(' + getLocalRessources('portrait-perso1-1') + ')').animate({'right':'-40%', 'opacity':0},function(){$(this).remove();closeTextInteraction();});");
+							openTextInteraction(lang('paulfirst'), 'Close', "$('#portraitD2').remove();$('.portraitG').animate({'left':'-40%', 'opacity':0},function(){$(this).remove()});$('.portraitD').animate({'right':'-40%', 'opacity':0},function(){$(this).remove();closeTextInteraction();});");
 						}).animate({'left': '0'}, 1000, function() {
-							getElement('portraitD').css({
+							getElement('portraitD2','portraitD','img').attr({
 								//image de paul
-								'background-image': 'url(' + getLocalRessources("portrait-perso1-2") + ')',
+								'src': getLocalRessources("portrait-perso1-2"),
+							}).css({
+								'right':0,
+								'opacity': 1,
 							})
 						});
 						save[globalVars['gameEmplacement']]['interaction']['paul'] = 2;
@@ -55,15 +58,15 @@ function interaction(name) {
 			var blurAll = getElement('blurall');
 			blurAll.fadeIn(300, function() {
 				//affichage ici de l'image de fond
-				getElement('portraitD').css({
+				getElement('portraitD1','portraitD','img').attr({
 					//image de paul
-					'background-image': 'url(' + getLocalRessources("portrait-perso1-1") + ')',
+					'src': getLocalRessources("portrait-perso1-1"),
 				}).animate({
 					'right': '0',
 					'opacity': 1,
 				});
-				getElement('portraitG').css({
-					'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1") + ')',
+				getElement('portraitG1','portraitG','img').attr({
+					'src': getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-1"),
 				}).addClass('flip').animate({
 					'left': '0',
 					'opacity': 1,
@@ -73,9 +76,12 @@ function interaction(name) {
 					'left': '0',
 					'opacity': 1,
 				}, 1000, function() {
-					getElement('portraitD').css({
+					getElement('portraitD2','portraitD','img').attr({
 						//image de paul
-						'background-image': 'url(' + getLocalRessources("portrait-perso1-2") + ')',
+						'src': getLocalRessources("portrait-perso1-2"),
+					}).css({
+						'opacity':1,
+						'right':0,
 					})
 				});
 			});
@@ -86,17 +92,17 @@ function interaction(name) {
 				$('#textInteraction .btnCloseTextInteraction').show();
 				$('#textInteraction div.btn-box').animate({'right': '0px'}, 200);
 			});
-			var $callback = "getElement('portraitD').animate({'right':'-40%', 'opacity':0},function(){$(this).remove()});getElement('portraitG').css('background-image', 'url(' + getLocalRessources('portrait-perso' + globalVars['usePerso'] + '-3') + ')').animate({'left':'-40%','opacity':0},function(){$(this).remove();closeTextInteraction();});";
+			var $callback = "$('.portraitD').animate({'right':'-40%', 'opacity':0},function(){$(this).remove()});$('#portraitG4').remove();$('.portraitG').animate({'left':'-40%','opacity':0},function(){$(this).remove();closeTextInteraction();});";
 			$('#textInteraction .btnCloseTextInteraction').attr('onclick', $callback);
 			$('#textInteraction .btnCloseTextInteraction').attr('ontouchend', $callback);
-			getElement('portraitD').css('background-image', 'url(' + getLocalRessources('portrait-perso1-1') + ')')
-			getElement('portraitG').css({
-				'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-3") + ')',
-			})
+			getElement('portraitD2').remove();
+			getElement('portraitG3','portraitG', 'img').attr({
+				'src': getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-3"),
+			}).addClass('flip').css({'opacity':1,'left':0});
 			$('#textInteraction div.text').fadeOut(function(){$('#textInteraction div.text').html(lang('paulattend2')).fadeIn('fast', function() {
-				getElement('portraitG').css({
-					'background-image': 'url(' + getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-4") + ')',
-				})
+				getElement('portraitG4','portraitG', 'img').addClass('flip').attr({
+					'src': getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-4"),
+				}).css({'opacity':1,'left':0});
 			});
 			});
 			break;
