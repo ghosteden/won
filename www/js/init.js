@@ -179,11 +179,8 @@ function checkUpdateApps() {
                     fileEntry.remove(function() {
                         waitdelay(3000);
                         fileSystem.root.getFile('download/won.apk', {create: true, exclusive: false}, function(fileEntry) {
-                            var localPath = fileEntry.fullPath;
-                            if (localPath.indexOf("file://") === 0) {
-                                localPath = localPath.substring(7);
-                            }
-                            globalVars['localPathDLAPK'] = 'file://' + localPath;
+                            var localPath = fileEntry.toURL()
+                            globalVars['localPathDLAPK'] = localPath;
                             // début du transfert
                             var ft = new FileTransfer();
                             ft.onprogress = function(progressEvent) {
@@ -418,7 +415,6 @@ function DLFile() {
                     // début du transfert
                     var ft = new FileTransfer();
                     ft.download(distantPathOfFile, fileEntry.toURL(), function() {
-						alert('1');
                         globalVars['numberfileDL']++;
                         text = globalVars['numberDL'] - globalVars['numberfileDL'];
                         if (text > 1)
@@ -430,17 +426,15 @@ function DLFile() {
 
                         $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
                     }, function(evt) {
-						var_dump(evt);
-                        signal('erreurApp' + "Error downloading File: 1" + evt.code, function() {
-                            exitApps()
+                        signal('erreurApp' + "Error downloading File: " + erreurDLFile[evt.code], function() {
+                            //exitApps()
                         });
                         navigator.notification.vibrate(150);
                         waitdelay(250);
                         navigator.notification.vibrate(150);
                     });
                 }, function(evt) {
-						var_dump(evt);
-                    signal('erreurApp' + "Error downloading file: 2" + evt.target.error.code, function() {
+                    signal('erreurApp' + "Error downloading file: " + evt.target.error.code, function() {
                         exitApps()
                     });
                     navigator.notification.vibrate(150);
@@ -449,8 +443,7 @@ function DLFile() {
                 });
             }
         }, function(evt) {
-						var_dump(evt);
-            signal('erreurApp' + "Error preparing to download file: 3" + evt.target.error.code, function() {
+            signal('erreurApp' + "Error preparing to download file: " + evt.target.error.code, function() {
                 exitApps()
             });
             navigator.notification.vibrate(150);
