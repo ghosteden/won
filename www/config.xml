@@ -28,11 +28,11 @@
 	</application>
 	</gap:config-file>
 	
-	<icon src="img/icon/ldpi.png" gap:platform="android" gap:density="ldpi" /><!-- 36 x 36 -->
-	<icon src="img/icon/mdpi.png" gap:platform="android" gap:density="mdpi" /><!-- 48 x 48 -->
-	<icon src="img/icon/hdpi.png" gap:platform="android" gap:density="hdpi" /><!-- 72 x 72 -->
-	<icon src="img/icon/xhdpi.png" gap:platform="android" gap:density="xhdpi" /><!-- 96 x 96 -->
-	<icon src="img/icon/xxhdpi.png" gap:platform="android" gap:density="xxhdpi" /><!-- 144 x 144 -->
+	<icon src="img/icon/ldpi.gif" gap:platform="android" gap:density="ldpi" /><!-- 36 x 36 -->
+	<icon src="img/icon/mdpi.gif" gap:platform="android" gap:density="mdpi" /><!-- 48 x 48 -->
+	<icon src="img/icon/hdpi.gif" gap:platform="android" gap:density="hdpi" /><!-- 72 x 72 -->
+	<icon src="img/icon/xhdpi.gif" gap:platform="android" gap:density="xhdpi" /><!-- 96 x 96 -->
+	<icon src="img/icon/xxhdpi.gif" gap:platform="android" gap:density="xxhdpi" /><!-- 144 x 144 -->
 	
 	<gap:plugin name="org.apache.cordova.file" version="1.0.1" />
 	<gap:plugin name="net.tunts.webintent" version="0.2.1" />
