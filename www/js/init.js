@@ -419,19 +419,19 @@ function DLFile() {
 //                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
 //                        localPath = localPath.substring(7);
 //                    }
-                    localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
+//                    localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
 //                    alert(globalVars['ressourcesPath'] + '/' + ressources[nameFile].name);
 //                    if(localPath.indexOf("cdvfile://localhost/persistent/")){alert('y');
 //                        localPath = localPath.replace("cdvfile://localhost/persistent/","");
 //                    }
-alert(fileEntry.fullPath);
-                    if (device.platform === "Android"){
-		localPath = '/sdcard/' + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
-            }
+//alert(fileEntry.fullPath);
+//                    if (device.platform === "Android"){
+//		localPath = '/sdcard/' + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
+//            }
                     // début du transfert
                     var ft = new FileTransfer();
+					localPath = fileEntry.fullPath;
                     alert(localPath);
-                    alert(distantPathOfFile);
                     ft.download(distantPathOfFile, localPath, function() {
 						alert('1');
                         globalVars['numberfileDL']++;
