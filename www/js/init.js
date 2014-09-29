@@ -415,25 +415,9 @@ function DLFile() {
                     $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
                     var nameFile = fileEntry.name.substr(0, fileEntry.name.lastIndexOf("."));
                     var distantPathOfFile = globalVars['urlServeur'] + '/' + ressources[nameFile].path + '/' + ressources[nameFile].name;
-//                    var localPath = fileEntry.fullPath;
-//                    if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
-//                        localPath = localPath.substring(7);
-//                    }
-//                    localPath = fileSystem.root.toURL() + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
-//                    alert(globalVars['ressourcesPath'] + '/' + ressources[nameFile].name);
-//                    if(localPath.indexOf("cdvfile://localhost/persistent/")){alert('y');
-//                        localPath = localPath.replace("cdvfile://localhost/persistent/","");
-//                    }
-//alert(fileEntry.fullPath);
-//                    if (device.platform === "Android"){
-//		localPath = '/sdcard/' + globalVars['ressourcesPath'] + '/' + ressources[nameFile].name;
-//            }
                     // début du transfert
                     var ft = new FileTransfer();
-					localPath = fileEntry.toURL();
-                    alert(localPath);
-                    alert(distantPathOfFile);
-                    ft.download(distantPathOfFile, localPath, function() {
+                    ft.download(distantPathOfFile, fileEntry.toURL(), function() {
 						alert('1');
                         globalVars['numberfileDL']++;
                         text = globalVars['numberDL'] - globalVars['numberfileDL'];
@@ -446,6 +430,7 @@ function DLFile() {
 
                         $('#checkUpdateApps').html(lang('downloadNewFile') + ' : ' + text);
                     }, function(evt) {
+						var_dump(evt);
                         signal('erreurApp' + "Error downloading File: 1" + evt.code, function() {
                             exitApps()
                         });
@@ -454,6 +439,7 @@ function DLFile() {
                         navigator.notification.vibrate(150);
                     });
                 }, function(evt) {
+						var_dump(evt);
                     signal('erreurApp' + "Error downloading file: 2" + evt.target.error.code, function() {
                         exitApps()
                     });
@@ -463,6 +449,7 @@ function DLFile() {
                 });
             }
         }, function(evt) {
+						var_dump(evt);
             signal('erreurApp' + "Error preparing to download file: 3" + evt.target.error.code, function() {
                 exitApps()
             });
