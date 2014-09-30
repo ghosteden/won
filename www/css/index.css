@@ -381,6 +381,17 @@ input[type=radio]{
 #intercom .screen .content .main .icone.message{
     background: url('../img/icone_message.png') no-repeat center left rgba(23,225,57,0.3);
     background-size: contain;
+	position:relative;
+}
+#intercom .screen .content .main .icone.message .nbr{
+	position:absolute;
+	top:55%;
+	left:15%;
+	background:#17ff39;
+	shadow-box:0 0 12px #17ff39;
+	color:#fff;
+	padding:0% 2%;
+	border-radius:100%;
 }
 #intercom .screen .content .main .icone.parametre{
     background: url('../img/icone_parametre.png') no-repeat center left rgba(23,225,57,0.3);

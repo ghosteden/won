@@ -155,6 +155,9 @@ LANG_EN['emailAlreadyExist'] = "";
 LANG_FR['deconnection'] = "Déconnecter";
 LANG_EN['deconnection'] = "";
 
+LANG_FR['messagerie'] = "Messagerie";
+LANG_EN['messagerie'] = "";
+
 LANG_FR['labelConfigLang'] = "Choix de la langue :";
 LANG_EN['labelConfigLang'] = "";
 

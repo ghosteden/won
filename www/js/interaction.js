@@ -43,6 +43,9 @@ function interaction(name) {
 						});
 						save[globalVars['gameEmplacement']]['interaction']['paul'] = 2;
 					});
+					save['tuto']['etape'] = 1;
+					switchMenu('tuto');
+					addMessage('tuto1');
 					break;
 				case 2:
 					interaction('paulAttend1');

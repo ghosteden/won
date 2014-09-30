@@ -326,6 +326,115 @@ function menuGame() {
 	$('#intercom .screen .content .main .icone .nom_icon').css({'font-size': globalVars['screenH'] * 0.15 * 0.40});
 }
 
+function menuTuto() {
+	$('.traitParasite').hide().remove();
+	$('#intercom .screen .status .namePlayer').html(globalVars['config'].login);
+	switch (save['tuto']['etape']) {
+		case 0:
+			var elem = '<div class="icone nothing"></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone nothing"></div>\n\
+                        <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
+                        <div class="icone nothing"></div>';
+			break;
+		case 1:
+			var elem = '<div class="icone message" onclick="blinkButton($(this),function(){switchMenu(\'message\');});"><div class="nom_icon">' + lang('messagerie') + '</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone nothing"></div>\n\
+                        <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
+                        <div class="icone nothing"></div>';
+			break;
+		default:
+			var elem = '<div class="icone message" onclick="blinkButton($(this),function(){switchMenu(\'message\');});"><div class="nom_icon">' + lang('messagerie') + '</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone deck"><div class="nom_icon">Deck</div></div>\n\
+                        <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
+                        <div class="icone GPS" onclick="blinkButton($(this),function(){openGps();});"><div class="nom_icon">GPS</div></div>';
+			break;
+	}
+	$('#intercom .screen .content .main').html(elem);
+	$('#intercom .screen .content .main .icone').css({'height': globalVars['screenIntercomH'] * 0.20 + 'px', 'width': globalVars['screenIntercomW'] * 0.95 * 0.45 + 'px', 'margin': globalVars['screenIntercomH'] * 0.03 + 'px ' + ((globalVars['screenIntercomW'] * 0.95) - (2 * (globalVars['screenIntercomW'] * 0.95 * 0.45))) / 5 + 'px'});
+	$('#intercom .screen .content .main .icone .nom_icon').css({'font-size': globalVars['screenH'] * 0.15 * 0.40});
+}
+
+function menuPve() {
+	$('.traitParasite').hide().remove();
+	$('#intercom .screen .status .namePlayer').html(globalVars['config'].login);
+	var elem = '<div class="icone message" onclick="blinkButton($(this),function(){switchMenu(\'message\');});"><div class="nom_icon">' + lang('messagerie') + '</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone deck"><div class="nom_icon">Deck</div></div>\n\
+                        <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
+                        <div class="icone GPS" onclick="blinkButton($(this),function(){didacticiel();});"><div class="nom_icon">GPS</div></div>\n\
+';
+	$('#intercom .screen .content .main').html(elem);
+	$('#intercom .screen .content .main .icone').css({'height': globalVars['screenIntercomH'] * 0.20 + 'px', 'width': globalVars['screenIntercomW'] * 0.95 * 0.45 + 'px', 'margin': globalVars['screenIntercomH'] * 0.03 + 'px ' + ((globalVars['screenIntercomW'] * 0.95) - (2 * (globalVars['screenIntercomW'] * 0.95 * 0.45))) / 5 + 'px'});
+	$('#intercom .screen .content .main .icone .nom_icon').css({'font-size': globalVars['screenH'] * 0.15 * 0.40});
+}
+
+function menuMessage(){
+	$('.traitParasite').hide().remove();
+	$('#intercom .screen .status .namePlayer').html(globalVars['config'].login);
+	var elem = 'Aucun message pour le moment';
+	$('#intercom .screen .content .main').html(elem);
+	$('#intercom .screen .content .main .icone').css({'height': globalVars['screenIntercomH'] * 0.20 + 'px', 'width': globalVars['screenIntercomW'] * 0.95 * 0.45 + 'px', 'margin': globalVars['screenIntercomH'] * 0.03 + 'px ' + ((globalVars['screenIntercomW'] * 0.95) - (2 * (globalVars['screenIntercomW'] * 0.95 * 0.45))) / 5 + 'px'});
+	$('#intercom .screen .content .main .icone .nom_icon').css({'font-size': globalVars['screenH'] * 0.15 * 0.40});
+}
+
+function switchMenu(type) {
+	switch (type) {
+		case 'start':
+			menuGame();
+			break;
+		case 'tuto':
+			menuTuto();
+			break;
+		case 'pve':
+			menuPve();
+			break;
+		case 'pvp':
+			menuPvp();
+			break;
+		case 'message':
+			menuMessage();
+			break;
+	}
+}
+
+function addMessage(type){
+	checkNumberOfMail();
+	$('#intercom .screen .content .main .icone.message .nbr').html(parseInt($('#intercom .screen .content .main .icone.message .nbr').html())+1);
+	switch (type) {
+		
+	}
+}
+
+function checkNumberOfMail(){
+	var numberOfMail = 0;
+	if($('#intercom .screen .content .main .icone.message .nbr').length <= 0){
+		$('#intercom .screen .content .main .icone.message').append('<div class="nbr">'+numberOfMail+'</div>');
+	}
+}
+
+function goHome(){
+	if(save['tuto']!= undefined){
+		delete save['tuto'];
+	}
+	delete globalVars['gameEmplacement'];
+	delete globalVars['usePerso'];
+	delete globalVars['useDeck'];
+	delete globalVars['curentMap'];
+	globalVars['inGame'] = false;
+	closeIntercom(function() {
+		switchMenu('start');
+		if($('#mapWrap').length){
+			$('#mapWrap').fadeOut(function(){
+				getElement('fondmenup').fadeIn();
+				openIntercom();
+			});
+		}
+	});
+}
+
 /*
  * @function logOut()
  * @returns {undefined}
@@ -529,9 +638,10 @@ function didacticiel() {
 	globalVars['curentMap'] = 'z1m1';
 	globalVars['inGame'] = true;
 	save[globalVars['gameEmplacement']] = [];
-	save[globalVars['gameEmplacement']]['interaction']=[];
-	
+	save[globalVars['gameEmplacement']]['etape'] = 0;
+	save[globalVars['gameEmplacement']]['interaction'] = [];
 	closeIntercom(function() {
+		switchMenu('tuto');
 		loadMap(globalVars['curentMap']);
 		initialiseGameControle("mapWrap");
 		//interaction('startTuto');
@@ -541,7 +651,7 @@ function didacticiel() {
 function loadMap(name) {
 	getElement('fondmenup').fadeOut();
 	mapWrap = getElement('mapWrap');
-	mapWrap.fadeOut().css('display','none');
+	mapWrap.fadeOut().css('display', 'none');
 	if (device.platform == 'web') {
 		var mapjson = {
 			'posx': -1000,
