@@ -316,7 +316,7 @@ function menuGame() {
 	$('.traitParasite').hide().remove();
 	$('#intercom .screen .status .namePlayer').html(globalVars['config'].login);
 	var elem = '<div class="icone PVE"><div class="nom_icon">PvE</div></div>\n\
-                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams(\'start\');});">Config</div></div>\n\
                         <div class="icone PVP"><div class="nom_icon">PvP</div></div>\n\
                         <div class="icone exit" onclick="blinkButton($(this),function(){logOut();});"><div class="nom_icon">' + lang('deconnection') + '</div></div>\n\
                         <div class="icone didacticiel" onclick="blinkButton($(this),function(){didacticiel();});"><div class="nom_icon">Tuto</div></div>\n\
@@ -332,27 +332,28 @@ function menuTuto() {
 	switch (save['tuto']['etape']) {
 		case 0:
 			var elem = '<div class="icone nothing"></div>\n\
-                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams(\'tuto\');});">Config</div></div>\n\
                         <div class="icone nothing"></div>\n\
                         <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
                         <div class="icone nothing"></div>';
 			break;
 		case 1:
 			var elem = '<div class="icone message" onclick="blinkButton($(this),function(){switchMenu(\'message\');});"><div class="nom_icon">' + lang('messagerie') + '</div></div>\n\
-                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams(\'tuto\');});">Config</div></div>\n\
                         <div class="icone nothing"></div>\n\
                         <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
                         <div class="icone nothing"></div>';
 			break;
 		default:
 			var elem = '<div class="icone message" onclick="blinkButton($(this),function(){switchMenu(\'message\');});"><div class="nom_icon">' + lang('messagerie') + '</div></div>\n\
-                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams(\'tuto\');});">Config</div></div>\n\
                         <div class="icone deck"><div class="nom_icon">Deck</div></div>\n\
                         <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
                         <div class="icone GPS" onclick="blinkButton($(this),function(){openGps();});"><div class="nom_icon">GPS</div></div>';
 			break;
 	}
 	$('#intercom .screen .content .main').html(elem);
+	checkNumberOfMail();
 	$('#intercom .screen .content .main .icone').css({'height': globalVars['screenIntercomH'] * 0.20 + 'px', 'width': globalVars['screenIntercomW'] * 0.95 * 0.45 + 'px', 'margin': globalVars['screenIntercomH'] * 0.03 + 'px ' + ((globalVars['screenIntercomW'] * 0.95) - (2 * (globalVars['screenIntercomW'] * 0.95 * 0.45))) / 5 + 'px'});
 	$('#intercom .screen .content .main .icone .nom_icon').css({'font-size': globalVars['screenH'] * 0.15 * 0.40});
 }
@@ -361,17 +362,18 @@ function menuPve() {
 	$('.traitParasite').hide().remove();
 	$('#intercom .screen .status .namePlayer').html(globalVars['config'].login);
 	var elem = '<div class="icone message" onclick="blinkButton($(this),function(){switchMenu(\'message\');});"><div class="nom_icon">' + lang('messagerie') + '</div></div>\n\
-                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams();});">Config</div></div>\n\
+                        <div class="icone parametre"><div class="nom_icon" onclick="blinkButton($(this),function(){sceenParams(\'pve\');});">Config</div></div>\n\
                         <div class="icone deck"><div class="nom_icon">Deck</div></div>\n\
                         <div class="icone exit" onclick="blinkButton($(this),function(){goHome();});"><div class="nom_icon">' + lang('btnExit') + '</div></div>\n\
                         <div class="icone GPS" onclick="blinkButton($(this),function(){didacticiel();});"><div class="nom_icon">GPS</div></div>\n\
 ';
 	$('#intercom .screen .content .main').html(elem);
+	checkNumberOfMail();
 	$('#intercom .screen .content .main .icone').css({'height': globalVars['screenIntercomH'] * 0.20 + 'px', 'width': globalVars['screenIntercomW'] * 0.95 * 0.45 + 'px', 'margin': globalVars['screenIntercomH'] * 0.03 + 'px ' + ((globalVars['screenIntercomW'] * 0.95) - (2 * (globalVars['screenIntercomW'] * 0.95 * 0.45))) / 5 + 'px'});
 	$('#intercom .screen .content .main .icone .nom_icon').css({'font-size': globalVars['screenH'] * 0.15 * 0.40});
 }
 
-function menuMessage(){
+function menuMessage() {
 	$('.traitParasite').hide().remove();
 	$('#intercom .screen .status .namePlayer').html(globalVars['config'].login);
 	var elem = 'Aucun message pour le moment';
@@ -397,26 +399,28 @@ function switchMenu(type) {
 		case 'message':
 			menuMessage();
 			break;
+		case 'params':
+			sceenParams();
+			break;
 	}
 }
 
-function addMessage(type){
-	checkNumberOfMail();
-	$('#intercom .screen .content .main .icone.message .nbr').html(parseInt($('#intercom .screen .content .main .icone.message .nbr').html())+1);
+function addMessage(type) {
+	$('#intercom .screen .content .main .icone.message .nbr').html(parseInt($('#intercom .screen .content .main .icone.message .nbr').html()) + 1);
 	switch (type) {
-		
+
 	}
 }
 
-function checkNumberOfMail(){
+function checkNumberOfMail() {
 	var numberOfMail = 0;
-	if($('#intercom .screen .content .main .icone.message .nbr').length <= 0){
-		$('#intercom .screen .content .main .icone.message').append('<div class="nbr">'+numberOfMail+'</div>');
+	if ($('#intercom .screen .content .main .icone.message .nbr').length <= 0) {
+		$('#intercom .screen .content .main .icone.message').append('<div class="nbr">' + numberOfMail + '</div>');
 	}
 }
 
-function goHome(){
-	if(save['tuto']!= undefined){
+function goHome() {
+	if (save['tuto'] != undefined) {
 		delete save['tuto'];
 	}
 	delete globalVars['gameEmplacement'];
@@ -426,8 +430,8 @@ function goHome(){
 	globalVars['inGame'] = false;
 	closeIntercom(function() {
 		switchMenu('start');
-		if($('#mapWrap').length){
-			$('#mapWrap').fadeOut(function(){
+		if ($('#mapWrap').length) {
+			$('#mapWrap').fadeOut(function() {
 				getElement('fondmenup').fadeIn();
 				openIntercom();
 			});
@@ -458,7 +462,7 @@ function logOut() {
  * - login
  * - mot de passe
  */
-function sceenParams() {
+function sceenParams(prev) {
 	$('.traitParasite').hide().remove();
 	var elem = '<div style="float:left;width:49%">\n\
 <div style="width:80%;margin-left:15%;margin-top:6%;">\n\
@@ -529,7 +533,7 @@ function sceenParams() {
 </div>\n\
 <div style="clear:both"></div>\n\
 <div style="width:86%; margin:40px 7% 3% 7%;" class="button submit" onclick="blinkButton($(this),function(){temposubmit();submitScreenConfig()});">' + lang('modifConfig') + '</div>\n\
-<div style="margin-left: 7%;" class="button return" onclick="blinkButton($(this),function(){menuGame()});">' + lang('retour') + '</div>';
+<div style="margin-left: 7%;" class="button return" onclick="blinkButton($(this),function(){switchMenu(\'' + prev + '\')});">' + lang('retour') + '</div>';
 	$('#intercom .screen .content .main').html(elem);
 }
 
@@ -649,46 +653,15 @@ function didacticiel() {
 }
 
 function loadMap(name) {
+	// On masque l'image du menu au cas où elle soit visible
 	getElement('fondmenup').fadeOut();
+	// On créer les élément pour la map
 	mapWrap = getElement('mapWrap');
 	mapWrap.fadeOut().css('display', 'none');
-	if (device.platform == 'web') {
-		var mapjson = {
-			'posx': -1000,
-			'posy': -830,
-			'width': 3840,
-			'height': 2160,
-			'ressource': 'z1m1',
-			'interets': {
-				'Paul': {
-					'posx': 900,
-					'posy': 1000,
-					'ressource': 'sprites-paul',
-					'shema': 'shema-paul',
-					'width': 120,
-					'height': 120,
-					'action': {
-						'posx': 930,
-						'posy': 1060,
-						'fct': "interaction('paul')",
-					}
-				},
-				"Jean-Paul": {
-					"posx": 1500,
-					"posy": 1200,
-					"ressource": "sprites-paul",
-					"shema": "shema-paul",
-					"width": 120,
-					"height": 120,
-					"action": {
-						"posx": 1530,
-						"posy": 1260,
-						"fct": "interaction('paul')"
-					}
-				}
-			}
-		}
-		globalVars[globalVars['curentMap'] + 'json'] = mapjson;
+
+	// on récupère l'objet json map
+	getLocalData('ressources/' + name + 'json', function() {
+		// Recalcul si ecran large
 		if (globalVars['typeScreen'] == 'l') {
 			globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
 			globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
@@ -698,8 +671,6 @@ function loadMap(name) {
 		mapWrap = getElement('mapWrap');
 		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
 		mapWrap
-				.fadeOut()
-				.delay('500')
 				.children('div#map')
 				.css({
 					'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
@@ -708,12 +679,18 @@ function loadMap(name) {
 					'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
 				})
 				.html(imgMap);
-
+		
+		// On ajoute le personnage joueur
+//		var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
+//		if (globalVars['typeScreen'] == 'l') {
+//			
+//		}
+		
+		// On ajoute les points d'interet
 		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
 			var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
-
-			/* calcul de la taill pour utilisé un sprite large si besoin */
 			if (obj.ressource.indexOf('sprites') >= 0) {
+				// on redéfini les taille si on est sur écran large
 				if (globalVars['typeScreen'] == 'l') {
 					obj.ressource = obj.ressource + '-l';
 					obj.width = obj.width * globalVars['multipleScreen'];
@@ -726,7 +703,6 @@ function loadMap(name) {
 					}
 				}
 			}
-
 			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
 			if (obj.action != undefined) {
 				objectInteret += ' onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
@@ -736,15 +712,17 @@ function loadMap(name) {
 				objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"';
 			}
 			objectInteret += '></div>';
-			mapWrap.fadeOut().children('div#map').append(objectInteret);
-
+			// on ajoute les animations des points d'interet
+			/* @fixme : a gérer les aniamtions par rapport au shema */
+			mapWrap.children('div#map').append(objectInteret);
 			$('#' + interet).animateSprite({
-				'columns': 20,
-				'fps': 10,
+				'columns': 100,
+				'fps': 12,
 				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
 				'loop': true,
 			});
 		}
+		// Ajout animation des curseur placé par les point d'interet ou les quêtes
 		$('.curseur').animateSprite({
 			'columns': 18,
 			'fps': 8,
@@ -752,65 +730,5 @@ function loadMap(name) {
 			'loop': true,
 		});
 		mapWrap.fadeIn();
-	} else {
-		getLocalData('ressources/' + name + 'json', function() {
-			if (globalVars['typeScreen'] == 'l') {
-				globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
-				globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
-				globalVars[globalVars['curentMap'] + 'json'].posy = globalVars[globalVars['curentMap'] + 'json'].posy * globalVars['multipleScreen'];
-				globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
-			}
-			mapWrap = getElement('mapWrap');
-			var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
-			mapWrap
-					.children('div#map')
-					.css({
-						'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
-						'height': globalVars[globalVars['curentMap'] + 'json'].height + 'px',
-						'top': globalVars[globalVars['curentMap'] + 'json'].posy + 'px',
-						'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
-					})
-					.html(imgMap);
-			for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
-				var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
-				if (obj.ressource.indexOf('sprites') >= 0) {
-					if (globalVars['typeScreen'] == 'l') {
-						obj.ressource = obj.ressource + '-l';
-						obj.width = obj.width * globalVars['multipleScreen'];
-						obj.height = obj.height * globalVars['multipleScreen'];
-						obj.posy = obj.posy * globalVars['multipleScreen'];
-						obj.posx = obj.posx * globalVars['multipleScreen'];
-						if (obj.action != undefined) {
-							obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
-							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
-						}
-					}
-				}
-				var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
-				if (obj.action != undefined) {
-					objectInteret += ' onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
-					if (globalVars['typeScreen'] == 'l') {
-						objectInteret += '-l';
-					}
-					objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"';
-				}
-				objectInteret += '></div>';
-				mapWrap.children('div#map').append(objectInteret);
-				$('#' + interet).animateSprite({
-					'columns': 100,
-					'fps': 12,
-					'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
-					'loop': true,
-				});
-			}
-			$('.curseur').animateSprite({
-				'columns': 18,
-				'fps': 8,
-				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
-				'loop': true,
-			});
-			mapWrap.fadeIn();
-		});
-	}
-
+	});
 }

@@ -30,57 +30,119 @@ function var_dump(obj) {
  * @description récupère les infos de config si elle esxiste et créer un nouveau table dans le cas inverse
  */
 function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFile, paramsForGet) {
-	var dataDefault = dataDefault || '';
-	var distantFile = distantFile || '';
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-		fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
-			fileEntry.file(function(file) {
-				var reader = new FileReader();
-				var testNameFile = FILE.lastIndexOf('/');
-				var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
-				reader.onloadend = function(evt) {
-					if (evt.target.result == '') {
-						/*
-						 * Le fichier est vide ou innexistant
-						 * Si le paramètre dataDefault est remplit on créer le fichier avec ces données
-						 * Sinon on fait une requette au serveur pour récupéré le fichier équivalant
-						 */
-						if (dataDefault != '') {
-							globalVars[NAMEFILE] = dataDefault;
-							if (callbackIfNotExist) {
-								callbackIfNotExist();
-							} else {
-								// la fonction recordData() va se charger de l'ecriture des donées
-								recordLocalData(FILE, globalVars[NAMEFILE]);
-							}
-						} else {
-							//faire la requette ajax pour récup les données
-							$.get(distantFile, paramsForGet,
-									function(data) {
-										globalVars[NAMEFILE] = JSON.parse(data);
-										// la fonction recordData() va se charger de l'ecriture des donées
-										recordLocalData(FILE, globalVars[NAMEFILE]);
-										if (callbackIfNotExist) {
-											callbackIfNotExist();
-										}
-									});
+	if (device.platform == 'web') {
+		if (FILE == 'ressources/z1m1json') {
+			var mapjson = {
+				'posx': -1000,
+				'posy': -830,
+				'width': 3840,
+				'height': 2160,
+				'ressource': 'z1m1',
+				'joueur': {
+					'posx': 100,
+					'posy': 110,
+					'direction': 'X0',
+					'width': 120,
+					'height': 120,
+				},
+				'interets': {
+					'Paul': {
+						'posx': 900,
+						'posy': 1000,
+						'ressource': 'sprites-paul',
+						'shema': 'shema-paul',
+						'width': 120,
+						'height': 120,
+						'action': {
+							'posx': 930,
+							'posy': 1060,
+							'fct': "interaction('paul')",
+						},
+						'joueur': {
+							'posx': 1000,
+							'posy': 1100,
+							'direction': 'X22'
 						}
-					} else {
-						try {
-							globalVars[NAMEFILE] = JSON.parse(evt.target.result);
-						} catch (e) {
-							var_dump(e);
-						}
-						// Si le paramètre collback exist on l'appel
-						if (callback) {
-							callback();
+					},
+					"Jean-Paul": {
+						"posx": 1550,
+						"posy": 1320,
+						"ressource": "sprites-paul",
+						"shema": "shema-paul",
+						"width": 120,
+						"height": 120,
+						"action": {
+							"posx": 1580,
+							"posy": 1380,
+							"fct": "interaction('paul')"
+						},
+						'joueur': {
+							'posx': 1500,
+							'posy': 1300,
+							'direction': 'X22'
 						}
 					}
-				};
-				reader.readAsText(file);
+				}
+			}
+			globalVars['z1m1json'] = mapjson;
+
+		}
+		if (callback) {
+			callback();
+		}
+	} else {
+		var dataDefault = dataDefault || '';
+		var distantFile = distantFile || '';
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+			fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
+				fileEntry.file(function(file) {
+					var reader = new FileReader();
+					var testNameFile = FILE.lastIndexOf('/');
+					var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
+					reader.onloadend = function(evt) {
+						if (evt.target.result == '') {
+							/*
+							 * Le fichier est vide ou innexistant
+							 * Si le paramètre dataDefault est remplit on créer le fichier avec ces données
+							 * Sinon on fait une requette au serveur pour récupéré le fichier équivalant
+							 */
+							if (dataDefault != '') {
+								globalVars[NAMEFILE] = dataDefault;
+								if (callbackIfNotExist) {
+									callbackIfNotExist();
+								} else {
+									// la fonction recordData() va se charger de l'ecriture des donées
+									recordLocalData(FILE, globalVars[NAMEFILE]);
+								}
+							} else {
+								//faire la requette ajax pour récup les données
+								$.get(distantFile, paramsForGet,
+										function(data) {
+											globalVars[NAMEFILE] = JSON.parse(data);
+											// la fonction recordData() va se charger de l'ecriture des donées
+											recordLocalData(FILE, globalVars[NAMEFILE]);
+											if (callbackIfNotExist) {
+												callbackIfNotExist();
+											}
+										});
+							}
+						} else {
+							try {
+								globalVars[NAMEFILE] = JSON.parse(evt.target.result);
+							} catch (e) {
+								var_dump(e);
+							}
+							// Si le paramètre collback exist on l'appel
+							if (callback) {
+								callback();
+							}
+						}
+					};
+					reader.readAsText(file);
+				});
 			});
 		});
-	});
+	}
 }
 
 /*
@@ -284,7 +346,7 @@ function dump(obj) {
 	for (var i in obj) {
 		out += i + ": " + obj[i] + "\n";
 	}
-	getElement('log').html(obj+out);
+	getElement('log').html(obj + out);
 }
 
 /*
@@ -419,16 +481,16 @@ function getElement(ID, Class, type) {
 					case 'textInteraction':
 						var elem = '<div id="' + ID + '"><div class="container"><img class="background-text" src="img/textbox/dialoguebox-font.png" width="100%" /><div class="objet-bottom"></div><div class="border-right"></div><div class="border-left"></div><div class="btn-box"><div class="btnCloseTextInteraction" ontouchend="closeTextInteraction()" onclick="closeTextInteraction()"></div><div class="btnNextTextInteraction" ontouchend="nextTextInteraction()"></div></div><div class="text"></div></div></div>';
 						$('body').append(elem);
-						if(globalVars['typeScreen'] == 'l'){
-							$('#textInteraction').css('height','440px');
-							$('#textInteraction .container').css('height','358px');
-							$('#textInteraction .border-bottom, #textInteraction .border-top').css('height','78px');
-							$('#textInteraction .border-right, #textInteraction .border-left').css({'height':'368px','width':'40px'});
-							$('#textInteraction .objet-bottom').css({'height':'78px','width':'934px'});
-							$('#textInteraction .btn-box').css({'height':'168px','width':'492px','top':'-30px','right':'-500px'});
-							$('#textInteraction .btnCloseTextInteraction, #textInteraction .btnNextTextInteraction').css({'height':'120px','width':'120px','right': '4px','top': '16px'});
-							$('#textInteraction .text').css({'height':'160px','top':'60px','left':'20px','padding':'40px 80px 40px 40px'});
-							$('#textInteraction .background-text').css({'height':'408px'});
+						if (globalVars['typeScreen'] == 'l') {
+							$('#textInteraction').css('height', '440px');
+							$('#textInteraction .container').css('height', '358px');
+							$('#textInteraction .border-bottom, #textInteraction .border-top').css('height', '78px');
+							$('#textInteraction .border-right, #textInteraction .border-left').css({'height': '368px', 'width': '40px'});
+							$('#textInteraction .objet-bottom').css({'height': '78px', 'width': '934px'});
+							$('#textInteraction .btn-box').css({'height': '168px', 'width': '492px', 'top': '-30px', 'right': '-500px'});
+							$('#textInteraction .btnCloseTextInteraction, #textInteraction .btnNextTextInteraction').css({'height': '120px', 'width': '120px', 'right': '4px', 'top': '16px'});
+							$('#textInteraction .text').css({'height': '160px', 'top': '60px', 'left': '20px', 'padding': '40px 80px 40px 40px'});
+							$('#textInteraction .background-text').css({'height': '408px'});
 						}
 						return $('#' + ID);
 						break;
@@ -551,7 +613,7 @@ function getElement(ID, Class, type) {
 						break;
 					default :
 						// si on trouve toujours rien on créer un élément standard
-						var elem = '<'+type+' id="' + ID + '" class="' + Class + '"></'+type+'>';
+						var elem = '<' + type + ' id="' + ID + '" class="' + Class + '"></' + type + '>';
 						$('body').append(elem);
 						return $('#' + ID);
 						break;
