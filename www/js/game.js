@@ -681,10 +681,40 @@ function loadMap(name) {
 				.html(imgMap);
 		
 		// On ajoute le personnage joueur
-//		var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
-//		if (globalVars['typeScreen'] == 'l') {
-//			
-//		}
+		if(globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined){
+			var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
+			var curseurJoueur = {
+				'posx':joueur.posx+30,
+				'posy':joueur.posy+60,
+			}
+			joueur.height=120;
+			joueur.width=120;
+			joueur.ressource = 'sprites-perso'+globalVars['usePerso'];
+			
+			if (globalVars['typeScreen'] == 'l') {
+				joueur.ressource = joueur.ressource + '-l';
+				joueur.width = joueur.width * globalVars['multipleScreen'];
+				joueur.height = joueur.height * globalVars['multipleScreen'];
+				joueur.posy = joueur.posy * globalVars['multipleScreen'];
+				joueur.posx = joueur.posx * globalVars['multipleScreen'];
+				curseurJoueur.posx = curseurJoueur.posx * globalVars['multipleScreen'];
+				curseurJoueur.posy = curseurJoueur.posy * globalVars['multipleScreen'];
+			}
+			var joueurobj = '<div id="joueur" style="z-index:30;position:absolute;top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;background:url(' + getLocalRessources(joueur.ressource) + ')"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+			if (globalVars['typeScreen'] == 'l') {
+				joueurobj += '-l';
+			}
+			joueurobj += '.png);position:absolute;top:' + curseurJoueur.posy + 'px;left:' + curseurJoueur.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div>';
+			mapWrap.children('div#map').append(joueurobj);
+			getLocalData('ressources/shema-perso'+globalVars['usePerso']);
+			$('#joueur').animateSprite({
+				'columns': 100,
+				'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
+				'animations': globalVars['shema-perso'+globalVars['usePerso']],
+				'loop': true,
+			});
+			$('#joueur').animateSprite('play','X90W');
+		}
 		
 		// On ajoute les points d'interet
 		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
@@ -725,7 +755,7 @@ function loadMap(name) {
 		// Ajout animation des curseur placé par les point d'interet ou les quêtes
 		$('.curseur').animateSprite({
 			'columns': 18,
-			'fps': 8,
+			'fps': 12,
 			'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
 			'loop': true,
 		});

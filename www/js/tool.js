@@ -32,60 +32,10 @@ function var_dump(obj) {
 function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFile, paramsForGet) {
 	if (device.platform == 'web') {
 		if (FILE == 'ressources/z1m1json') {
-			var mapjson = {
-				'posx': -1000,
-				'posy': -830,
-				'width': 3840,
-				'height': 2160,
-				'ressource': 'z1m1',
-				'joueur': {
-					'posx': 100,
-					'posy': 110,
-					'direction': 'X0',
-					'width': 120,
-					'height': 120,
-				},
-				'interets': {
-					'Paul': {
-						'posx': 900,
-						'posy': 1000,
-						'ressource': 'sprites-paul',
-						'shema': 'shema-paul',
-						'width': 120,
-						'height': 120,
-						'action': {
-							'posx': 930,
-							'posy': 1060,
-							'fct': "interaction('paul')",
-						},
-						'joueur': {
-							'posx': 1000,
-							'posy': 1100,
-							'direction': 'X22'
-						}
-					},
-					"Jean-Paul": {
-						"posx": 1550,
-						"posy": 1320,
-						"ressource": "sprites-paul",
-						"shema": "shema-paul",
-						"width": 120,
-						"height": 120,
-						"action": {
-							"posx": 1580,
-							"posy": 1380,
-							"fct": "interaction('paul')"
-						},
-						'joueur': {
-							'posx': 1500,
-							'posy': 1300,
-							'direction': 'X22'
-						}
-					}
-				}
-			}
 			globalVars['z1m1json'] = mapjson;
-
+		}
+		if (FILE == 'ressources/shema-perso1') {
+			globalVars['shema-perso1'] = shemaperso1;
 		}
 		if (callback) {
 			callback();
