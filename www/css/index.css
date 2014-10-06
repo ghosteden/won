@@ -661,3 +661,12 @@ canvas{
 	background-position: bottom left;
 	opacity:0;
 }
+.sprite, .curseur{
+	z-index:30;
+	position:absolute;
+	top:0;
+	left:0;
+}
+ .curseur{
+	z-index:29;
+ }

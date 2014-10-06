@@ -9,6 +9,7 @@ ressources['z1m1'] = {'name': 'z1m1.jpg', 'type': 'image', 'size': '44697', 'pat
 
 //sprite perso 1
 ressources['sprites-perso1'] = {'name': 'sprites-perso1.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/perso/sprite'};
+ressources['sprites-perso1-l'] = {'name': 'sprites-perso1-l.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/perso/sprite'};
 ressources['shema-perso1'] = {'name': 'shema-perso1.json', 'size': '3785060', 'path': 'ressources/perso/shema'};
 ressources['portrait-perso1-1'] = {'name': 'portrait-perso1-1.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
 ressources['portrait-perso1-2'] = {'name': 'portrait-perso1-2.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
@@ -32,8 +33,6 @@ var mapjson = {
 		'posx': 1260,
 		'posy': 1090,
 		'direction': 'X0',
-		'width': 120,
-		'height': 120,
 	},
 	'interets': {
 		'Paul': {
@@ -44,9 +43,15 @@ var mapjson = {
 			'width': 120,
 			'height': 120,
 			'action': {
-				'posx': 930,
-				'posy': 1060,
+				'posx': 30,
+				'posy': 60,
 				'fct': "interaction('paul')",
+				"hitbox":{
+					"x":0,
+					"y":0,
+					"h":120,
+					"w":120,
+				}
 			},
 			'joueur': {
 				'posx': 1000,
@@ -62,14 +67,20 @@ var mapjson = {
 			"width": 120,
 			"height": 120,
 			"action": {
-				"posx": 1580,
-				"posy": 1380,
-				"fct": "interaction('paul')"
+				"posx": 30,
+				"posy": 60,
+				"fct": "interaction('paul')",
+				"hitbox":{
+					"x":0,
+					"y":0,
+					"h":120,
+					"w":120,
+				}
 			},
 			'joueur': {
 				'posx': 1500,
 				'posy': 1300,
-				'direction': 'X22'
+				'direction': 'X-45'
 			}
 		}
 	}

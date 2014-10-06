@@ -697,23 +697,21 @@ function loadMap(name) {
 				joueur.height = joueur.height * globalVars['multipleScreen'];
 				joueur.posy = joueur.posy * globalVars['multipleScreen'];
 				joueur.posx = joueur.posx * globalVars['multipleScreen'];
-				curseurJoueur.posx = curseurJoueur.posx * globalVars['multipleScreen'];
-				curseurJoueur.posy = curseurJoueur.posy * globalVars['multipleScreen'];
 			}
-			var joueurobj = '<div id="joueur" style="z-index:30;position:absolute;top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;background:url(' + getLocalRessources(joueur.ressource) + ')"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;"><div class="sprite" style="width:' + joueur.width + 'px;height:' + joueur.height + 'px;background:url(' + getLocalRessources(joueur.ressource) + ')"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 			if (globalVars['typeScreen'] == 'l') {
 				joueurobj += '-l';
 			}
-			joueurobj += '.png);position:absolute;top:' + curseurJoueur.posy + 'px;left:' + curseurJoueur.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div>';
+			joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 			mapWrap.children('div#map').append(joueurobj);
 			getLocalData('ressources/shema-perso'+globalVars['usePerso']);
-			$('#joueur').animateSprite({
+			$('#joueur .sprite').animateSprite({
 				'columns': 100,
 				'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
 				'animations': globalVars['shema-perso'+globalVars['usePerso']],
 				'loop': true,
 			});
-			$('#joueur').animateSprite('play','X90W');
+			$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
 		}
 		
 		// On ajoute les points d'interet
@@ -730,22 +728,28 @@ function loadMap(name) {
 					if (obj.action != undefined) {
 						obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
 						obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
+						if (obj.action.hitbox != undefined) {
+							obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
+							obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
+							obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
+							obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
+						}
 					}
 				}
 			}
-			var objectInteret = '<div id="' + interet + '" style="z-index:30;position:absolute;top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"';
+			var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
 			if (obj.action != undefined) {
-				objectInteret += ' onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+				objectInteret += '<div class="hitbox" style="position:absolute;top:'+obj.action.hitbox.x+'px;left:'+obj.action.hitbox.y+'px;width:'+obj.action.hitbox.w+'px;height:'+obj.action.hitbox.h+'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
 				if (globalVars['typeScreen'] == 'l') {
 					objectInteret += '-l';
 				}
-				objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"';
+				objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;">';
 			}
-			objectInteret += '></div>';
+			objectInteret += '</div></div>';
 			// on ajoute les animations des points d'interet
 			/* @fixme : a gérer les aniamtions par rapport au shema */
 			mapWrap.children('div#map').append(objectInteret);
-			$('#' + interet).animateSprite({
+			$('#' + interet+' .sprite').animateSprite({
 				'columns': 100,
 				'fps': 12,
 				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
