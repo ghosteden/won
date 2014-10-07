@@ -680,6 +680,8 @@ function loadMap(name) {
 				})
 				.html(imgMap);
 		alert('1');
+		var_dump(globalVars[globalVars['curentMap'] + 'json']);
+		var_dump(globalVars[globalVars['curentMap'] + 'json']['joueur']);
 		// On ajoute le personnage joueur
 		if(globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined){
 		alert('2');
