@@ -24,39 +24,39 @@ ressources['shema-paul'] = {'name': 'shema-paul.json', 'size': '3785060', 'path'
 
 
 var mapjson = {
-	'posx': -1000,
-	'posy': -830,
-	'width': 3840,
-	'height': 2160,
-	'ressource': 'z1m1',
-	'joueur': {
-		'posx': 1260,
-		'posy': 1090,
-		'direction': 'X0',
+	"posx": -1000,
+	"posy": -830,
+	"width": 3840,
+	"height": 2160,
+	"ressource": "z1m1",
+	"joueur": {
+		"posx": 1260,
+		"posy": 1090,
+		"direction": "X0"
 	},
-	'interets': {
-		'Paul': {
-			'posx': 900,
-			'posy': 1000,
-			'ressource': 'sprites-paul',
-			'shema': 'shema-paul',
-			'width': 120,
-			'height': 120,
-			'action': {
-				'posx': 30,
-				'posy': 60,
-				'fct': "interaction('paul')",
+	"interets": {
+		"Paul": {
+			"posx": 900,
+			"posy": 1000,
+			"ressource": "sprites-paul",
+			"shema": "shema-paul",
+			"width": 120,
+			"height": 120,
+			"action": {
+				"posx": 30,
+				"posy": 60,
+				"fct": "interaction('paul')",
 				"hitbox":{
 					"x":0,
 					"y":0,
 					"h":120,
-					"w":120,
+					"w":120
 				}
 			},
-			'joueur': {
-				'posx': 840,
-				'posy': 1040,
-				'direction': 'XM45W'
+			"joueur": {
+				"posx": 840,
+				"posy": 1040,
+				"direction": "XM45W"
 			}
 		},
 		"Jean-Paul": {
@@ -74,13 +74,13 @@ var mapjson = {
 					"x":0,
 					"y":0,
 					"h":120,
-					"w":120,
+					"w":120
 				}
 			},
-			'joueur': {
-				'posx': 1500,
-				'posy': 1300,
-				'direction': 'XM45W'
+			"joueur": {
+				"posx": 1500,
+				"posy": 1300,
+				"direction": "XM45W"
 			}
 		}
 	}
