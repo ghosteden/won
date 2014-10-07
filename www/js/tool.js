@@ -41,11 +41,13 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			callback();
 		}
 	} else {
+		alert('91');
 		var dataDefault = dataDefault || '';
 		var distantFile = distantFile || '';
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
 			fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
 				fileEntry.file(function(file) {
+		alert('92');
 					var reader = new FileReader();
 					var testNameFile = FILE.lastIndexOf('/');
 					var NAMEFILE = testNameFile >= 0 ? FILE.substring(testNameFile + 1) : FILE;
@@ -56,15 +58,18 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							 * Si le paramètre dataDefault est remplit on créer le fichier avec ces données
 							 * Sinon on fait une requette au serveur pour récupéré le fichier équivalant
 							 */
+		alert('93');
 							if (dataDefault != '') {
 								globalVars[NAMEFILE] = dataDefault;
 								if (callbackIfNotExist) {
 									callbackIfNotExist();
 								} else {
+		alert('94');
 									// la fonction recordData() va se charger de l'ecriture des donées
 									recordLocalData(FILE, globalVars[NAMEFILE]);
 								}
 							} else {
+		alert('95');
 								//faire la requette ajax pour récup les données
 								$.get(distantFile, paramsForGet,
 										function(data) {
@@ -77,7 +82,9 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 										});
 							}
 						} else {
+		alert('96');
 							try {
+		alert('97');
 								globalVars[NAMEFILE] = JSON.parse(evt.target.result);
 							} catch (e) {
 								var_dump(e);
