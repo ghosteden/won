@@ -680,8 +680,6 @@ function loadMap(name) {
 				})
 				.html(imgMap);
 		alert('1');
-		var_dump(globalVars[globalVars['curentMap'] + 'json']);
-		var_dump(globalVars[globalVars['curentMap'] + 'json']['joueur']);
 		// On ajoute le personnage joueur
 		if(globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined){
 		alert('2');
@@ -709,15 +707,21 @@ function loadMap(name) {
 			}
 		alert('5');
 			joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
+			
+		alert('6');
 			mapWrap.children('div#map').append(joueurobj);
+			
+		alert('7');
 			getLocalData('ressources/shema-perso'+globalVars['usePerso']);
+			
+		alert('8');
 			$('#joueur .sprite').animateSprite({
 				'columns': 100,
 				'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
 				'animations': globalVars['shema-perso'+globalVars['usePerso']],
 				'loop': true,
 			});
-		alert('6');
+		alert('9');
 			$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
 		}
 		
