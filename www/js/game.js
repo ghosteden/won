@@ -716,7 +716,7 @@ function loadMap(name) {
 			
 		alert('8');
 			var_dump(globalVars['shema-perso'+globalVars['usePerso']].fps);
-			var_dump(globalVars['shema-perso'+globalVars['usePerso']);
+			var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
 			$('#joueur .sprite').animateSprite({
 				'columns': 100,
 				'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
