@@ -54,9 +54,9 @@ var mapjson = {
 				}
 			},
 			'joueur': {
-				'posx': 1000,
-				'posy': 1100,
-				'direction': 'X22'
+				'posx': 840,
+				'posy': 1040,
+				'direction': 'XM45W'
 			}
 		},
 		"Jean-Paul": {
@@ -80,13 +80,15 @@ var mapjson = {
 			'joueur': {
 				'posx': 1500,
 				'posy': 1300,
-				'direction': 'X-45'
+				'direction': 'XM45W'
 			}
 		}
 	}
 };
 
 var shemaperso1 = {
+	"fps":10,
+	"start":"X90W",
     "X0":[5,6,7,8,9,10,11,12,13,14],
 	"X0S":[0,1,2],
 	"X0E":[18,19],

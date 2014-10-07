@@ -17,7 +17,8 @@ function interaction(name) {
 				case 1:
 					var blurAll = getElement('blurall');
 					blurAll.fadeIn(300, function() {
-						repositionJoueur('Paul');
+				// on repositione le joueur
+				repositionJoueur('Paul');
 						//affichage ici de l'image de fond
 						getElement('portraitD1','portraitD','img').attr({
 							//image de paul
@@ -61,6 +62,8 @@ function interaction(name) {
 		case 'paulAttend1':
 			var blurAll = getElement('blurall');
 			blurAll.fadeIn(300, function() {
+				// on repositione le joueur
+				repositionJoueur('Paul');
 				//affichage ici de l'image de fond
 				getElement('portraitD1','portraitD','img').attr({
 					//image de paul
@@ -123,6 +126,7 @@ function repositionJoueur(interet){
 		'top':obj.joueur.posy * globalVars['multipleScreen'],
 		'left':obj.joueur.posx * globalVars['multipleScreen'],
 	});
+	$('#joueur .sprite').animateSprite('play',obj.joueur.direction);
 }
 
 function openTextInteraction($text, $btn, $callback) {
