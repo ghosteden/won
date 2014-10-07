@@ -679,7 +679,7 @@ function loadMap(name) {
 					'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
 				})
 				.html(imgMap);
-		
+		alert('1');
 		// On ajoute le personnage joueur
 		if(globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined){
 			var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
@@ -714,6 +714,7 @@ function loadMap(name) {
 			$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
 		}
 		
+		alert('2');
 		// On ajoute les points d'interet
 		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
 			var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
@@ -756,6 +757,7 @@ function loadMap(name) {
 				'loop': true,
 			});
 		}
+		alert('3');
 		// Ajout animation des curseur placé par les point d'interet ou les quêtes
 		$('.curseur').animateSprite({
 			'columns': 18,
@@ -763,6 +765,7 @@ function loadMap(name) {
 			'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
 			'loop': true,
 		});
+		alert('4');
 		mapWrap.fadeIn();
 	});
 }
