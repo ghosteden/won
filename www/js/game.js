@@ -715,6 +715,8 @@ function loadMap(name) {
 			getLocalData('ressources/shema-perso'+globalVars['usePerso']);
 			
 		alert('8');
+		alert('shema-perso'+globalVars['usePerso']);
+		var_dump(globalVars);
 			var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
 			var_dump(globalVars['shema-perso'+globalVars['usePerso']].fps);
 			$('#joueur .sprite').animateSprite({
