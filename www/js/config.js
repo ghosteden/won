@@ -13,7 +13,7 @@ globalVars['urlServeur'] = "http://worldofnemesis.com/game_wLtx9lRa6NSWOz3OfLEe"
 
 //Dosssier local des ressources
 globalVars['ressourcesPath'] = 'ressources';
-
+ 
 // url de versification de version
 globalVars['urlTestVersion'] = "http://worldofnemesis.com/game_wLtx9lRa6NSWOz3OfLEe/version.php";
 
