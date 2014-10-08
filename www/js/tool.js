@@ -94,6 +94,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 				});
 			});
 		});
+		waitLoading()
 	}
 }
 
