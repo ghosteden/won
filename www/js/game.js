@@ -661,115 +661,110 @@ function loadMap(name) {
 
 	// on récupère l'objet json map
 	getLocalData('ressources/' + name + 'json', function() {
-		// Recalcul si ecran large
-		if (globalVars['typeScreen'] == 'l') {
-			globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
-			globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
-			globalVars[globalVars['curentMap'] + 'json'].posy = globalVars[globalVars['curentMap'] + 'json'].posy * globalVars['multipleScreen'];
-			globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
-		}
-		mapWrap = getElement('mapWrap');
-		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
-		mapWrap
-				.children('div#map')
-				.css({
-					'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
-					'height': globalVars[globalVars['curentMap'] + 'json'].height + 'px',
-					'top': globalVars[globalVars['curentMap'] + 'json'].posy + 'px',
-					'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
-				})
-				.html(imgMap);
-		// On ajoute le personnage joueur
-		if(globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined){
-			var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
-			var curseurJoueur = {
-				'posx':joueur.posx+30,
-				'posy':joueur.posy+60,
-			}
-			joueur.height=120;
-			joueur.width=120;
-			joueur.ressource = 'sprites-perso'+globalVars['usePerso'];
-			
+		getLocalData('ressources/shema-perso' + globalVars['usePerso'], function() {
+			// Recalcul si ecran large
 			if (globalVars['typeScreen'] == 'l') {
-				joueur.ressource = joueur.ressource + '-l';
-				joueur.width = joueur.width * globalVars['multipleScreen'];
-				joueur.height = joueur.height * globalVars['multipleScreen'];
-				joueur.posy = joueur.posy * globalVars['multipleScreen'];
-				joueur.posx = joueur.posx * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].posy = globalVars[globalVars['curentMap'] + 'json'].posy * globalVars['multipleScreen'];
+				globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
 			}
-			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;"><div class="sprite" style="width:' + joueur.width + 'px;height:' + joueur.height + 'px;background:url(' + getLocalRessources(joueur.ressource) + ')"></div><div class="curseur" style="background:url(./img/sprites-curseur'
-			if (globalVars['typeScreen'] == 'l') {
-				joueurobj += '-l';
-			}
-			joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
-			
-			mapWrap.children('div#map').append(joueurobj);
-			alert('1');
-			getLocalData('ressources/shema-perso'+globalVars['usePerso'], function(){
-				alert('2');
+			mapWrap = getElement('mapWrap');
+			var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].ressource) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
+			mapWrap
+					.children('div#map')
+					.css({
+						'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
+						'height': globalVars[globalVars['curentMap'] + 'json'].height + 'px',
+						'top': globalVars[globalVars['curentMap'] + 'json'].posy + 'px',
+						'left': globalVars[globalVars['curentMap'] + 'json'].posx + 'px'
+					})
+					.html(imgMap);
+			// On ajoute le personnage joueur
+			if (globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined) {
+				var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
+				var curseurJoueur = {
+					'posx': joueur.posx + 30,
+					'posy': joueur.posy + 60,
+				}
+				joueur.height = 120;
+				joueur.width = 120;
+				joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
+
+				if (globalVars['typeScreen'] == 'l') {
+					joueur.ressource = joueur.ressource + '-l';
+					joueur.width = joueur.width * globalVars['multipleScreen'];
+					joueur.height = joueur.height * globalVars['multipleScreen'];
+					joueur.posy = joueur.posy * globalVars['multipleScreen'];
+					joueur.posx = joueur.posx * globalVars['multipleScreen'];
+				}
+				var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;"><div class="sprite" style="width:' + joueur.width + 'px;height:' + joueur.height + 'px;background:url(' + getLocalRessources(joueur.ressource) + ')"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+				if (globalVars['typeScreen'] == 'l') {
+					joueurobj += '-l';
+				}
+				joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
+
+				mapWrap.children('div#map').append(joueurobj);
 				$('#joueur .sprite').animateSprite({
 					'columns': 100,
-					'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
-					'animations': globalVars['shema-perso'+globalVars['usePerso']],
+					'fps': globalVars['shema-perso' + globalVars['usePerso']].fps,
+					'animations': globalVars['shema-perso' + globalVars['usePerso']],
 					'loop': true,
 				});
-				alert('3');
-				$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
-				alert('4');
-			});
-				alert('5');
-			
-		}
-		
-		// On ajoute les points d'interet
-		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
-			var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
-			if (obj.ressource.indexOf('sprites') >= 0) {
-				// on redéfini les taille si on est sur écran large
-				if (globalVars['typeScreen'] == 'l') {
-					obj.ressource = obj.ressource + '-l';
-					obj.width = obj.width * globalVars['multipleScreen'];
-					obj.height = obj.height * globalVars['multipleScreen'];
-					obj.posy = obj.posy * globalVars['multipleScreen'];
-					obj.posx = obj.posx * globalVars['multipleScreen'];
-					if (obj.action != undefined) {
-						obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
-						obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
-						if (obj.action.hitbox != undefined) {
-							obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
-							obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
-							obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
-							obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
+				$('#joueur .sprite').animateSprite('play', globalVars['shema-perso' + globalVars['usePerso']].start);
+
+			}
+
+			// On ajoute les points d'interet
+			for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
+				var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
+				if (obj.ressource.indexOf('sprites') >= 0) {
+					// on redéfini les taille si on est sur écran large
+					if (globalVars['typeScreen'] == 'l') {
+						obj.ressource = obj.ressource + '-l';
+						obj.width = obj.width * globalVars['multipleScreen'];
+						obj.height = obj.height * globalVars['multipleScreen'];
+						obj.posy = obj.posy * globalVars['multipleScreen'];
+						obj.posx = obj.posx * globalVars['multipleScreen'];
+						if (obj.action != undefined) {
+							obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
+							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
+							if (obj.action.hitbox != undefined) {
+								obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
+								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
+								obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
+								obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
+							}
 						}
 					}
 				}
-			}
-			var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
-			if (obj.action != undefined) {
-				objectInteret += '<div class="hitbox" style="position:absolute;top:'+obj.action.hitbox.x+'px;left:'+obj.action.hitbox.y+'px;width:'+obj.action.hitbox.w+'px;height:'+obj.action.hitbox.h+'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
-				if (globalVars['typeScreen'] == 'l') {
-					objectInteret += '-l';
+				var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
+				if (obj.action != undefined) {
+					objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x + 'px;left:' + obj.action.hitbox.y + 'px;width:' + obj.action.hitbox.w + 'px;height:' + obj.action.hitbox.h + 'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
+					if (globalVars['typeScreen'] == 'l') {
+						objectInteret += '-l';
+					}
+					objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;">';
 				}
-				objectInteret += '.png);position:absolute;top:' + obj.action.posy + 'px;left:' + obj.action.posx + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;">';
+				objectInteret += '</div></div>';
+				// on ajoute les animations des points d'interet
+				/* @fixme : a gérer les aniamtions par rapport au shema */
+				mapWrap.children('div#map').append(objectInteret);
+				$('#' + interet + ' .sprite').animateSprite({
+					'columns': 100,
+					'fps': 12,
+					'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
+					'loop': true,
+				});
 			}
-			objectInteret += '</div></div>';
-			// on ajoute les animations des points d'interet
-			/* @fixme : a gérer les aniamtions par rapport au shema */
-			mapWrap.children('div#map').append(objectInteret);
-			$('#' + interet+' .sprite').animateSprite({
-				'columns': 100,
+			// Ajout animation des curseur placé par les point d'interet ou les quêtes
+			$('.curseur').animateSprite({
+				'columns': 18,
 				'fps': 12,
-				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
+				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
 				'loop': true,
 			});
-		}
-		// Ajout animation des curseur placé par les point d'interet ou les quêtes
-		$('.curseur').animateSprite({
-			'columns': 18,
-			'fps': 12,
-			'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
-			'loop': true,
+			mapWrap.fadeIn();
 		});
-		mapWrap.fadeIn();
 	});
 }
