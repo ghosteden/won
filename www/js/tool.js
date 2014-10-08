@@ -41,6 +41,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			callback();
 		}
 	} else {
+		globalVars['loadingFile'] = true;
 		var dataDefault = dataDefault || '';
 		var distantFile = distantFile || '';
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
@@ -78,7 +79,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							}
 						} else {
 							try {
-		var_dump(JSON.parse(evt.target.result));
 								globalVars[NAMEFILE] = JSON.parse(evt.target.result);
 							} catch (e) {
 								var_dump(e);
@@ -87,12 +87,19 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							if (callback) {
 								callback();
 							}
+							globalVars['loadingFile'] = true;
 						}
 					};
 					reader.readAsText(file);
 				});
 			});
 		});
+	}
+}
+
+function waitLoading() {
+	if (globalVars['loadingFile']) {
+		waitLoading();
 	}
 }
 

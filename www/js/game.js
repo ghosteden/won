@@ -706,7 +706,6 @@ function loadMap(name) {
 			mapWrap.children('div#map').append(joueurobj);
 			
 			getLocalData('ressources/shema-perso'+globalVars['usePerso']);
-			alert('1');
 			var_dump(globalVars['shema-perso'+globalVars['usePerso']]);
 			$('#joueur .sprite').animateSprite({
 				'columns': 100,
@@ -714,9 +713,7 @@ function loadMap(name) {
 				'animations': globalVars['shema-perso'+globalVars['usePerso']],
 				'loop': true,
 			});
-			alert('2');
 			$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
-			alert('3');
 		}
 		
 		// On ajoute les points d'interet
