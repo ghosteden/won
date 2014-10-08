@@ -6,7 +6,7 @@ function interaction(name) {
 			//vidéo d'arriver du tuto
 			interaction('firstDialogue');
 			break;
-		case 'firstDialogue':
+        case 'firstDialogue':
 			openTextInteraction(lang('tutoFirstDialogue'), 'Close');
 			break;
 		case 'paul':
