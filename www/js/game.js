@@ -703,7 +703,7 @@ function loadMap(name) {
 					joueurobj += '-l';
 				}
 				joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
-alert(globalVars['shema-perso' + globalVars['usePerso']]);
+
 				mapWrap.children('div#map').append(joueurobj);
 				$('#joueur .sprite').animateSprite({
 					'columns': 100,
@@ -715,8 +715,10 @@ alert(globalVars['shema-perso' + globalVars['usePerso']]);
 
 			}
 
+alert('1');
 			// On ajoute les points d'interet
 			for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
+alert('2');
 				var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
 				if (obj.ressource.indexOf('sprites') >= 0) {
 					// on redéfini les taille si on est sur écran large
@@ -738,6 +740,7 @@ alert(globalVars['shema-perso' + globalVars['usePerso']]);
 						}
 					}
 				}
+alert('3');
 				var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
 				if (obj.action != undefined) {
 					objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x + 'px;left:' + obj.action.hitbox.y + 'px;width:' + obj.action.hitbox.w + 'px;height:' + obj.action.hitbox.h + 'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
@@ -757,6 +760,7 @@ alert(globalVars['shema-perso' + globalVars['usePerso']]);
 					'loop': true,
 				});
 			}
+alert('4');
 			// Ajout animation des curseur placé par les point d'interet ou les quêtes
 			$('.curseur').animateSprite({
 				'columns': 18,
@@ -764,6 +768,7 @@ alert(globalVars['shema-perso' + globalVars['usePerso']]);
 				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
 				'loop': true,
 			});
+alert('5');
 			mapWrap.fadeIn();
 		});
 	});
