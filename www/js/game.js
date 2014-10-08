@@ -721,17 +721,18 @@ alert('1');
 alert('2');
 				var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
 				if (obj.ressource.indexOf('sprites') >= 0) {
+					alert('3');
 					// on redéfini les taille si on est sur écran large
-					if (globalVars['typeScreen'] == 'l') {
+					if (globalVars['typeScreen'] == 'l') {alert('4');
 						obj.ressource = obj.ressource + '-l';
 						obj.width = obj.width * globalVars['multipleScreen'];
 						obj.height = obj.height * globalVars['multipleScreen'];
 						obj.posy = obj.posy * globalVars['multipleScreen'];
 						obj.posx = obj.posx * globalVars['multipleScreen'];
-						if (obj.action != undefined) {
+						if (obj.action != undefined) {alert('5');
 							obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
 							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
-							if (obj.action.hitbox != undefined) {
+							if (obj.action.hitbox != undefined) {alert('6');
 								obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
 								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
 								obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
