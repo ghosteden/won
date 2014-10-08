@@ -703,7 +703,7 @@ function loadMap(name) {
 					joueurobj += '-l';
 				}
 				joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
-
+alert(globalVars['shema-perso' + globalVars['usePerso']]);
 				mapWrap.children('div#map').append(joueurobj);
 				$('#joueur .sprite').animateSprite({
 					'columns': 100,
