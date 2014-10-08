@@ -87,7 +87,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							if (callback) {
 								callback();
 							}
-							globalVars['loadingFile'] = true;
+							globalVars['loadingFile'] = false;
 						}
 					};
 					reader.readAsText(file);
