@@ -732,16 +732,18 @@ alert('2');
 						if (obj.action != undefined) {alert('5');
 							obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
 							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
-							if (obj.action.hitbox != undefined) {alert('6');
+							if (obj.action.hitbox != undefined) {
+								alert('6');
 								obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
 								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
 								obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
 								obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
+								alert('7');
 							}
-						}
-					}
+						}alert('8');
+					}alert('9');
 				}
-alert('3');
+alert('10');
 				var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
 				if (obj.action != undefined) {
 					objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x + 'px;left:' + obj.action.hitbox.y + 'px;width:' + obj.action.hitbox.w + 'px;height:' + obj.action.hitbox.h + 'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
