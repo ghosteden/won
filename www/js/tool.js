@@ -41,10 +41,10 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			callback();
 		}
 	} else {
-		globalVars['loadingFile'] = true;
 		var dataDefault = dataDefault || '';
 		var distantFile = distantFile || '';
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+			globalVars['loadingFile'] = true;
 			fileSystem.root.getFile(globalVars['localStoragePath'] + FILE + ".json", {create: true, exclusive: false}, function(fileEntry) {
 				fileEntry.file(function(file) {
 					var reader = new FileReader();
@@ -83,13 +83,11 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							} catch (e) {
 								var_dump(e);
 							}
+							globalVars['loadingFile'] = false;
 							// Si le paramètre collback exist on l'appel
 							if (callback) {
 								callback();
 							}
-							alert(globalVars['loadingFile']);
-							globalVars['loadingFile'] = false;
-							alert(globalVars['loadingFile']);
 						}
 					};
 					reader.readAsText(file);
