@@ -102,9 +102,11 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 
 function waitLoading() {
 	alert('1');
-							alert(globalVars['loadingFile']);
+	if (globalVars['loadingFile'] != undefined) {
+		alert(globalVars['loadingFile']);
+	}
 	if (globalVars['loadingFile']) {
-	alert('2');
+		alert('2');
 		waitLoading();
 	}
 	alert('3');
