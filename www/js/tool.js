@@ -41,7 +41,6 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 			callback();
 		}
 	} else {
-		alert('91');
 		var dataDefault = dataDefault || '';
 		var distantFile = distantFile || '';
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
@@ -79,7 +78,7 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 							}
 						} else {
 							try {
-		alert(JSON.parse(evt.target.result));
+		var_dump(JSON.parse(evt.target.result));
 								globalVars[NAMEFILE] = JSON.parse(evt.target.result);
 							} catch (e) {
 								var_dump(e);

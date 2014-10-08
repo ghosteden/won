@@ -706,14 +706,16 @@ function loadMap(name) {
 			mapWrap.children('div#map').append(joueurobj);
 			
 			getLocalData('ressources/shema-perso'+globalVars['usePerso']);
-			
+			alert('1');
 			$('#joueur .sprite').animateSprite({
 				'columns': 100,
 				'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
 				'animations': globalVars['shema-perso'+globalVars['usePerso']],
 				'loop': true,
 			});
+			alert('2');
 			$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
+			alert('3');
 		}
 		
 		// On ajoute les points d'interet
