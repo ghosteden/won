@@ -704,16 +704,20 @@ function loadMap(name) {
 			joueurobj += '.png);position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 			
 			mapWrap.children('div#map').append(joueurobj);
-			
+			alert('1');
 			getLocalData('ressources/shema-perso'+globalVars['usePerso'], function(){
+				alert('2');
 				$('#joueur .sprite').animateSprite({
 					'columns': 100,
 					'fps': globalVars['shema-perso'+globalVars['usePerso']].fps,
 					'animations': globalVars['shema-perso'+globalVars['usePerso']],
 					'loop': true,
 				});
+				alert('3');
 				$('#joueur .sprite').animateSprite('play',globalVars['shema-perso'+globalVars['usePerso']].start);
+				alert('4');
 			});
+				alert('5');
 			
 		}
 		
