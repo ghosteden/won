@@ -735,15 +735,18 @@ alert('2');
 							if (obj.action.hitbox != undefined) {
 								alert('6');
 								obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
-								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
-								obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
-								obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
 								alert('7');
+								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
+								alert('8');
+								obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
+								alert('9');
+								obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
+								alert('10');
 							}
-						}alert('8');
-					}alert('9');
+						}alert('11');
+					}alert('12');
 				}
-alert('10');
+alert('13');
 				var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
 				if (obj.action != undefined) {
 					objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x + 'px;left:' + obj.action.hitbox.y + 'px;width:' + obj.action.hitbox.w + 'px;height:' + obj.action.hitbox.h + 'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
@@ -763,7 +766,7 @@ alert('10');
 					'loop': true,
 				});
 			}
-alert('4');
+alert('14');
 			// Ajout animation des curseur placé par les point d'interet ou les quêtes
 			$('.curseur').animateSprite({
 				'columns': 18,
@@ -771,7 +774,7 @@ alert('4');
 				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
 				'loop': true,
 			});
-alert('5');
+alert('15');
 			mapWrap.fadeIn();
 		});
 	});
