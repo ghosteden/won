@@ -734,9 +734,9 @@ alert('2');
 							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
 							if (obj.action.hitbox != undefined) {
 								alert('6');
-								var_dump(globalVars['multipleScreen']);
+								alert(globalVars['multipleScreen']);
 								var_dump(obj.action.hitbox);
-								var_dump(obj.action.hitbox['x']);
+								alert(obj.action.hitbox.x);
 								obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
 								alert('7');
 								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
