@@ -715,41 +715,29 @@ function loadMap(name) {
 
 			}
 
-alert('1');
 			// On ajoute les points d'interet
 			for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
-alert('2');
 				var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
 				if (obj.ressource.indexOf('sprites') >= 0) {
-					alert('3');
 					// on redéfini les taille si on est sur écran large
-					if (globalVars['typeScreen'] == 'l') {alert('4');
+					if (globalVars['typeScreen'] == 'l') {
 						obj.ressource = obj.ressource + '-l';
 						obj.width = obj.width * globalVars['multipleScreen'];
 						obj.height = obj.height * globalVars['multipleScreen'];
 						obj.posy = obj.posy * globalVars['multipleScreen'];
 						obj.posx = obj.posx * globalVars['multipleScreen'];
-						if (obj.action != undefined) {alert('5');
+						if (obj.action != undefined) {
 							obj.action.posx = obj.action.posx * globalVars['multipleScreen'];
 							obj.action.posy = obj.action.posy * globalVars['multipleScreen'];
 							if (obj.action.hitbox != undefined) {
-								alert('6');
-								alert(globalVars['multipleScreen']);
-								var_dump(obj.action.hitbox);
-								alert(obj.action.hitbox.x);
-								obj.action.hitbox.x = obj.hitbox.action.x * globalVars['multipleScreen'];
-								alert('7');
-								obj.action.hitbox.y = obj.hitbox.action.y * globalVars['multipleScreen'];
-								alert('8');
-								obj.action.hitbox.h = obj.hitbox.action.h * globalVars['multipleScreen'];
-								alert('9');
-								obj.action.hitbox.w = obj.hitbox.action.w * globalVars['multipleScreen'];
-								alert('10');
+								obj.action.hitbox.x = obj.action.hitbox.x * globalVars['multipleScreen'];
+								obj.action.hitbox.y = obj.action.hitbox.y * globalVars['multipleScreen'];
+								obj.action.hitbox.h = obj.action.hitbox.h * globalVars['multipleScreen'];
+								obj.action.hitbox.w = obj.action.hitbox.w * globalVars['multipleScreen'];
 							}
-						}alert('11');
-					}alert('12');
+						}
+					}
 				}
-alert('13');
 				var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy + 'px;left:' + obj.posx + 'px; width:' + obj.width + 'px;height:' + obj.height + 'px;"><div class="sprite" style="width:' + obj.width + 'px;height:' + obj.height + 'px;background:url(' + getLocalRessources(obj.ressource) + ')"></div>';
 				if (obj.action != undefined) {
 					objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x + 'px;left:' + obj.action.hitbox.y + 'px;width:' + obj.action.hitbox.w + 'px;height:' + obj.action.hitbox.h + 'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="background:url(./img/sprites-curseur'
@@ -769,7 +757,6 @@ alert('13');
 					'loop': true,
 				});
 			}
-alert('14');
 			// Ajout animation des curseur placé par les point d'interet ou les quêtes
 			$('.curseur').animateSprite({
 				'columns': 18,
@@ -777,7 +764,6 @@ alert('14');
 				'animations': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
 				'loop': true,
 			});
-alert('15');
 			mapWrap.fadeIn();
 		});
 	});
