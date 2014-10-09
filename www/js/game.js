@@ -681,7 +681,7 @@ function loadMap(name) {
 					})
 					.html(imgMap);
 			// On ajoute le personnage joueur
-			if (globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined) {
+			/*if (globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined) {
 				var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
 				var curseurJoueur = {
 					'posx': joueur.posx + 30,
@@ -713,7 +713,7 @@ function loadMap(name) {
 				});
 				$('#joueur .sprite').animateSprite('play', globalVars['shema-perso' + globalVars['usePerso']].start);
 
-			}
+			}*/
 
 			// On ajoute les points d'interet
 			for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
