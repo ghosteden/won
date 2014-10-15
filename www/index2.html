@@ -10,7 +10,7 @@
         <title>World of Nemesis</title>
         <script type="text/javascript" src="./js/config.js"></script>
         <script type="text/javascript" src="./js/jquery.js"></script>
-        <script type="text/javascript" src="./js/jqueryanimatesprite.js"></script>
+        <script type="text/javascript" src="./js/animatesprite.js"></script>
         <script type="text/javascript" src="./js/tool.js"></script>
         <script type="text/javascript" src="./js/game.js"></script>
         <script type="text/javascript" src="./js/ressources.js"></script>
@@ -25,8 +25,8 @@
         <script type="text/javascript">
 			//app.initialize();
 			$(window).load(function() {
-				globalVars['screenW'] = 2000;
-				globalVars['screenH'] = 1000;
+				globalVars['screenW'] = window.width;
+				globalVars['screenH'] = window.height;
 				globalVars['typeScreen'] = 's';
 				globalVars['typeScreen'] = 's';
 				globalVars['multipleScreen'] = 1;
@@ -41,15 +41,20 @@
 
 				device = {'platform': 'web'};
 
-				filesIsOk();
-				getElement('fondmenup').show();
-				getElement('intercom').animate({'left':'0'},function(){
-					menuGame();
-				});
+				/*filesIsOk();
+				 getElement('fondmenup').show();
+				 getElement('intercom').animate({'left':'0'},function(){
+				 menuGame();
+				 });*/
 				//signal('tt');
 				//sceenParams();
 //				didacticiel();
+				getElement('test').css({'background': '#d00', 'position': 'absolute', 'height': '100%', 'width': '100%', 'top': 0, 'left': 0});
+
+//test pour l'animation de sprite redimentionable
 				
+
+				$('#test').animateSprite({src: 'img/sprite-creature.png', sw: '400', sh: '400', nbc: '10', nbl: '1', anims: {'X0': [0,1,2,3,4,5,6,7,8,9]}, fps:10, redim:true})
 			});
         </script>
 	</body>
