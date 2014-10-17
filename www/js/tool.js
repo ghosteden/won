@@ -428,6 +428,12 @@ function getElement(ID, Class, type) {
 						$('body').append(elem);
 						return $('#' + ID);
 						break;
+					case 'textDialogue':
+						var elem = '<div id="' + ID + '"><div class="text"></div><div class="btnClose" ontouchend="closeTextInteraction()" onclick="closeTextInteraction()"></div><div class="btnNext" ontouchend="nextTextInteraction()"></div></div>';
+						$('body').append(elem);
+						return $('#' + ID);
+						
+						break;
 					case 'textInteraction':
 						var elem = '<div id="' + ID + '"><div class="container"><img class="background-text" src="img/textbox/dialoguebox-font.png" width="100%" /><div class="objet-bottom"></div><div class="border-right"></div><div class="border-left"></div><div class="btn-box"><div class="btnCloseTextInteraction" ontouchend="closeTextInteraction()" onclick="closeTextInteraction()"></div><div class="btnNextTextInteraction" ontouchend="nextTextInteraction()"></div></div><div class="text"></div></div></div>';
 						$('body').append(elem);

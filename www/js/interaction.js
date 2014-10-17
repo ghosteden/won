@@ -15,8 +15,8 @@ function interaction(name) {
 			}
 			switch (save[globalVars['gameEmplacement']]['interaction']['paul']) {
 				case 1:
-					var blurAll = getElement('blurall');
-					blurAll.fadeIn(300, function() {
+				var blurDarckAll = getElement('blurDarckAll');
+				blurDarckAll.fadeIn(300, function() {
 				// on repositione le joueur
 				repositionJoueur('Paul');
 						//affichage ici de l'image de fond
@@ -60,8 +60,8 @@ function interaction(name) {
 			}
 			break;
 		case 'paulAttend1':
-			var blurAll = getElement('blurall');
-			blurAll.fadeIn(300, function() {
+			var blurDarckAll = getElement('blurDarckAll');
+			blurDarckAll.fadeIn(300, function() {
 				// on repositione le joueur
 				repositionJoueur('Paul');
 				//affichage ici de l'image de fond
@@ -130,6 +130,23 @@ function repositionJoueur(interet){
 }
 
 function openTextInteraction($text, $btn, $callback) {
+	globalVars['gamePause'] = true;
+	var blurDarckAll = getElement('blurDarckAll');
+	blurDarckAll.fadeIn(300);
+	var textDialogue = getElement('textDialogue');
+	$('#textDialogue div.text').html($text);
+	
+	$('#textDialogue .btn' + $btn).show();
+	if ($callback) {
+		if ($callback.indexOf('closeTextInteraction()') < 0 && $btn == 'Close') {
+			$callback += 'closeTextInteraction();';
+		}
+		$('#textDialogue .btn' + $btn).attr('onclick', $callback);
+		$('#textDialogue .btn' + $btn).attr('ontouchend', $callback);
+	}
+}
+
+function openTextInteractionold($text, $btn, $callback) {
 	globalVars['gamePause'] = true;
 	var blurAll = getElement('blurall');
 	blurAll.fadeIn(300);

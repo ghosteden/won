@@ -25,8 +25,8 @@
         <script type="text/javascript">
 			//app.initialize();
 			$(window).load(function() {
-				globalVars['screenW'] = window.width;
-				globalVars['screenH'] = window.height;
+				globalVars['screenW'] = 1000;
+				globalVars['screenH'] = 500;
 				globalVars['typeScreen'] = 's';
 				globalVars['typeScreen'] = 's';
 				globalVars['multipleScreen'] = 1;
@@ -41,20 +41,20 @@
 
 				device = {'platform': 'web'};
 
-				/*filesIsOk();
+				filesIsOk();
 				 getElement('fondmenup').show();
 				 getElement('intercom').animate({'left':'0'},function(){
 				 menuGame();
-				 });*/
+				 });
 				//signal('tt');
 				//sceenParams();
 //				didacticiel();
-				getElement('test').css({'background': '#d00', 'position': 'absolute', 'height': '100%', 'width': '100%', 'top': 0, 'left': 0});
-
-//test pour l'animation de sprite redimentionable
 				
+//test pour l'animation de sprite redimentionable
+				//getElement('test').css({'background': '#d00', 'position': 'absolute', 'height': '100%', 'width': '100%', 'top': 0, 'left': 0});
 
-				$('#test').animateSprite({src: 'img/sprite-creature.png', sw: '400', sh: '400', nbc: '10', nbl: '1', anims: {'X0': [0,1,2,3,4,5,6,7,8,9]}, fps:10, redim:true})
+
+				//$('#test').animateSprite({src: 'img/sprite-creature.png', sw: '400', sh: '400', nbc: '10', nbl: '1', anims: {'X0': [0,1,2,3,4,5,6,7,8,9]}, fps:10, redim:true})
 			});
         </script>
 	</body>
