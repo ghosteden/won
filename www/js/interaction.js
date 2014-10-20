@@ -94,19 +94,16 @@ function interaction(name) {
 			});
 			break;
 		case 'paulAttend2':
-			$('#textInteraction div.btn-box').animate({'right': '-10%'}, 200, function() {
-				$('#textInteraction .btnNextTextInteraction').hide();
-				$('#textInteraction .btnCloseTextInteraction').show();
-				$('#textInteraction div.btn-box').animate({'right': '0px'}, 200);
-			});
+			$('#textDialogue .btnNext').hide();
+			$('#textDialogue .btnClose').show();
 			var $callback = "$('.portraitD').animate({'right':'-40%', 'opacity':0},function(){$(this).remove()});$('#portraitG4').remove();$('.portraitG').animate({'left':'-40%','opacity':0},function(){$(this).remove();closeTextInteraction();});";
-			$('#textInteraction .btnCloseTextInteraction').attr('onclick', $callback);
-			$('#textInteraction .btnCloseTextInteraction').attr('ontouchend', $callback);
+			$('#textDialogue .btnClose').attr('onclick', $callback);
+			$('#textDialogue .btnClose').attr('ontouchend', $callback);
 			getElement('portraitD2').remove();
 			getElement('portraitG3','portraitG', 'img').attr({
 				'src': getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-3"),
 			}).addClass('flip').css({'opacity':1,'left':0});
-			$('#textInteraction div.text').fadeOut(function(){$('#textInteraction div.text').html(lang('paulattend2')).fadeIn('fast', function() {
+			$('#textDialogue div.text').fadeOut(function(){$('#textDialogue div.text').html(lang('paulattend2')).fadeIn('fast', function() {
 				getElement('portraitG4','portraitG', 'img').addClass('flip').attr({
 					'src': getLocalRessources("portrait-perso" + globalVars['usePerso'] + "-4"),
 				}).css({'opacity':1,'left':0});
@@ -170,6 +167,16 @@ function openTextInteractionold($text, $btn, $callback) {
 }
 
 function closeTextInteraction() {
+	$('#textDialogue div.text').fadeOut();
+	getElement('blurDarckAll').fadeOut(300,function(){
+		globalVars['gamePause'] = false;
+		$('#intercomWrap').animate({'left':'0'},function(){
+			$('.portraitG, .portraitD, #textDialogue, #blurDarckAll').remove();
+		});
+	});
+}
+
+function closeTextInteractionold() {
 	getElement('textInteraction').children('div.container').animate({'bottom': '20px'}, 100, function() {
 		$(this).animate({'bottom': '-200px'}, 300, function() {
 			getElement('textInteraction').remove();
