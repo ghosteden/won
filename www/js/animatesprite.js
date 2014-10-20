@@ -1,4 +1,3 @@
-var animatespritetimer;
 (function($) {
 	$.fn.animateSprite = function(action, animation) {
 		var obj = $(this);
@@ -143,11 +142,12 @@ var animatespritetimer;
 			var anims = JSON.parse(elem.attr('data-anims').replace(/'/g,'"'));
 			switch (action) {
 				case 'play':
-					if(animatespritetimer != undefined){
-						clearTimeout(animatespritetimer);
+					if(elem.attr('data-timer') != undefined){
+						clearTimeout(elem.attr('data-timer'));
 					}
+					elem.attr('data-anim', animation);
+					elem.attr('data-frame', 0);
 					elem.attr('data-play', 1);
-					elem.attr('data-frame', anims[animation][0]);
 					break;
 				case 'stop':
 					elem.attr('data-play', 0);
@@ -162,10 +162,11 @@ var animatespritetimer;
 			}
 			if (elem.attr('data-play') == 1) {
 				var frame = parseInt(elem.attr('data-frame'));
-				var nbCol = parseInt(elem.children('img.spriteSheet').width() / elem.width());
-				var line = parseInt(frame / nbCol);
-				var col = parseInt(frame % nbCol);
 				var anim = elem.attr('data-anim');
+				var position = anims[anim][frame];
+				var nbCol = parseInt(elem.children('img.spriteSheet').width() / elem.width());
+				var line = parseInt(position / nbCol);
+				var col = parseInt(position % nbCol);
 				var left = elem.width() * col * -1;
 				var top = elem.width() * line * -1;
 				elem.children('img.spriteSheet').css({
@@ -177,9 +178,9 @@ var animatespritetimer;
 					frame = 0;
 				}
 				elem.attr('data-frame', frame);
-				animatespritetimer = setTimeout(function() {
+				elem.attr('data-timer', setTimeout(function() {
 					obj.animateSpriteSetFrame();
-				}, 1000 / elem.attr('data-fps'));
+				}, 1000 / elem.attr('data-fps')));
 			}
 		} else {
 			console.log('no action defined')

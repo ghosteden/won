@@ -701,12 +701,12 @@ function loadMap(name) {
 				var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;"><div class="sprite" style="width:' + joueur.width + 'px;height:' + joueur.height + 'px;"></div><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 
 				mapWrap.children('div#map').append(joueurobj);
-//				$('#joueur .sprite').animateSprite({
-//					'columns': 100,
-//					'fps': globalVars['shema-perso' + globalVars['usePerso']].fps,
-//					'animations': globalVars['shema-perso' + globalVars['usePerso']],
-//					'loop': true,
-//				});
+				$('#joueur .sprite').animateSprite({
+					'columns': 100,
+					'fps': globalVars['shema-perso' + globalVars['usePerso']].fps,
+					'animations': globalVars['shema-perso' + globalVars['usePerso']],
+					'loop': true,
+				});
 				$('#joueur .sprite').animateSprite({
 					src: getLocalRessources(joueur.ressource), 
 					sw: '120', 
@@ -751,29 +751,29 @@ function loadMap(name) {
 				objectInteret += '</div></div>';
 				// on ajoute les animations des points d'interet
 				/* @fixme : a gérer les aniamtions par rapport au shema */
-//				mapWrap.children('div#map').append(objectInteret);
-//					$('#'+interet).animateSprite({
-//					src: getLocalRessources(obj.ressource), 
-//					sw: '120', 
-//					sh: '120', 
-//					nbc: '20', 
-//					nbl: '1', 
-//					'anims': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
-//					fps:12, 
-//					redim:true
-//				});
+				mapWrap.children('div#map').append(objectInteret);
+					$('#'+interet).animateSprite({
+					src: getLocalRessources(obj.ressource), 
+					sw: '120', 
+					sh: '120', 
+					nbc: '20', 
+					nbl: '1', 
+					'anims': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]},
+					fps:12, 
+					redim:true
+				});
 			}
 			// Ajout animation des curseur placé par les point d'interet ou les quêtes
-//			$('.curseur').animateSprite({
-//				src: './img/sprites-curseur.png', 
-//				sw: '60', 
-//				sh: '60', 
-//				nbc: '18', 
-//				nbl: '1', 
-//				'anims': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
-//				fps:12, 
-//				redim:true
-//			});
+			$('.curseur').animateSprite({
+				src: './img/sprites-curseur.png', 
+				sw: '60', 
+				sh: '60', 
+				nbc: '18', 
+				nbl: '1', 
+				'anims': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
+				fps:12, 
+				redim:true
+			});
 			mapWrap.fadeIn();
 		});
 	});
