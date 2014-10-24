@@ -167,7 +167,7 @@ function openTextInteractionold($text, $btn, $callback) {
 }
 
 function closeTextInteraction() {
-	$('#textDialogue div.text').fadeOut();
+	$('#textDialogue div.text').fadeOut(100);
 	getElement('blurDarckAll').fadeOut(300,function(){
 		globalVars['gamePause'] = false;
 		$('#intercomWrap').animate({'left':'0'},function(){

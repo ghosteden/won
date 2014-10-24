@@ -197,11 +197,11 @@ LANG_EN['badNewPassword'] = "";
 LANG_FR['tutoFirstDialogue'] = "Bienvenue dans World of Nemesis. Ce monde a été dévasté, ici vous apprendrez les rudiments nécessaire a votre survit. Aller à la rencontre de Paul. Vous le trouverez dans la ville où vous vous situez. Ils sera votre allié durant cette épreuve. Parcourez la ville, et recherchez les différents points d'intérêt. ils sont repérables par ce symbole <img style='vertical-align:middle' width='50' src='./img/cursor-front.png'/>";
 LANG_EN['tutoFirstDialogue'] = "";
 
-LANG_FR['paulfirst'] = "Salut, comment vas l'ami. Si tu viens me voir, je suppose que c'est par ce que tu as décidé de te battre pour je ne sais qu'elle raison. Bref je veux pas le savoir. Tu souhaite te battre il va dabord te faloir un deck. Regarde dans ton intercom je viens de t'envoyer un message avec les infos necessaire pour que tu en est un.";
+LANG_FR['paulfirst'] = "<p style='text-align:right'>- Paul :</p>Salut, comment vas l'ami. Si tu viens me voir, je suppose que c'est par ce que tu as décidé de te battre pour je ne sais qu'elle raison. Bref je veux pas le savoir. Tu souhaite te battre il va dabord te faloir un deck. Regarde dans ton intercom je viens de t'envoyer un message avec les infos necessaire pour que tu en est un.";
 LANG_EN['paulfirst'] = "";
 
-LANG_FR['paulattend'] = "Alors, tu as ton Deck ?... <br/> Non ?!? <br/> Regarde tes messages sur ton intercom ! je t'ai envoyé tout ce dont tu avait besoin pour en récupérer un ! <br/> Reviens me voir quand tu l'aura !";
+LANG_FR['paulattend'] = "<p style='text-align:right'>- Paul :</p>Alors, tu as ton Deck ?... <br/> Non ?!? <br/> Regarde tes messages sur ton intercom ! je t'ai envoyé tout ce dont tu avait besoin pour en récupérer un ! <br/> Reviens me voir quand tu l'aura !";
 LANG_EN['paulattend'] = "";
 
-LANG_FR['paulattend2'] = "<span class='perso'>Ok, je reviendrais !</span>";
+LANG_FR['paulattend2'] = "<span class='perso'><p style='text-align:left'>- Alex :</p>Ok, je reviendrais !</span>";
 LANG_EN['paulattend2'] = "";

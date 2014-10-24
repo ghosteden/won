@@ -69,6 +69,14 @@
 			elem.append(img);
 			//var_dump(action.anims);
 			for (var anim in action.anims) {
+				if(typeof action.anims[anim] == "string" && action.anims[anim].indexOf('-')){
+					var start = action.anims[anim].substr('0', action.anims[anim].indexOf('-'));
+					var stop = action.anims[anim].substr(action.anims[anim].indexOf('-')+1, action.anims[anim].length);
+					action.anims[anim]=[];
+					for (var i=start;i<=stop;i++){
+						action.anims[anim].push(i);
+					}
+				}
 				if ($.isArray(action.anims[anim])) {
 					elem.attr('data-anims', JSON.stringify(action.anims).replace(/"/g,"'"));
 					elem.attr('data-anim', anim);

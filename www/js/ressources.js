@@ -18,26 +18,28 @@ ressources['portrait-perso1-4'] = {'name': 'portrait-perso1-4.png', 'type': 'ima
 ressources['portrait-perso1-5'] = {'name': 'portrait-perso1-5.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
 
 
+ressources['sprites-curseur'] = {'name': 'sprites-curseur.png', 'type': 'image', 'size': '1509952', 'path': 'ressources/game'};
+
 ressources['sprites-paul'] = {'name': 'sprites-paul.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/pnj/sprite'};
 ressources['sprites-paul-l'] = {'name': 'sprites-paul-l.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/pnj/sprite'};
 ressources['shema-paul'] = {'name': 'shema-paul.json', 'size': '3785060', 'path': 'ressources/perso/shema'};
 
 
 var mapjson = {
-	"posx": -1000,
-	"posy": -830,
-	"width": 3840,
-	"height": 2160,
+	"posx": -600,
+	"posy": -300,
+	"width": 2217,
+	"height": 1484,
 	"ressource": "z1m1",
 	"joueur": {
-		"posx": 1260,
-		"posy": 1090,
-		"direction": "X0"
+		"posx": 750,
+		"posy": 560,
+		"direction": "X45W"
 	},
 	"interets": {
 		"Paul": {
-			"posx": 900,
-			"posy": 1000,
+			"posx": 2010,
+			"posy": 990,
 			"ressource": "sprites-paul",
 			"shema": "shema-paul",
 			"width": 120,
@@ -54,32 +56,8 @@ var mapjson = {
 				}
 			},
 			"joueur": {
-				"posx": 840,
-				"posy": 1040,
-				"direction": "XM45W"
-			}
-		},
-		"Jean-Paul": {
-			"posx": 1550,
-			"posy": 1320,
-			"ressource": "sprites-paul",
-			"shema": "shema-paul",
-			"width": 120,
-			"height": 120,
-			"action": {
-				"posx": 30,
-				"posy": 60,
-				"fct": "interaction('paul')",
-				"hitbox":{
-					"x":0,
-					"y":0,
-					"h":120,
-					"w":120
-				}
-			},
-			"joueur": {
-				"posx": 1500,
-				"posy": 1300,
+				"posx": 1960,
+				"posy": 1020,
 				"direction": "XM45W"
 			}
 		}

@@ -717,7 +717,7 @@ function loadMap(name) {
 					fps:globalVars['shema-perso' + globalVars['usePerso']].fps, 
 					redim:true
 				});
-				$('#joueur .sprite').animateSprite('play',"X90W");
+				$('#joueur .sprite').animateSprite('play',globalVars[globalVars['curentMap'] + 'json'].joueur.direction);
 				
 			}
 
@@ -765,12 +765,12 @@ function loadMap(name) {
 			}
 			// Ajout animation des curseur placé par les point d'interet ou les quêtes
 			$('.curseur').animateSprite({
-				src: './img/sprites-curseur.png', 
-				sw: '60', 
-				sh: '60', 
-				nbc: '18', 
+				src: getLocalRessources('sprites-curseur'), 
+				sw: '160', 
+				sh: '160', 
+				nbc: '50', 
 				nbl: '1', 
-				'anims': {'X0': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]},
+				'anims': {'X0': "0-49"},
 				fps:12, 
 				redim:true
 			});
