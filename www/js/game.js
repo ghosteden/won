@@ -692,7 +692,6 @@ function loadMap(name) {
 				joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
 
 				if (globalVars['typeScreen'] == 'l') {
-					joueur.ressource = joueur.ressource + '-l';
 					joueur.width = joueur.width * globalVars['multipleScreen'];
 					joueur.height = joueur.height * globalVars['multipleScreen'];
 					joueur.posy = joueur.posy * globalVars['multipleScreen'];
@@ -701,12 +700,6 @@ function loadMap(name) {
 				var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy + 'px;left:' + joueur.posx + 'px; width:' + joueur.width + 'px;height:' + joueur.height + 'px;"><div class="sprite" style="width:' + joueur.width + 'px;height:' + joueur.height + 'px;"></div><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 
 				mapWrap.children('div#map').append(joueurobj);
-				$('#joueur .sprite').animateSprite({
-					'columns': 100,
-					'fps': globalVars['shema-perso' + globalVars['usePerso']].fps,
-					'animations': globalVars['shema-perso' + globalVars['usePerso']],
-					'loop': true,
-				});
 				$('#joueur .sprite').animateSprite({
 					src: getLocalRessources(joueur.ressource), 
 					sw: '120', 
@@ -727,7 +720,6 @@ function loadMap(name) {
 				if (obj.ressource.indexOf('sprites') >= 0) {
 					// on redéfini les taille si on est sur écran large
 					if (globalVars['typeScreen'] == 'l') {
-						obj.ressource = obj.ressource + '-l';
 						obj.width = obj.width * globalVars['multipleScreen'];
 						obj.height = obj.height * globalVars['multipleScreen'];
 						obj.posy = obj.posy * globalVars['multipleScreen'];
