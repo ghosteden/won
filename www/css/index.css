@@ -14,7 +14,7 @@ body {
     width:100%;
     position: relative;
     color: #fff;
-/*    overflow: hidden;*/
+	/*    overflow: hidden;*/
 }
 .hidden{
     display: none;
@@ -70,6 +70,7 @@ body {
     max-width: 1000px;
     height: 0;
 	font-size: 0.7em;
+	z-index:1001;
 }
 #signal{
     width: 100%;
@@ -721,9 +722,33 @@ canvas{
 	top:0;
 	left:0;
 }
- .curseur{
+.curseur{
 	z-index:29;
- }
- .curseur+div{
+}
+.curseur+div{
 	z-index:30;
- }
+}
+#illuMap{
+	position: absolute;
+	top:0;
+	left:0px;
+	height:100%;
+	width:100%;
+	display: none;
+	z-index:1000;
+}
+#loader{
+	position: absolute;
+	top:0;
+	left:0px;
+	height:1px;
+	width:1px;
+	visibility: hidden;
+}
+#loader img{
+	position: absolute;
+	top:0;
+	left:0px;
+	height:1px;
+	width:1px;
+}

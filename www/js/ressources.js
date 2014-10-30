@@ -4,13 +4,13 @@
  */
 
 // Listes des tableau de ressources avec le path relatif
-ressources['z1m1json'] = {'name': 'z1m1.json', 'type': 'tmx', 'size': '44697', 'path': 'ressources/map'};
+ressources['z1m1json'] = {'name': 'z1m1.json', 'type': 'json', 'size': '44697', 'path': 'ressources/map'};
 ressources['z1m1'] = {'name': 'z1m1.jpg', 'type': 'image', 'size': '44697', 'path': 'ressources/map'};
+ressources['z1m1-min'] = {'name': 'z1m1-min.jpg', 'type': 'image', 'size': '44697', 'path': 'ressources/map'};
 
 //sprite perso 1
 ressources['sprites-perso1'] = {'name': 'sprites-perso1.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/perso/sprite'};
-ressources['sprites-perso1-l'] = {'name': 'sprites-perso1-l.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/perso/sprite'};
-ressources['shema-perso1'] = {'name': 'shema-perso1.json', 'size': '3785060', 'path': 'ressources/perso/shema'};
+ressources['shema-perso1'] = {'name': 'shema-perso1.json', 'type':'json', 'size': '3785060', 'path': 'ressources/perso/shema'};
 ressources['portrait-perso1-1'] = {'name': 'portrait-perso1-1.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
 ressources['portrait-perso1-2'] = {'name': 'portrait-perso1-2.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
 ressources['portrait-perso1-3'] = {'name': 'portrait-perso1-3.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
@@ -21,16 +21,39 @@ ressources['portrait-perso1-5'] = {'name': 'portrait-perso1-5.png', 'type': 'ima
 ressources['sprites-curseur'] = {'name': 'sprites-curseur.png', 'type': 'image', 'size': '1509952', 'path': 'ressources/game'};
 
 ressources['sprites-paul'] = {'name': 'sprites-paul.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/pnj/sprite'};
-ressources['sprites-paul-l'] = {'name': 'sprites-paul-l.png', 'type': 'image', 'size': '3785060', 'path': 'ressources/pnj/sprite'};
-ressources['shema-paul'] = {'name': 'shema-paul.json', 'size': '3785060', 'path': 'ressources/perso/shema'};
+ressources['shema-paul'] = {'name': 'shema-paul.json', 'type':'json', 'size': '3785060', 'path': 'ressources/perso/shema'};
+ressources['portrait-paul-1'] = {'name': 'portrait-perso1-1.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
+ressources['portrait-paul-2'] = {'name': 'portrait-perso1-2.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
+ressources['portrait-paul-3'] = {'name': 'portrait-perso1-3.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
+ressources['portrait-paul-4'] = {'name': 'portrait-perso1-4.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
+ressources['portrait-paul-5'] = {'name': 'portrait-perso1-5.png', 'type': 'image', 'size': '1276482', 'path': 'ressources/perso/portrait'};
 
 
 var mapjson = {
+	"illustration":"z1m1-min",
 	"posx": -600,
 	"posy": -300,
 	"width": 2217,
 	"height": 1484,
-	"ressource": "z1m1",
+	"map": "z1m1",
+	"ressources": [
+		"z1m1",
+		"sprites-paul",
+		"shema-paul",
+		"portrait-paul-1",
+		"portrait-paul-2",
+		"portrait-paul-3",
+		"portrait-paul-4",
+		"portrait-paul-5",
+		"sprites-perso",
+		"shema-perso",
+		"portrait-perso-1",
+		"portrait-perso-2",
+		"portrait-perso-3",
+		"portrait-perso-4",
+		"portrait-perso-5",
+		"sprites-curseur"
+	],
 	"joueur": {
 		"posx": 750,
 		"posy": 560,

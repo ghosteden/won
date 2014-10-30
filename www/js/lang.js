@@ -41,6 +41,9 @@ LANG_EN['appsNeedUpdate'] = "";
 LANG_FR['DLIsLoading'] = "Téléchargement en cours";
 LANG_EN['DLIsLoading'] = "";
 
+LANG_FR['loading'] = "Chargement en cours...";
+LANG_EN['loading'] = "Loading. Please Wait...";
+
 LANG_FR['erreurVerifFiles'] = "Une erreur s'est produite lors de la vérification des fichiers, tenté une réinstallation de votre application, si le problème persiste merci de nous contactez";
 LANG_EN['erreurVerifFiles'] = "";
 
