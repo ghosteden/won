@@ -71,22 +71,15 @@ function loadMap() {
 				.html(imgMap);
 
 		// ajout du perso
-		alert(1);
 		if (globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined) {
-		alert(2);
 			var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
 
-		alert(3);
 			joueur.height = 120;
 			joueur.width = 120;
 			joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
-		alert(4);
 			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy * globalVars['multipleScreen'] + 'px;left:' + joueur.posx * globalVars['multipleScreen'] + 'px; width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"><div class="sprite" style="width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"></div><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 
-		alert(5);
 			mapWrap.children('div#map').append(joueurobj);
-			
-		alert(6);
 			$('#joueur .sprite').animateSprite({
 				src: getLocalRessources(joueur.ressource),
 				sw: '120',
@@ -97,11 +90,8 @@ function loadMap() {
 				fps: globalVars['shema-perso' + globalVars['usePerso']].fps,
 				redim: true
 			});
-			
-		alert(7);
 			$('#joueur .sprite').animateSprite('play', globalVars[globalVars['curentMap'] + 'json'].joueur.direction);
 
-		alert(8);
 		}
 
 		// On ajoute les points d'interets
