@@ -21,10 +21,7 @@ function loadMap() {
 					var loadBar = getElement('', 'loadBar');
 					var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
 					loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
-						alert(1);
-						alert(lang('loading'));
 						divCheckUpdateApps.html(lang('loading')).fadeIn(function() {
-						alert(2);
 
 							//on précharge les éléments
 							for (var load in globalVars[globalVars['curentMap'] + 'json'].ressources) {
@@ -146,10 +143,7 @@ function loadMap() {
 
 function checkEndLaodMap() {
 	nbDo++;
-	alert(endload );
-	alert(nbToDo );
-	alert(nbDo );
-	if (endload && nbToDo == nbDo) {
+	if (endload && nbToDo <= nbDo) {
 		loadMap();
 	}
 }
