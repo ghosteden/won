@@ -647,7 +647,6 @@ function didacticiel() {
 	alert('t');
 	closeIntercom(function() {
 		switchMenu('tuto');
-		loadMap();
 		initialiseGameControle("mapWrap");
 		//interaction('startTuto');
 	});

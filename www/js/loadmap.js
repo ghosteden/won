@@ -2,31 +2,34 @@ var nbToDo = 0;
 var nbDo = 0;
 var endload = false;
 function loadMap() {
-	alert('2');
 	if (!endload) {
-	alert('3');
 		getElement('fondmenup').fadeOut();
 		// On créer les élément pour la map
 		var mapWrap = getElement('mapWrap');
 		var illuMap = getElement('illuMap');
 		var loader = getElement('loader');
 		// on récupère l'objet json map
-	alert('4');
 		getLocalData('ressources/' + globalVars['curentMap'] + 'json', function() {
-	alert('5');
 			$('<img style="visibility:hidden"/>').attr({'src': getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].illustration)}).load(function() {
-				$(this).remove();
+				
+	alert('1');
+	$(this).remove();
+	alert('2');
 				illuMap.css({
 					'background': 'url(' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].illustration) + ') no-repeat center center',
 					'background-size': 'cover',
 				});
+	alert('3');
 				illuMap.fadeIn(function() {
+	alert('4');
 					// L'écran de chargement est afficher avec l'illustration de la map on ajoute la barre de chargement
 					var loadBar = getElement('', 'loadBar');
+	alert('5');
 					var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
 					loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
 						divCheckUpdateApps.html(lang('loading')).fadeIn(function() {
 
+	alert('6');
 							//on précharge les éléments
 							for (var load in globalVars[globalVars['curentMap'] + 'json'].ressources) {
 								nbToDo++;
@@ -52,16 +55,19 @@ function loadMap() {
 			})
 		});
 	} else {
+	alert('7');
 		// On remet les valeurs initial pour le prochain chargement de map
 		nbToDo = 0;
 		nbDo = 0;
 		endload = false;
+	alert('8');
 		if (globalVars['multipleScreen'] != 1) {
 			globalVars[globalVars['curentMap'] + 'json'].width = globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen'];
 			globalVars[globalVars['curentMap'] + 'json'].height = globalVars[globalVars['curentMap'] + 'json'].height * globalVars['multipleScreen'];
 			globalVars[globalVars['curentMap'] + 'json'].posy = globalVars[globalVars['curentMap'] + 'json'].posy * globalVars['multipleScreen'];
 			globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
 		}
+	alert('9');
 		// ajout de la carte
 		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].map) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width  + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
 		mapWrap = getElement('mapWrap');
@@ -74,10 +80,12 @@ function loadMap() {
 				})
 				.html(imgMap);
 
+	alert('10');
 		// ajout du perso
 		if (globalVars[globalVars['curentMap'] + 'json']['joueur'] != undefined) {
 			var joueur = globalVars[globalVars['curentMap'] + 'json']['joueur'];
 
+	alert('11');
 			joueur.height = 120;
 			joueur.width = 120;
 			joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
@@ -98,6 +106,7 @@ function loadMap() {
 
 		}
 
+	alert('12');
 		// On ajoute les points d'interets
 		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
 			var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
@@ -124,6 +133,7 @@ function loadMap() {
 			});
 		}
 
+	alert('13');
 		// Ajout animation des curseur placé par les point d'interet ou les quêtes
 		$('.curseur').animateSprite({
 			src: getLocalRessources('sprites-curseur'),
@@ -136,12 +146,14 @@ function loadMap() {
 			redim: true
 		});
 
+	alert('14');
 		getElement('checkUpdateApps').fadeOut().parent().animate({'height': '0px'}, 500, function() {
 			getElement('illuMap').fadeIn().delay(100).fadeOut(function() {
 				$(this).remove();
 			});
 			$(this).remove();
 		});
+	alert('14');
 	}
 }
 
