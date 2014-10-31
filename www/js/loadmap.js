@@ -21,7 +21,10 @@ function loadMap() {
 					var loadBar = getElement('', 'loadBar');
 					var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
 					loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
+						alert(1);
+						alert(lang('loading'));
 						divCheckUpdateApps.html(lang('loading')).fadeIn(function() {
+						alert(2);
 
 							//on précharge les éléments
 							for (var load in globalVars[globalVars['curentMap'] + 'json'].ressources) {
@@ -79,11 +82,7 @@ function loadMap() {
 			joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
 			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy * globalVars['multipleScreen'] + 'px;left:' + joueur.posx * globalVars['multipleScreen'] + 'px; width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"><div class="sprite" style="width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"></div><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 
-			alert('t');
 			mapWrap.children('div#map').append(joueurobj);
-			alert('t');
-			var_dump($('#joueur .sprite'));
-			alert($('#joueur .sprite').html());
 			$('#joueur .sprite').animateSprite({
 				src: getLocalRessources(joueur.ressource),
 				sw: '120',
@@ -147,6 +146,9 @@ function loadMap() {
 
 function checkEndLaodMap() {
 	nbDo++;
+	alert(endload );
+	alert(nbToDo );
+	alert(nbDo );
 	if (endload && nbToDo == nbDo) {
 		loadMap();
 	}
