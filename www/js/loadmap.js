@@ -79,7 +79,11 @@ function loadMap() {
 			joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
 			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy * globalVars['multipleScreen'] + 'px;left:' + joueur.posx * globalVars['multipleScreen'] + 'px; width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"><div class="sprite" style="width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"></div><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
 
+			alert('t');
 			mapWrap.children('div#map').append(joueurobj);
+			alert('t');
+			var_dump($('#' + interet));
+			alert($('#' + interet).html());
 			$('#joueur .sprite').animateSprite({
 				src: getLocalRessources(joueur.ressource),
 				sw: '120',
@@ -108,8 +112,6 @@ function loadMap() {
 			// on ajoute les animations des points d'interet
 			/* @fixme : a gérer les aniamtions par rapport au shema */
 			mapWrap.children('div#map').append(objectInteret);
-			var_dump($('#' + interet));
-			alert($('#' + interet).html());
 			$('#' + interet).animateSprite({
 				src: getLocalRessources(obj.ressource),
 				sw: '120',
