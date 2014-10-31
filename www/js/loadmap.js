@@ -108,6 +108,8 @@ function loadMap() {
 			// on ajoute les animations des points d'interet
 			/* @fixme : a gérer les aniamtions par rapport au shema */
 			mapWrap.children('div#map').append(objectInteret);
+			var_dump($('#' + interet));
+			alert($('#' + interet).html());
 			$('#' + interet).animateSprite({
 				src: getLocalRessources(obj.ressource),
 				sw: '120',
