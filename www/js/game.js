@@ -644,6 +644,7 @@ function didacticiel() {
 	save[globalVars['gameEmplacement']] = [];
 	save[globalVars['gameEmplacement']]['etape'] = 0;
 	save[globalVars['gameEmplacement']]['interaction'] = [];
+	alert('t');
 	closeIntercom(function() {
 		switchMenu('tuto');
 		loadMap();

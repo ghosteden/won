@@ -2,14 +2,18 @@ var nbToDo = 0;
 var nbDo = 0;
 var endload = false;
 function loadMap() {
+	alert('2');
 	if (!endload) {
+	alert('3');
 		getElement('fondmenup').fadeOut();
 		// On créer les élément pour la map
 		var mapWrap = getElement('mapWrap');
 		var illuMap = getElement('illuMap');
 		var loader = getElement('loader');
 		// on récupère l'objet json map
+	alert('4');
 		getLocalData('ressources/' + globalVars['curentMap'] + 'json', function() {
+	alert('5');
 			$('<img style="visibility:hidden"/>').attr({'src': getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].illustration)}).load(function() {
 				$(this).remove();
 				illuMap.css({
