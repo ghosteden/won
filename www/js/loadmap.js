@@ -10,6 +10,7 @@ function loadMap() {
 		var loader = getElement('loader');
 		// on récupère l'objet json map
 		getLocalData('ressources/' + globalVars['curentMap'] + 'json', function() {
+	alert('0');
 			$('<img style="visibility:hidden"/>').attr({'src': getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].illustration)}).load(function() {
 				
 	alert('1');
