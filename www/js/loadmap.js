@@ -82,8 +82,8 @@ function loadMap() {
 			alert('t');
 			mapWrap.children('div#map').append(joueurobj);
 			alert('t');
-			var_dump($('#' + interet));
-			alert($('#' + interet).html());
+			var_dump($('#joueur .sprite'));
+			alert($('#joueur .sprite').html());
 			$('#joueur .sprite').animateSprite({
 				src: getLocalRessources(joueur.ressource),
 				sw: '120',
