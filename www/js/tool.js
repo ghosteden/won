@@ -1154,11 +1154,12 @@ function onPointerDown(e) {
 
 function onPointerMove(e) {
 	e.preventDefault();
-	if (e.touches !== undefined) {
-		e = e.touches[0];
-	}
+	dump(e.touches);
 	if(e.touches[1] != undefined){
 		alert('t');
+	}
+	if (e.touches !== undefined) {
+		e = e.touches[0];
 	}
 	if (globalVars['touchmap']) {
 		globalVars['lastCtrlX'] = e.clientX;
