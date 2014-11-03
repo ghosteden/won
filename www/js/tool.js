@@ -1157,6 +1157,9 @@ function onPointerMove(e) {
 	if (e.touches !== undefined) {
 		e = e.touches[0];
 	}
+	if(e.touches[1] != undefined){
+		alert('t');
+	}
 	if (globalVars['touchmap']) {
 		globalVars['lastCtrlX'] = e.clientX;
 		globalVars['lastCtrlY'] = e.clientY;
