@@ -432,7 +432,7 @@ function getElement(ID, Class, type) {
 						var elem = '<div id="' + ID + '"><div class="text"></div><div class="btnClose" ontouchend="closeTextInteraction()" onclick="closeTextInteraction()"></div><div class="btnNext" ontouchend="nextTextInteraction()"></div></div>';
 						$('body').append(elem);
 						return $('#' + ID);
-						
+
 						break;
 					case 'textInteraction':
 						var elem = '<div id="' + ID + '"><div class="container"><img class="background-text" src="img/textbox/dialoguebox-font.png" width="100%" /><div class="objet-bottom"></div><div class="border-right"></div><div class="border-left"></div><div class="btn-box"><div class="btnCloseTextInteraction" ontouchend="closeTextInteraction()" onclick="closeTextInteraction()"></div><div class="btnNextTextInteraction" ontouchend="nextTextInteraction()"></div></div><div class="text"></div></div></div>';
@@ -1137,50 +1137,64 @@ function initialiseGameControle(controlleur) {
 			.attr('ontouchstart', 'onPointerDown(event)')
 			.attr('ontouchmove', 'onPointerMove(event)')
 			.attr('ontouchend', 'onPointerUp()')
+			.attr('scroll', 'onScroll(event)')
 			;
 }
 
 function onPointerDown(e) {
 	e.preventDefault();
-	if (e.touches !== undefined) {
-		e = e.touches[0];
+	if (device.platform == 'web') {
+		e.touches[1] = {clientX: 0, clientY: 0}
 	}
-	if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
-		globalVars['touchmap'] = true;
-		globalVars['ctrlX'] = e.clientX;
-		globalVars['ctrlY'] = e.clientY;
+	if (e.touches[1] != undefined) {
+		globalVars['deltaZoom'] = Math.abs((e.touches[1].clientX + e.touches[1].clientY) - (e.touches[0].clientX + e.touches[0].clientY));
+	} else {
+		if (e.touches !== undefined) {
+			e = e.touches[0];
+		}
+		if (!globalVars['gamePause'] && !globalVars['gameFight'] && !globalVars['intercomIsOpen'] && globalVars['inGame']) {
+			globalVars['touchmap'] = true;
+			globalVars['ctrlX'] = e.clientX;
+			globalVars['ctrlY'] = e.clientY;
+		}
 	}
 }
 
 function onPointerMove(e) {
 	e.preventDefault();
-	dump(e.touches);
-	if(e.touches[1] != undefined){
-		alert('t');
+	if (device.platform == 'web') {
+		e.touches[1] = {clientX: 0, clientY: 0}
 	}
-	if (e.touches !== undefined) {
-		e = e.touches[0];
-	}
-	if (globalVars['touchmap']) {
-		globalVars['lastCtrlX'] = e.clientX;
-		globalVars['lastCtrlY'] = e.clientY;
-		var vecteurX = e.clientX - globalVars['ctrlX'];
-		var vecteurY = e.clientY - globalVars['ctrlY'];
-		var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
-		var top = globalVars[globalVars['curentMap'] + 'json'].posy + vecteurY;
-		if (left >= 0)
-			left = 0;
-		if (top >= 0)
-			top = 0;
-		if (left <= (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1)
-			left = (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1;
-		if (top <= (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
-			top = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
+	if (e.touches[1] != undefined) {
+		var deltaZoom = Math.abs((e.touches[1].clientX + e.touches[1].clientY) - (e.touches[0].clientX + e.touches[0].clientY));
+		globalVars['zoomRatio'] = deltaZoom * 100 / globalVars['deltaZoom'];
+		resizeMap();
+		globalVars['deltaZoom'] = deltaZoom;
+	} else {
+		if (e.touches !== undefined) {
+			e = e.touches[0];
+		}
+		if (globalVars['touchmap']) {
+			globalVars['lastCtrlX'] = e.clientX;
+			globalVars['lastCtrlY'] = e.clientY;
+			var vecteurX = e.clientX - globalVars['ctrlX'];
+			var vecteurY = e.clientY - globalVars['ctrlY'];
+			var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
+			var top = globalVars[globalVars['curentMap'] + 'json'].posy + vecteurY;
+			if (left >= 0)
+				left = 0;
+			if (top >= 0)
+				top = 0;
+			if (left <= (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1)
+				left = (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1;
+			if (top <= (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
+				top = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
 
-		$('#map').css({
-			'left': left + 'px',
-			'top': top + 'px',
-		});
+			$('#map').css({
+				'left': left + 'px',
+				'top': top + 'px',
+			});
+		}
 	}
 }
 
@@ -1192,4 +1206,32 @@ function onPointerUp() {
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;
 	}
+}
+
+function resizeMap() {
+	//dump(globalVars['zoomRatio']);
+	if($('#mapWrap #map').width()*100/$('#mapWrap').width()<150){
+		globalVars['zoomRatio'] = 101;
+	}
+	if($('#mapWrap #map').width()*100/$('#mapWrap').width() > 600){
+		globalVars['zoomRatio'] = 99;
+	}
+	var mapW = $('#mapWrap #map').width();
+	var mapH = $('#mapWrap #map').height();
+	var mapT = parseInt($('#mapWrap #map').css('top'));
+	var mapL = parseInt($('#mapWrap #map').css('left'));
+	var nMapW=mapW*globalVars['zoomRatio']/100;
+	var nMapH=mapH*globalVars['zoomRatio']/100;
+	var nMapT=mapT*globalVars['zoomRatio']/100;
+	var nMapL=mapL*globalVars['zoomRatio']/100;
+	$('#mapWrap #map').css({
+		'width':nMapW,
+		'height':nMapH,
+		'top':nMapT,
+		'left':nMapL,
+	});
+	$('#mapWrap #map .imgMap').attr({
+		'width':nMapW,
+		'height':nMapH,
+	});
 }

@@ -14,7 +14,7 @@ body {
     width:100%;
     position: relative;
     color: #fff;
-	/*    overflow: hidden;*/
+	overflow: hidden;
 }
 .hidden{
     display: none;
@@ -436,8 +436,8 @@ input[type=radio]{
     right:10%;
     width: 70%;
     text-align: center;
-    color: #17ff39;
-    text-shadow: 0px 0px 12px #17ff39;
+    color: #fff;
+    text-shadow: 0px 0px 12px #fff;
     font-family: "Myriad Pro";
 }
 #minLoad, #intercomLoad{
