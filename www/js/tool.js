@@ -1244,9 +1244,9 @@ function resizeMap() {
 		'width': nMapW,
 		'height': nMapH,
 	});
-	var newZommRatio = nMapW / (globalVars[globalVars['curentMap'] + 'json'].width * globalVars['multipleScreen']);
+	var newZommRatio = nMapW / (globalVars[globalVars['curentMap'] + 'json'].width);
 
-	$('#mapWrap #map > div.sprite, #mapWrap #map .curseur').each(function() {
+	$('#mapWrap #map > div.sprite, #mapWrap #map .curseur, #mapWrap #map .hitbox').each(function() {
 		$(this).css({
 			'top': $(this).attr('data-top') * newZommRatio,
 			'left': $(this).attr('data-left') * newZommRatio,
