@@ -77,10 +77,10 @@ function loadMap() {
 			joueur.height = 120;
 			joueur.width = 120;
 			joueur.ressource = 'sprites-perso' + globalVars['usePerso'];
-			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy * globalVars['multipleScreen'] + 'px;left:' + joueur.posx * globalVars['multipleScreen'] + 'px; width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"><div class="sprite" style="width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;"></div><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;"></div></div>';
+			var joueurobj = '<div id="joueur" class="sprite" style="top:' + joueur.posy * globalVars['multipleScreen'] + 'px;left:' + joueur.posx * globalVars['multipleScreen'] + 'px; width:' + joueur.width * globalVars['multipleScreen'] + 'px;height:' + joueur.height * globalVars['multipleScreen'] + 'px;" data-top="' + joueur.posy * globalVars['multipleScreen'] + '" data-left="' + joueur.posx * globalVars['multipleScreen'] + '" data-width="' + joueur.width * globalVars['multipleScreen'] + '" data-height="' + joueur.height * globalVars['multipleScreen'] + '"><div class="curseur" style="position:absolute;top:' + 60 * globalVars['multipleScreen'] + 'px;left:' + 30 * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;" data-top="' + 60 * globalVars['multipleScreen'] + '" data-left="' + 30 * globalVars['multipleScreen'] + '" data-width="' + globalVars['multipleScreen'] * 60 + '" data-height="' + globalVars['multipleScreen'] * 60 + '"></div></div>';
 
 			mapWrap.children('div#map').append(joueurobj);
-			$('#joueur .sprite').animateSprite({
+			$('#joueur').animateSprite({
 				src: getLocalRessources(joueur.ressource),
 				sw: '120',
 				sh: '120',
@@ -90,19 +90,16 @@ function loadMap() {
 				fps: globalVars['shema-perso' + globalVars['usePerso']].fps,
 				redim: true
 			});
-			$('#joueur .sprite').animateSprite('play', globalVars[globalVars['curentMap'] + 'json'].joueur.direction);
+			$('#joueur').animateSprite('play', globalVars[globalVars['curentMap'] + 'json'].joueur.direction);
 
 		}
 
 		// On ajoute les points d'interets
 		for (interet in globalVars[globalVars['curentMap'] + 'json'].interets) {
 			var obj = globalVars[globalVars['curentMap'] + 'json'].interets[interet];
-			if (obj.ressource.indexOf('sprites') >= 0) {
-				// on redéfini les taille si on est sur écran large
-			}
-			var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy * globalVars['multipleScreen'] + 'px;left:' + obj.posx * globalVars['multipleScreen'] + 'px; width:' + obj.width * globalVars['multipleScreen'] + 'px;height:' + obj.height * globalVars['multipleScreen'] + 'px;">';
+			var objectInteret = '<div id="' + interet + '" class="sprite" style="top:' + obj.posy * globalVars['multipleScreen'] + 'px;left:' + obj.posx * globalVars['multipleScreen'] + 'px; width:' + obj.width * globalVars['multipleScreen'] + 'px;height:' + obj.height * globalVars['multipleScreen'] + 'px;" data-top="' + obj.posy * globalVars['multipleScreen'] + '" data-left="' + obj.posx * globalVars['multipleScreen'] + '" data-width="' + obj.width * globalVars['multipleScreen'] + '" data-height="' + obj.height * globalVars['multipleScreen'] + '">';
 			if (obj.action != undefined) {
-				objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x * globalVars['multipleScreen'] + 'px;left:' + obj.action.hitbox.y * globalVars['multipleScreen'] + 'px;width:' + obj.action.hitbox.w * globalVars['multipleScreen'] + 'px;height:' + obj.action.hitbox.h * globalVars['multipleScreen'] + 'px;z-index:31;" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="position:absolute;top:' + obj.action.posy * globalVars['multipleScreen'] + 'px;left:' + obj.action.posx * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;">';
+				objectInteret += '<div class="hitbox" style="position:absolute;top:' + obj.action.hitbox.x * globalVars['multipleScreen'] + 'px;left:' + obj.action.hitbox.y * globalVars['multipleScreen'] + 'px;width:' + obj.action.hitbox.w * globalVars['multipleScreen'] + 'px;height:' + obj.action.hitbox.h * globalVars['multipleScreen'] + 'px;z-index:31;" data-top="' + obj.action.hitbox.x * globalVars['multipleScreen'] + '" data-left="' + obj.action.hitbox.y * globalVars['multipleScreen'] + '" data-width="' + obj.action.hitbox.w * globalVars['multipleScreen'] + '" data-height="' + obj.action.hitbox.h * globalVars['multipleScreen'] + '" onmousedown="' + obj.action.fct + '" ontouchstart="' + obj.action.fct + '"></div><div class="curseur" style="position:absolute;top:' + obj.action.posy * globalVars['multipleScreen'] + 'px;left:' + obj.action.posx * globalVars['multipleScreen'] + 'px; width:' + globalVars['multipleScreen'] * 60 + 'px;height:' + globalVars['multipleScreen'] * 60 + 'px;" data-top="' + obj.action.posy * globalVars['multipleScreen'] + '" data-left="' + obj.action.posx * globalVars['multipleScreen'] + '" data-width="' + globalVars['multipleScreen'] * 60 + '" data-height="' + globalVars['multipleScreen'] * 60 + '">';
 			}
 			objectInteret += '</div></div>';
 			// on ajoute les animations des points d'interet
