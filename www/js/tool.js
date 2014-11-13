@@ -1179,6 +1179,7 @@ function onPointerMove(e) {
 			globalVars['lastCtrlY'] = e.clientY;
 			var vecteurX = e.clientX - globalVars['ctrlX'];
 			var vecteurY = e.clientY - globalVars['ctrlY'];
+			dump(globalVars[globalVars['curentMap'] + 'json'].posx + '|' + globalVars[globalVars['curentMap'] + 'json'].posy+'|');
 			var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
 			var top = globalVars[globalVars['curentMap'] + 'json'].posy + vecteurY;
 			if (left >= 0)
@@ -1189,7 +1190,6 @@ function onPointerMove(e) {
 				left = ($('#mapWrap #map').width() - globalVars['screenW']) * -1;
 			if (top <= ($('#mapWrap #map').height() - globalVars['screenH']) * -1)
 				top = ($('#mapWrap #map').height() - globalVars['screenH']) * -1;
-
 			$('#map').css({
 				'left': left + 'px',
 				'top': top + 'px',
@@ -1206,15 +1206,29 @@ function onPointerUp() {
 		globalVars['ctrlY'] = 0;
 		globalVars['touchmap'] = false;
 	}
+	if (globalVars['deltaZoom'] != undefined) {
+		delete globalVars['deltaZoom'];
+		globalVars[globalVars['curentMap'] + 'json'].posx = parseInt($('#mapWrap #map').css('left'));
+		globalVars[globalVars['curentMap'] + 'json'].posy = parseInt($('#mapWrap #map').css('top'));
+	}
+
+	//reset des valeurs si on est hors du cadre
+	if (globalVars[globalVars['curentMap'] + 'json'].posx > 0)
+		globalVars[globalVars['curentMap'] + 'json'].posx = 0
+	if (globalVars[globalVars['curentMap'] + 'json'].posy > 0)
+		globalVars[globalVars['curentMap'] + 'json'].posy = 0
+	if (globalVars[globalVars['curentMap'] + 'json'].posx < ($('#mapWrap #map').width() - globalVars['screenW']) * -1)
+		globalVars[globalVars['curentMap'] + 'json'].posx = ($('#mapWrap #map').width() - globalVars['screenW']) * -1
+	if (globalVars[globalVars['curentMap'] + 'json'].posy < ($('#mapWrap #map').width() - globalVars['screenW']) * -1)
+		globalVars[globalVars['curentMap'] + 'json'].posy = ($('#mapWrap #map').width() - globalVars['screenW']) * -1
+	
+			dump(globalVars[globalVars['curentMap'] + 'json'].posx + '|' + globalVars[globalVars['curentMap'] + 'json'].posy+'|');
 }
 
 function resizeMap() {
 	//dump(globalVars['zoomRatio']);
-	if ($('#mapWrap #map').width() * 100 / $('#mapWrap').width() < 150) {
-		globalVars['zoomRatio'] = 101;
-	}
-	if ($('#mapWrap #map').width() * 100 / $('#mapWrap').width() > 600) {
-		globalVars['zoomRatio'] = 99;
+	if (($('#mapWrap #map').width() * 100 / $('#mapWrap').width() <= 150 && globalVars['zoomRatio'] < 100) || ($('#mapWrap #map').width() * 100 / $('#mapWrap').width() >= 600 && globalVars['zoomRatio'] > 100)) {
+		globalVars['zoomRatio'] = 100;
 	}
 	var mapW = $('#mapWrap #map').width();
 	var mapH = $('#mapWrap #map').height();
@@ -1222,8 +1236,13 @@ function resizeMap() {
 	var mapL = parseInt($('#mapWrap #map').css('left'));
 	var nMapW = mapW * globalVars['zoomRatio'] / 100;
 	var nMapH = mapH * globalVars['zoomRatio'] / 100;
-	var nMapT = mapT * globalVars['zoomRatio'] / 100;
-	var nMapL = mapL * globalVars['zoomRatio'] / 100;
+	if (mapH < nMapH) {
+		var nMapT = mapT - ((nMapH - mapH) / 2);
+		var nMapL = mapL - ((nMapW - mapW) / 2);
+	} else {
+		var nMapT = mapT + ((mapH - nMapH) / 2);
+		var nMapL = mapL + ((mapW - nMapW) / 2);
+	}
 
 	if (nMapL >= 0)
 		nMapL = 0;
@@ -1233,6 +1252,11 @@ function resizeMap() {
 		nMapL = ($('#mapWrap #map').width() - globalVars['screenW']) * -1;
 	if (nMapT <= ($('#mapWrap #map').height() - globalVars['screenH']) * -1)
 		nMapT = ($('#mapWrap #map').height() - globalVars['screenH']) * -1;
+	
+	if(nMapW < globalVars['screenW'])
+		nMapW = globalVars['screenW']
+	if(nMapH < globalVars['screenH'])
+		nMapH = globalVars['screenH']
 
 	$('#mapWrap #map').css({
 		'width': nMapW,
