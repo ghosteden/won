@@ -31,8 +31,8 @@ ressources['portrait-paul-5'] = {'name': 'portrait-perso1-5.png', 'type': 'image
 
 var mapjson = {
 	"illustration":"z1m1-min",
-	"posx": -600,
-	"posy": -300,
+	"posx": -800,
+	"posy": -600,
 	"width": 2217,
 	"height": 1484,
 	"map": "z1m1",

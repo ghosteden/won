@@ -1179,7 +1179,6 @@ function onPointerMove(e) {
 			globalVars['lastCtrlY'] = e.clientY;
 			var vecteurX = e.clientX - globalVars['ctrlX'];
 			var vecteurY = e.clientY - globalVars['ctrlY'];
-			dump(globalVars[globalVars['curentMap'] + 'json'].posx + '|' + globalVars[globalVars['curentMap'] + 'json'].posy+'|');
 			var left = globalVars[globalVars['curentMap'] + 'json'].posx + vecteurX;
 			var top = globalVars[globalVars['curentMap'] + 'json'].posy + vecteurY;
 			if (left >= 0)
@@ -1221,8 +1220,6 @@ function onPointerUp() {
 		globalVars[globalVars['curentMap'] + 'json'].posx = ($('#mapWrap #map').width() - globalVars['screenW']) * -1
 	if (globalVars[globalVars['curentMap'] + 'json'].posy < ($('#mapWrap #map').width() - globalVars['screenW']) * -1)
 		globalVars[globalVars['curentMap'] + 'json'].posy = ($('#mapWrap #map').width() - globalVars['screenW']) * -1
-	
-			dump(globalVars[globalVars['curentMap'] + 'json'].posx + '|' + globalVars[globalVars['curentMap'] + 'json'].posy+'|');
 }
 
 function resizeMap() {

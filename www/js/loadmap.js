@@ -61,12 +61,26 @@ function loadMap() {
 		// ajout de la carte
 		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].map) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width  + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
 		mapWrap = getElement('mapWrap');
+		var mapT = globalVars[globalVars['curentMap'] + 'json'].posy + globalVars['screenH']/2;
+		var mapL = globalVars[globalVars['curentMap'] + 'json'].posx + globalVars['screenW']/2;
+		
+		if(mapT > 0)
+			mapT = 0;
+		if(mapL > 0)
+			mapL = 0;
+		if(mapT < (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
+			mapT = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
+		if(mapL < (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1)
+			mapL = (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1;
+		
+		globalVars[globalVars['curentMap'] + 'json'].posy = mapT;
+		globalVars[globalVars['curentMap'] + 'json'].posx = mapL;
 		mapWrap.children('div#map')
 				.css({
 					'width': globalVars[globalVars['curentMap'] + 'json'].width  + 'px',
 					'height': globalVars[globalVars['curentMap'] + 'json'].height  + 'px',
-					'top': globalVars[globalVars['curentMap'] + 'json'].posy  + 'px',
-					'left': globalVars[globalVars['curentMap'] + 'json'].posx  + 'px'
+					'top': mapT  + 'px',
+					'left': mapL  + 'px'
 				})
 				.html(imgMap);
 
