@@ -22,7 +22,6 @@ function loadMap() {
 					var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
 					loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
 						divCheckUpdateApps.html(lang('loading')).fadeIn(function() {
-
 							//on précharge les éléments
 							for (var load in globalVars[globalVars['curentMap'] + 'json'].ressources) {
 								nbToDo++;
@@ -59,28 +58,28 @@ function loadMap() {
 			globalVars[globalVars['curentMap'] + 'json'].posx = globalVars[globalVars['curentMap'] + 'json'].posx * globalVars['multipleScreen'];
 		}
 		// ajout de la carte
-		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].map) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width  + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
+		var imgMap = '<img src="' + getLocalRessources(globalVars[globalVars['curentMap'] + 'json'].map) + '" class="imgMap" width="' + globalVars[globalVars['curentMap'] + 'json'].width + '" height="' + globalVars[globalVars['curentMap'] + 'json'].height + '"/>';
 		mapWrap = getElement('mapWrap');
-		var mapT = globalVars[globalVars['curentMap'] + 'json'].posy + globalVars['screenH']/2;
-		var mapL = globalVars[globalVars['curentMap'] + 'json'].posx + globalVars['screenW']/2;
-		
-		if(mapT > 0)
+		var mapT = globalVars[globalVars['curentMap'] + 'json'].posy + globalVars['screenH'] / 2;
+		var mapL = globalVars[globalVars['curentMap'] + 'json'].posx + globalVars['screenW'] / 2;
+
+		if (mapT > 0)
 			mapT = 0;
-		if(mapL > 0)
+		if (mapL > 0)
 			mapL = 0;
-		if(mapT < (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
+		if (mapT < (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1)
 			mapT = (globalVars[globalVars['curentMap'] + 'json'].height - globalVars['screenH']) * -1;
-		if(mapL < (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1)
+		if (mapL < (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1)
 			mapL = (globalVars[globalVars['curentMap'] + 'json'].width - globalVars['screenW']) * -1;
-		
+
 		globalVars[globalVars['curentMap'] + 'json'].posy = mapT;
 		globalVars[globalVars['curentMap'] + 'json'].posx = mapL;
 		mapWrap.children('div#map')
 				.css({
-					'width': globalVars[globalVars['curentMap'] + 'json'].width  + 'px',
-					'height': globalVars[globalVars['curentMap'] + 'json'].height  + 'px',
-					'top': mapT  + 'px',
-					'left': mapL  + 'px'
+					'width': globalVars[globalVars['curentMap'] + 'json'].width + 'px',
+					'height': globalVars[globalVars['curentMap'] + 'json'].height + 'px',
+					'top': mapT + 'px',
+					'left': mapL + 'px'
 				})
 				.html(imgMap);
 
@@ -143,11 +142,12 @@ function loadMap() {
 			redim: true
 		});
 
-		getElement('checkUpdateApps').fadeOut().parent().animate({'height': '0px'}, 500, function() {
-			getElement('illuMap').fadeIn().delay(100).fadeOut(function() {
-				$(this).remove();
+		$('#checkUpdateApps').delay('100').fadeOut(function() {
+			$('#checkUpdateApps').delay('100').parent().animate({'height': '0px'}, 500, function() {
+				getElement('illuMap').fadeIn().delay(300).fadeOut(function() {
+					$(this).remove();
+				});
 			});
-			$(this).remove();
 		});
 	}
 }

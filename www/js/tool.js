@@ -451,7 +451,7 @@ function getElement(ID, Class, type) {
 						return $('#' + ID);
 						break;
 					case 'checkUpdateApps':
-						var elem = '<div id="' + ID + '" class="' + Class + '"></div>';
+						var elem = '<div id="' + ID + '" class="' + Class + '" style="font-size:'+$('.loadBar').attr('data-height')/5+'px"></div>';
 						$('.loadBar').append(elem);
 						return $('#' + ID);
 						break;
@@ -463,18 +463,18 @@ function getElement(ID, Class, type) {
 						$('body').append(elem);
 						$('#signal .background').load(function() {
 							$('#signal .background').css({
-								'width': globalVars['screenW'] / 3,
+								'width': globalVars['screenW'] / 2,
 								'height': 'auto',
 								'position': 'absolute',
 								'top': '25%',
-								'left': '50%',
-								'margin-left': globalVars['screenW'] / -6,
+								'left': '25%',
 							});
 							$('#signal .text').css({
-								'top': ($('#signal .background').offset().top + (globalVars['screenW'] / 3) * 0.18) + 'px',
-								'left': ($('#signal .background').offset().left + (globalVars['screenW'] / 3) * 0.05) + 'px',
-								'width': globalVars['screenW'] / 3 * 0.83 + 'px',
+								'top': ($('#signal .background').offset().top + (globalVars['screenW'] / 2) * 0.18) + 'px',
+								'left': ($('#signal .background').offset().left + (globalVars['screenW'] / 2) * 0.05) + 'px',
+								'width': globalVars['screenW'] / 2 * 0.83 + 'px',
 								'height': $('#signal .background').height() * 0.5 + 'px',
+								'font-size':$('#signal .background').height()/12+'px',
 							});
 							$('#signal .closeSignal').css({
 								'top': $('#signal .background').offset().top + 'px',

@@ -635,7 +635,7 @@ function submitScreenConfig() {
  * @description Lance le didactitiel
  */
 function didacticiel() {
-	// on charge les paramètre de base tel que la version du personnage, la map etc
+	// on charge les paramètres de base tel que la version du personnage, la map etc
 	globalVars['gameEmplacement'] = 'tuto';
 	globalVars['usePerso'] = 1;
 	globalVars['useDeck'] = 0;
