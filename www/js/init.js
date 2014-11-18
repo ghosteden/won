@@ -463,10 +463,12 @@ function filesIsOk() {
         $('#checkUpdateApps').html(lang('filesIsOk')).fadeIn(function() {
             $('#checkUpdateApps').delay('100').fadeOut(function() {
                 $('#checkUpdateApps').delay('100').parent().animate({'height': '0px'}, 500, function() {
+					$(this).remove();
                     getElement('blurall');
                     getElement('intercom');
                     connectionPlayer();
                 });
+				$(this).remove();
             });
         });
     });

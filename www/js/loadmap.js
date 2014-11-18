@@ -141,13 +141,14 @@ function loadMap() {
 			fps: 12,
 			redim: true
 		});
-alert('t');
 		$('#checkUpdateApps').delay('100').fadeOut(function() {
 			$('#checkUpdateApps').delay('100').parent().animate({'height': '0px'}, 500, function() {
 				getElement('illuMap').fadeIn().delay(300).fadeOut(function() {
 					$(this).remove();
 				});
+				$(this).remove();
 			});
+			$(this).remove();
 		});
 	}
 }

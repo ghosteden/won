@@ -44,15 +44,11 @@
 
 				device = {'platform': 'web'};
 
-//var loadBar = getElement('', 'loadBar');
-//    var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
-//    var params = {"version": globalVars['appsVersion']};
-//    var url = globalVars['urlTestVersion'];
-//    var remoteFile = globalVars['urlLastApk'].replace('device', device.platform);
-//    // on écris un text pour dire qu'on vérifie les mise a jour
-//    loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
-//        divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
-//    });
+var loadBar = getElement('', 'loadBar');
+    var divCheckUpdateApps = getElement('checkUpdateApps', 'infoLoadingScreen');
+    // on écris un text pour dire qu'on vérifie les mise a jour
+    loadBar.animate({'height': loadBar.attr('data-height') + 'px'}, 500, function() {
+        divCheckUpdateApps.html(lang('verifLastUpdate')).fadeIn();
 
 
 				filesIsOk();
@@ -60,6 +56,7 @@
 				 getElement('intercom').animate({'left':'0'},function(){
 				 menuGame();
 				 });
+    });
 //				signal('tt');
 //				sceenParams();
 //				didacticiel();
