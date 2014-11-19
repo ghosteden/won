@@ -37,6 +37,9 @@ function getLocalData(FILE, callback, dataDefault, callbackIfNotExist, distantFi
 		if (FILE == 'ressources/shema-perso1') {
 			globalVars['shema-perso1'] = shemaperso1;
 		}
+		if (FILE == 'ressources/langFile') {
+			globalVars['langFile'] = langFile;
+		}
 		if (callback) {
 			callback();
 		}
@@ -584,13 +587,7 @@ function getElement(ID, Class, type) {
  * @return le contenue de la langue en fonction de la langue de l'application
  */
 function lang(langVar) {
-	if (globalVars['lang'] == 'FR') {
-// Si le jeu est en FR
-		return LANG_FR[langVar];
-	} else {
-// Si le jeu est en EN
-		return LANG_EN[langVar];
-	}
+	return LANG['LANG_'+globalVars['lang']][langVar];
 }
 
 /*
@@ -1167,8 +1164,7 @@ function onPointerMove(e) {
 	}
 	if (e.touches[1] != undefined) {
 		var deltaZoom = Math.abs((e.touches[1].clientX + e.touches[1].clientY) - (e.touches[0].clientX + e.touches[0].clientY));
-		globalVars['zoomRatio'] = deltaZoom * 100 / globalVars['deltaZoom'];
-		resizeMap();
+		resizeMap(deltaZoom * 100 / globalVars['deltaZoom']);
 		globalVars['deltaZoom'] = deltaZoom;
 	} else {
 		if (e.touches !== undefined) {
@@ -1222,17 +1218,16 @@ function onPointerUp() {
 		globalVars[globalVars['curentMap'] + 'json'].posy = ($('#mapWrap #map').width() - globalVars['screenW']) * -1
 }
 
-function resizeMap() {
-	//dump(globalVars['zoomRatio']);
-	if (($('#mapWrap #map').width() * 100 / $('#mapWrap').width() <= 150 && globalVars['zoomRatio'] < 100) || ($('#mapWrap #map').width() * 100 / $('#mapWrap').width() >= 600 && globalVars['zoomRatio'] > 100)) {
-		globalVars['zoomRatio'] = 100;
+function resizeMap(zoomRatio) {
+	if (($('#mapWrap #map').width() * 100 / $('#mapWrap').width() <= 150 && zoomRatio < 100) || ($('#mapWrap #map').width() * 100 / $('#mapWrap').width() >= 600 && zoomRatio > 100)) {
+		zoomRatio = 100;
 	}
 	var mapW = $('#mapWrap #map').width();
 	var mapH = $('#mapWrap #map').height();
 	var mapT = parseInt($('#mapWrap #map').css('top'));
 	var mapL = parseInt($('#mapWrap #map').css('left'));
-	var nMapW = mapW * globalVars['zoomRatio'] / 100;
-	var nMapH = mapH * globalVars['zoomRatio'] / 100;
+	var nMapW = mapW * zoomRatio / 100;
+	var nMapH = mapH * zoomRatio / 100;
 	if (mapH < nMapH) {
 		var nMapT = mapT - ((nMapH - mapH) / 2);
 		var nMapL = mapL - ((nMapW - mapW) / 2);
@@ -1255,9 +1250,15 @@ function resizeMap() {
 	if(nMapH < globalVars['screenH'])
 		nMapH = globalVars['screenH']
 
+	var newZommRatio = nMapW / (globalVars[globalVars['curentMap'] + 'json'].width);
+	var minzoom = $('#mapWrap').width() / globalVars[globalVars['curentMap'] + 'json'].width * 1.5;
+	if(newZommRatio < minzoom){
+		newZommRatio = minzoom;
+	}
+	
 	$('#mapWrap #map').css({
-		'width': nMapW,
-		'height': nMapH,
+		'width': globalVars[globalVars['curentMap'] + 'json'].width * newZommRatio,
+		'height': globalVars[globalVars['curentMap'] + 'json'].height * newZommRatio,
 		'top': nMapT,
 		'left': nMapL,
 	});
@@ -1265,7 +1266,7 @@ function resizeMap() {
 		'width': nMapW,
 		'height': nMapH,
 	});
-	var newZommRatio = nMapW / (globalVars[globalVars['curentMap'] + 'json'].width);
+	
 
 	$('#mapWrap #map > div.sprite, #mapWrap #map .curseur, #mapWrap #map .hitbox').each(function() {
 		$(this).css({
@@ -1275,4 +1276,5 @@ function resizeMap() {
 			'width': $(this).attr('data-width') * newZommRatio,
 		});
 	});
+	globalVars['zommRatio'] = newZommRatio;
 }

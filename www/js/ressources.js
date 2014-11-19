@@ -204,4 +204,13 @@ var shemaperso1 = {
 	"XM22W2":[1551,1552,1553,1554,1555,1556,1557,1558,1559,1560,1561,1562,1563,1564,1565,1566,1567,1568,1569,1570,1571,1572,1573,1574,1575,1576,1577,1578,1579,1580,1581,1582,1583,1584,1585,1586,1587,1588,1589,1590,1591,1592,1593,1594,1595,1596,1597,1598,1599],
 	"XM22W3":[1599,1598,1597,1596,1595,1594,1593,1592,1591,1590,1589,1590,1591,1592,1593,1594,1595,1596,1597,1598,1599],
 	"XM22W4":[1571,1572,1573,1574,1575,1576,1577,1578,1579,1580,1581]
-}
+};
+
+var langFile = {
+	"LANG_FR": {
+		"tutoFirstDialogue" : "Bienvenue dans World of Nemesis. Ce monde a été dévasté, ici vous apprendrez les rudiments nécessaire a votre survit. Aller à la rencontre de Paul. Vous le trouverez dans la ville où vous vous situez. Ils sera votre allié durant cette épreuve. Parcourez la ville, et recherchez les différents points d'intérêt. ils sont repérables par ce symbole <img style='vertical-align:middle' width='50' src='./img/cursor-front.png'/>"
+	},
+	"LANG_EN": {
+		"tutoFirstDialogue" : ""
+	}
+};
