@@ -160,7 +160,6 @@
 			idElem += '-' + obj.attr('class');
 		}
 		var elem = $('.' + idElem);
-		obj.animateSprite('setFrame', elem.attr('data-frame'));
 			// resize l'element
 		if (elem.attr('data-width') != elem.parent().width() && elem.attr('data-redim')) {
 			elem.attr('data-width', elem.parent().width());
@@ -223,5 +222,7 @@
 				elem.attr('data-play', 1);
 			}
 		}
+		obj.animateSprite('setFrame', elem.attr('data-frame'));
+		
 	};
 })(jQuery);
